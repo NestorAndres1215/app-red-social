@@ -1,10 +1,13 @@
 package com.red_social.auth_service.service;
 
 import com.red_social.auth_service.constants.AuthConstants;
+import com.red_social.auth_service.constants.EstadoConstants;
 import com.red_social.auth_service.constants.RolesConstants;
 import com.red_social.auth_service.dto.RegisterRequest;
 import com.red_social.auth_service.exception.ResourceAlreadyExistsException;
 import com.red_social.auth_service.exception.ResourceNotFoundException;
+import com.red_social.auth_service.kafka.KafkaProducerService;
+import com.red_social.auth_service.kafka.UserEvent;
 import com.red_social.auth_service.model.Login;
 import com.red_social.auth_service.model.Usuario;
 import com.red_social.auth_service.repository.UsuarioRepository;
@@ -15,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +26,7 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final LoginService loginService;
+    private final KafkaProducerService kafkaProducerService;
 
     public List<Usuario> listarUsername(String username) {
         return usuarioRepository.findByLogin_Username(username);
@@ -82,6 +86,25 @@ public class UsuarioService {
 
         String ultimoCodigoUsuario = ultimoCodigo();
         String nuevoCodigoUsuario = SecuenciaUtil.generarSiguienteCodigo(ultimoCodigoUsuario);
+
+        UserEvent userEvent = UserEvent.builder()
+                .eventType("USER_REGISTERED")
+                .userId(nuevoCodigoUsuario)
+                .username(registerRequest.getUsername())
+                .nombre(registerRequest.getNombre())
+                .apellido(registerRequest.getApellido())
+                .genero(registerRequest.getGenero())
+                .pais(registerRequest.getNacionalidad())
+                .edad(registerRequest.getEdad())
+                .rol(RolesConstants.ROLE_USER)
+                .estado(EstadoConstants.ACTIVO)
+                .verificado("NO VERIFICADO")
+                .proveedor(AuthConstants.LOCAL)
+                .fechaNacimiento(registerRequest.getFechaNacimiento())
+                .fechaRegistro(LocalDateTime.now())
+                .build();
+
+        kafkaProducerService.publishEvent(userEvent);
 
         Usuario usuario = Usuario.builder()
                 .codigo(nuevoCodigoUsuario)
