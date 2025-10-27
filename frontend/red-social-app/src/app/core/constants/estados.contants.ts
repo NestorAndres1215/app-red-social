@@ -1,0 +1,9 @@
+export const Estados = Object.freeze({
+    ACTIVO: 'ACTIVO',
+    INACTIVO: 'INACTIVO',
+    PENDIENTE: 'PENDIENTE',
+    BLOQUEADO: 'BLOQUEADO',
+    SUSPENDIDO: 'SUSPENDIDO',
+    FINALIZADO: 'FINALIZADO',
+    RECHAZADO: 'RECHAZADO',
+})

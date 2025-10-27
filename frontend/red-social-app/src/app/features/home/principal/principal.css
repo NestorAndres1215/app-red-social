@@ -90,6 +90,7 @@ nav {
 .hero-content {
     display: flex;
     justify-content: center;
+     gap: 15px;
 }
 
 .hero::before,

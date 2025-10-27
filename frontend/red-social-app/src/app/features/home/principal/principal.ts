@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-principal',
@@ -7,11 +8,15 @@ import { Component } from '@angular/core';
   styleUrl: './principal.css'
 })
 export class Principal {
-register() {
-throw new Error('Method not implemented.');
-}
-iniciarSesion() {
-throw new Error('Method not implemented.');
-}
+
+  constructor(private router: Router) { }
+
+  login() {
+    this.router.navigate(['/auth/login'])
+  }
+
+  register() {
+    this.router.navigate(['/auth/registro'])
+  }
 
 }
