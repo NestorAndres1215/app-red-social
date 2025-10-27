@@ -3,10 +3,18 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "dev": "ng serve --configuration development --open --port 4200 --proxy-config proxy.conf.json",
+    "start": "npm run dev",
+    "start:prod": "ng serve --configuration production --open",
+    "build": "ng build --configuration production",
+    "build:dev": "ng build --configuration development",
+    "build:prod": "ng build --configuration production --aot --optimization",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "lint": "ng lint",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.html\" \"src/**/*.scss\"",
+    "test": "ng test --watch=false --browsers=ChromeHeadless",
+    "e2e": "ng e2e",
+    "clean": "rm -rf dist/ node_modules/ && npm install"
   },
   "prettier": {
     "overrides": [
@@ -20,12 +28,17 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cdk": "^20.2.10",
     "@angular/common": "^20.0.0",
     "@angular/compiler": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@angular/forms": "^20.0.0",
+    "@angular/material": "^20.2.10",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

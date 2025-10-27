@@ -12,6 +12,7 @@ public interface EstadisticasRolesRepository extends JpaRepository<EstadisticasR
 
     @Query(value = "SELECT MAX(er_codigo) FROM Estadisticas_Roles", nativeQuery = true)
     String obtenerCodigo();
+
     Optional<EstadisticasRoles> findByRoles(String verificacion);
 
 }

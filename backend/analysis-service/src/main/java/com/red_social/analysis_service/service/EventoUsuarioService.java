@@ -48,4 +48,23 @@ public class EventoUsuarioService {
         return eventoUsuarioRepository.save(eventoUsuario);
     }
 
+    // Listar todos los eventos de usuario
+    public List<EventoUsuario> listarTodos() {
+        return eventoUsuarioRepository.findAll();
+    }
+
+    // Listar por username
+    public EventoUsuario listarPorUsername(String username) {
+        return eventoUsuarioRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado con username: " + username));
+    }
+
+
+    // Listar por código
+    public EventoUsuario listarPorCodigo(String codigo) {
+        return eventoUsuarioRepository.findById(codigo)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado con código: " + codigo));
+    }
+
+
 }
