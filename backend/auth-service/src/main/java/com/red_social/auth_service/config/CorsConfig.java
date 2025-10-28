@@ -15,8 +15,8 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Aplica a todas las rutas
                         .allowedOrigins(
-                                "http://localhost:4200"
-                                // "http://localhost:8090"  API Gateway
+                                "http://localhost:4200",
+                                 "http://localhost:8090"  //API Gateway
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos permitidos
                         .allowedHeaders("*") // Todos los headers

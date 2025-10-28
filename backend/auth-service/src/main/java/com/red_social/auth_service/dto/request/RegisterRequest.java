@@ -1,4 +1,4 @@
-package com.red_social.auth_service.dto;
+package com.red_social.auth_service.dto.request;
 
 import lombok.*;
 

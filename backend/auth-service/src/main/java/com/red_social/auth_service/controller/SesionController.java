@@ -1,7 +1,6 @@
 package com.red_social.auth_service.controller;
 
-import com.red_social.auth_service.dto.SessionRequest;
-import com.red_social.auth_service.model.Rol;
+import com.red_social.auth_service.dto.request.SessionRequest;
 import com.red_social.auth_service.model.Sesion;
 import com.red_social.auth_service.service.SesionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController

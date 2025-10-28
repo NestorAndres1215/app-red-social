@@ -1,9 +1,8 @@
 package com.red_social.auth_service.service;
 
 import com.red_social.auth_service.constants.GoogleConstants;
-import com.red_social.auth_service.dto.GoogleResponse;
+import com.red_social.auth_service.dto.response.GoogleResponse;
 import com.red_social.auth_service.exception.GoogleServiceException;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

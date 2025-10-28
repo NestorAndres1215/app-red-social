@@ -1,7 +1,7 @@
 package com.red_social.auth_service.controller;
 
-import com.red_social.auth_service.dto.RegisterRequest;
-import com.red_social.auth_service.model.Sesion;
+import com.red_social.auth_service.dto.request.RegisterRequest;
+import com.red_social.auth_service.dto.response.UsuarioDetalleResponse;
 import com.red_social.auth_service.model.Usuario;
 import com.red_social.auth_service.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -47,6 +47,10 @@ public class UsuarioController {
     @PostMapping("/registrar")
     public ResponseEntity<Usuario> registrarUsuario(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(usuarioService.registrar(request));
+    }
+    @GetMapping("/detalle")
+    public ResponseEntity<List<UsuarioDetalleResponse>> listarUsuariosConDetalle() {
+        return ResponseEntity.ok(usuarioService.listarUsuarios());
     }
 
 }

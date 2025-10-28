@@ -1,13 +1,11 @@
 package com.red_social.auth_service.service;
 
-import com.red_social.auth_service.constants.AuthConstants;
 import com.red_social.auth_service.constants.RolesConstants;
-import com.red_social.auth_service.dto.RegisterRequest;
+import com.red_social.auth_service.dto.request.RegisterRequest;
 import com.red_social.auth_service.exception.ResourceAlreadyExistsException;
 import com.red_social.auth_service.exception.ResourceNotFoundException;
 import com.red_social.auth_service.model.Login;
 import com.red_social.auth_service.model.Moderador;
-import com.red_social.auth_service.model.Usuario;
 import com.red_social.auth_service.repository.ModeradorRepository;
 import com.red_social.auth_service.util.SecuenciaUtil;
 import lombok.RequiredArgsConstructor;

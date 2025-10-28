@@ -1,6 +1,6 @@
 package com.red_social.auth_service.service;
 
-import com.red_social.auth_service.dto.SessionRequest;
+import com.red_social.auth_service.dto.request.SessionRequest;
 import com.red_social.auth_service.exception.ResourceNotFoundException;
 import com.red_social.auth_service.model.Login;
 import com.red_social.auth_service.model.Sesion;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service

@@ -1,14 +1,12 @@
 package com.red_social.auth_service.service;
 
 import com.red_social.auth_service.constants.RolesConstants;
-import com.red_social.auth_service.dto.RegisterRequest;
+import com.red_social.auth_service.dto.request.RegisterRequest;
 import com.red_social.auth_service.exception.ResourceAlreadyExistsException;
 import com.red_social.auth_service.exception.ResourceNotFoundException;
 import com.red_social.auth_service.model.Admin;
 import com.red_social.auth_service.model.Login;
-import com.red_social.auth_service.model.Moderador;
 import com.red_social.auth_service.repository.AdminRepository;
-import com.red_social.auth_service.repository.UsuarioRepository;
 import com.red_social.auth_service.util.SecuenciaUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

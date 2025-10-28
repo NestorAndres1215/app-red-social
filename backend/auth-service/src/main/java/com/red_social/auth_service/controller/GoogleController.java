@@ -1,10 +1,9 @@
 package com.red_social.auth_service.controller;
 
-import com.red_social.auth_service.dto.GoogleResponse;
+import com.red_social.auth_service.dto.response.GoogleResponse;
 import com.red_social.auth_service.model.Usuario;
 import com.red_social.auth_service.security.JwtUtil;
 import com.red_social.auth_service.service.GoogleService;
-import com.red_social.auth_service.service.LoginService;
 import com.red_social.auth_service.service.TokenService;
 import com.red_social.auth_service.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;

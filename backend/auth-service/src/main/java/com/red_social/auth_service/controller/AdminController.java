@@ -1,6 +1,6 @@
 package com.red_social.auth_service.controller;
 
-import com.red_social.auth_service.dto.RegisterRequest;
+import com.red_social.auth_service.dto.request.RegisterRequest;
 import com.red_social.auth_service.model.Admin;
 import com.red_social.auth_service.service.AdminService;
 import io.swagger.v3.oas.annotations.tags.Tag;

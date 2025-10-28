@@ -1,0 +1,47 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      # ? Configuración global de CORS
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+            maxAge: 3600
+      routes:
+        - id: auth-service
+          uri: http://localhost:8080
+          predicates:
+            - Path=/red-social-app/auth-service/api/v1/**
+          filters:
+            - StripPrefix=0
+
+        - id: report-service
+          uri: http://localhost:8091
+          predicates:
+            - Path=/red-social-app/report-service/api/v1/**
+          filters:
+            - StripPrefix=0
+
+jwt:
+  secret: "MiSuperClaveSecretaParaJWTDeAlMenos32Caracteres123!"
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Auth Service
+        url: http://localhost:8080/red-social-app/auth-service/api/v1/v3/api-docs
+      - name: Product Service
+        url: http://localhost:8082/v3/api-docs
+  api-docs:
+    path: /v3/api-docs
+

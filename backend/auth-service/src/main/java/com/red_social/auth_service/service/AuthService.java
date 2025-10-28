@@ -1,8 +1,8 @@
 package com.red_social.auth_service.service;
 
 import com.red_social.auth_service.constants.AuthConstants;
-import com.red_social.auth_service.dto.LoginRequest;
-import com.red_social.auth_service.dto.TokenResponse;
+import com.red_social.auth_service.dto.request.LoginRequest;
+import com.red_social.auth_service.dto.response.TokenResponse;
 import com.red_social.auth_service.exception.BadRequestException;
 import com.red_social.auth_service.exception.JwtAuthenticationException;
 import com.red_social.auth_service.exception.ResourceNotFoundException;
