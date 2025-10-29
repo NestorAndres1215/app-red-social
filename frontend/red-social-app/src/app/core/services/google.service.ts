@@ -47,5 +47,13 @@ export class GoogleService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.backendUrl}/auth/actual-usuario`, { headers });
   }
+  isLoggedIn() {
+    let tokenStr = localStorage.getItem('jwt');
+    if (tokenStr == undefined || tokenStr == '' || tokenStr == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
 }

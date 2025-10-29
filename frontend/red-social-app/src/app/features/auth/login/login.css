@@ -1,6 +1,4 @@
-/* ========================================
-   BASE GLOBAL
-======================================== */
+
 body {
   background: linear-gradient(135deg, #1e3a8a, #3b82f6);
   min-height: 100vh;
@@ -9,9 +7,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ========================================
-   CONTENEDOR PRINCIPAL
-======================================== */
 .login-container {
   background: #ffffff;
   border-radius: 20px;
@@ -23,11 +18,6 @@ body {
   transition: all 0.3s ease;
 }
 
-
-
-/* ========================================
-   CABECERA
-======================================== */
 .logo-circle {
   width: 70px;
   height: 70px;
@@ -57,9 +47,6 @@ body {
   font-size: 0.95rem;
 }
 
-/* ========================================
-   FORMULARIO
-======================================== */
 .form-label {
   color: #1e40af;
 }
@@ -76,9 +63,6 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
 }
 
-/* ========================================
-   CONTRASEÑA CON OJO
-======================================== */
 .password-wrapper {
   position: relative;
 }
@@ -97,9 +81,6 @@ body {
   color: #1e3a8a;
 }
 
-/* ========================================
-   BOTONES
-======================================== */
 .btn-login {
   background: #1e3a8a;
   color: #fff;
@@ -110,7 +91,7 @@ body {
 }
 
 .btn-login:hover {
-  background: #1d4ed8;
+  background: #122457;
   box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
 }
 
@@ -133,13 +114,10 @@ body {
 }
 
 .btn-google:hover {
-  background-color: #f8f9fa;
+  background-color: #e6f0fa;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* ========================================
-   ENLACES Y DIVISORES
-======================================== */
 .divider {
   text-align: center;
   margin: 1rem 0;

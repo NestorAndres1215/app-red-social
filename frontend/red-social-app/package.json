@@ -3,18 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "dev": "ng serve --configuration development --open --port 4200 --proxy-config proxy.conf.json",
-    "start": "npm run dev",
-    "start:prod": "ng serve --configuration production --open",
-    "build": "ng build --configuration production",
-    "build:dev": "ng build --configuration development",
-    "build:prod": "ng build --configuration production --aot --optimization",
+    "start": "ng serve --proxy-config proxy.conf.json",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "lint": "ng lint",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.html\" \"src/**/*.scss\"",
-    "test": "ng test --watch=false --browsers=ChromeHeadless",
-    "e2e": "ng e2e",
-    "clean": "rm -rf dist/ node_modules/ && npm install"
+    "test": "ng test"
   },
   "prettier": {
     "overrides": [
@@ -38,6 +30,7 @@
     "@angular/router": "^20.0.0",
     "@fortawesome/fontawesome-free": "^7.1.0",
     "@popperjs/core": "^2.11.8",
+    "angular-oauth2-oidc": "^20.0.2",
     "bootstrap": "^5.3.8",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.26.3",

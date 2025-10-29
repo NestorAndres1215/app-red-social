@@ -29,6 +29,8 @@ public class AuthController {
 
     @PostMapping("/generate-token")
     public ResponseEntity<?> generarToken(@RequestBody LoginRequest jwtRequest) throws Exception {
+        System.out.println("ESTO ES ES TOKEN");
+        System.out.println(jwtRequest.toString());
         return ResponseEntity.ok(authService.login(jwtRequest));
     }
 

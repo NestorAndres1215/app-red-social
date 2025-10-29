@@ -6,13 +6,13 @@
       <p class="login-subtitle">Inicia sesión para continuar con tu experiencia.</p>
     </div>
 
-    <form>
+    <form [formGroup]="formulario" (ngSubmit)="operar()">
       <!-- Usuario -->
       <div class="form-group mb-3">
         <label for="username" class="form-label fw-semibold">
           <i class="fas fa-user me-1"></i> Usuario
         </label>
-        <input type="text" id="username" name="username" class="form-control" placeholder="Ingresa tu usuario"
+        <input type="text" formControlName="login" name="username" class="form-control" placeholder="Ingresa tu usuario"
           required />
       </div>
 
@@ -22,13 +22,13 @@
           <i class="fas fa-lock me-1"></i> Contraseña
         </label>
         <div class="password-wrapper">
-          <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" class="form-control"
-            placeholder="Ingresa tu contraseña" required />
+          <input [type]="showPassword ? 'text' : 'password'" formControlName="password" name="password"
+            class="form-control" placeholder="Ingresa tu contraseña" required />
           <i class="fas password-toggle" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"
             (click)="togglePassword()"></i>
         </div>
         <div class="text-end mt-2">
-          <a href="olvidar-contrasena" class="text-link small">¿Olvidaste tu contraseña?</a>
+          <a (click)="olvidarContrasena()" class="text-link small">¿Olvidaste tu contraseña?</a>
         </div>
       </div>
 
