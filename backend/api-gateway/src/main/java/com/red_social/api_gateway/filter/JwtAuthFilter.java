@@ -78,7 +78,7 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
     private boolean isPublicPath(String path) {
         boolean isPublic = path.startsWith("/security/api/v1/auth/") ||
                 path.equals("/red-social-app/auth-service/api/v1/auth/generate-token") ||
-                path.equals("/security/api/v1/auth/google/") ||
+                path.startsWith("/red-social-app/auth-service/api/v1/google/") || // ✅ cambiado
                 path.startsWith("/security/api/v1/users/register") ||
                 path.contains("/v3/api-docs") ||
                 path.contains("/swagger-ui");

@@ -81,6 +81,8 @@ export class Login {
                 localStorage.setItem('username', user.username)
                 console.log("INGRESO A ADMINISTRADOR" + user)
                 this.router.navigate(['/dashboard-admin']);
+              } else if (rol == ROLES.ROLE_MODERADOR) {
+
               } else {
                 console.log("INGRESO USER")
                 localStorage.setItem('username', user.username)
@@ -97,8 +99,9 @@ export class Login {
         },
         error: (error) => {
           console.error('Error generando token:', error);
-          this.alertService.error('Error', 'Credenciales incorrectas o servidor no disponible.');
+          this.alertService.error('Error', error.error.message);
         },
+
         complete: () => {
           console.log('Proceso de autenticación completado');
         }

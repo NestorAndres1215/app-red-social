@@ -2,6 +2,7 @@ package com.red_social.auth_service.controller;
 
 import com.red_social.auth_service.dto.request.RegisterRequest;
 import com.red_social.auth_service.dto.response.UsuarioDetalleResponse;
+import com.red_social.auth_service.exception.ResourceNotFoundException;
 import com.red_social.auth_service.model.Usuario;
 import com.red_social.auth_service.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,9 +36,12 @@ public class UsuarioController {
     }
 
     @GetMapping("/listarEmail/{email}")
-    public ResponseEntity<List<Usuario>> listarEmail(@PathVariable String email) {
-        return ResponseEntity.ok(usuarioService.listarEmail(email));
+    public ResponseEntity<Usuario> listarEmail(@PathVariable String email) {
+        return usuarioService.listarEmail(email)
+                .map(ResponseEntity::ok)
+                .orElseThrow(() -> new ResourceNotFoundException("No existe usuario con email: " + email));
     }
+
 
     @GetMapping("/listarTelefono/{telefono}")
     public ResponseEntity<List<Usuario>> listarTelefono(@PathVariable String telefono) {

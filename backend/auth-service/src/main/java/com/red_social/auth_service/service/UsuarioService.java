@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -35,7 +36,7 @@ public class UsuarioService {
         return usuarioRepository.findByLogin_Username(username);
     }
 
-    public List<Usuario> listarEmail(String email) {
+    public Optional<Usuario> listarEmail(String email) {
         return usuarioRepository.findByLogin_Email(email);
     }
 
@@ -56,26 +57,38 @@ public class UsuarioService {
         String email = (String) userInfo.get("email");
         String name = (String) userInfo.get("name");
         String photoUrl = (String) userInfo.get("picture");
-        String ultimoCodigoLogin = loginService.ultimoCodigo();
-        String nuevoCodigoLogin = SecuenciaUtil.generarSiguienteCodigo(ultimoCodigoLogin);
-        loginService.registrar(nuevoCodigoLogin, "", email, "", "", RolesConstants.ROLE_USER);
+        return usuarioRepository.findByLogin_Email(email).map(login -> {
+            login.setNombre(name);
+            login.setPhotoUrl(photoUrl);
+            return usuarioRepository.save(login);
+        }).orElseGet(() -> {
+            try {
+                String ultimoCodigoLogin = loginService.ultimoCodigo();
+                String nuevoCodigoLogin = SecuenciaUtil.generarSiguienteCodigo(ultimoCodigoLogin);
+                loginService.registrar(nuevoCodigoLogin, "", email, "", "", RolesConstants.ROLE_USER);
 
-        Login login = loginService.listarId(nuevoCodigoLogin)
-                .orElseThrow(() -> new ResourceAlreadyExistsException("Error al obtener login creado"));
+                Login login = loginService.listarId(nuevoCodigoLogin)
+                        .orElseThrow(() -> new ResourceAlreadyExistsException("Error al obtener login creado"));
 
-        String ultimoCodigoUsuario = ultimoCodigo();
-        String nuevoCodigoUsuario = SecuenciaUtil.generarSiguienteCodigo(ultimoCodigoUsuario);
+                String ultimoCodigoUsuario = ultimoCodigo();
+                String nuevoCodigoUsuario = SecuenciaUtil.generarSiguienteCodigo(ultimoCodigoUsuario);
+                Usuario usuario = Usuario.builder()
+                        .codigo(nuevoCodigoUsuario)
+                        .nombre(name)
+                        .photoUrl(photoUrl)
+                        .provider(AuthConstants.GOOGLE)
+                        .login(login)
+                        .build();
+
+                return usuarioRepository.save(usuario);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
 
-        Usuario usuario = Usuario.builder()
-                .codigo(nuevoCodigoUsuario)
-                .nombre(name)
-                .photoUrl(photoUrl)
-                .provider(AuthConstants.GOOGLE)
-                .login(login)
-                .build();
+        });
 
-        return usuarioRepository.save(usuario);
+
     }
 
     public Usuario registrar(RegisterRequest registerRequest) {
@@ -127,6 +140,7 @@ public class UsuarioService {
     public String ultimoCodigo() {
         return usuarioRepository.obtenerCodigo();
     }
+
     public List<UsuarioDetalleResponse> listarUsuarios() {
         List<Object[]> results = usuarioRepository.listarUsuariosConDetalleNative();
         List<UsuarioDetalleResponse> lista = new ArrayList<>();

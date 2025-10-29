@@ -26,18 +26,13 @@ public class Usuario {
     private String nombre;
 
     @Column(name = "us_apellido", length = 100)
-    @NotBlank(message = "El apellido no puede estar vacío")
-    @Size(max = 100, message = "El apellido no puede superar los 100 caracteres")
+
     private String apellido;
 
     @Column(name = "us_edad")
-    @Min(value = 18, message = "La edad no puede ser menor de edad")
-    @Max(value = 120, message = "La edad no puede superar los 120 años")
     private Integer edad;
 
     @Column(name = "us_fechaNacimiento")
-    @NotNull(message = "La fecha de nacimiento es obligatoria")
-    @Past(message = "La fecha de nacimiento debe ser en el pasado")
     private LocalDate fechaNacimiento;
 
     @Lob
@@ -59,7 +54,6 @@ public class Usuario {
     private String genero;
 
     @Column(name = "us_nacionalidad", length = 100)
-    @Size(max = 100, message = "La nacionalidad no puede superar los 100 caracteres")
     private String nacionalidad;
 
     @Column(name = "us_presentacion", length = 500)

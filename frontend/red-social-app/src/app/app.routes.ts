@@ -4,12 +4,13 @@ import { AuthCallback } from './features/auth/auth-callback/auth-callback';
 import { HomeUser } from './features/user/home-user/home-user';
 import { UserGuard } from './core/guards/user.guard';
 import { HomeModerador } from './features/moderador/home-moderador/home-moderador';
+import { Error } from './shared/error/error';
 
 export const routes: Routes = [
 
   { path: '', component: Principal, pathMatch: 'full' },
   { path: 'auth-callback', component: AuthCallback },
-
+  { path: 'error', component: Error },
   {
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.routes')

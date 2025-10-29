@@ -49,17 +49,17 @@ export class AuthCallback {
 
 
             // Redirigir al dashboard
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/inicio']);
           },
           error: (err) => {
             console.error('❌ Error al obtener usuario:', err);
-            this.router.navigate(['/login']);
+            this.router.navigate(['/auth/login']);
           },
         });
       },
       error: (err) => {
         this.alertService.error('Error', 'No se pudo completar la autenticación con Google');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       },
     });
 

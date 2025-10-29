@@ -3,6 +3,7 @@ import { CanActivate, Router, UrlTree, ActivatedRouteSnapshot, RouterStateSnapsh
 import { firstValueFrom } from 'rxjs';
 import { GoogleService } from '../services/google.service';
 import { AuthService } from '../services/auth.service';
+import { ROLES } from '../constants/roles.contants';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,10 @@ export class AdminGuard implements CanActivate {
       console.log("🛡️ AdminGuard → Usuario:", user);
 
       if (token && this.googleService.isLoggedIn()) {
-        if (rol === 'ROLE_ADMIN') {
+        if (rol === ROLES.ROLE_ADMIN) {
           console.log("✅ Acceso permitido: ADMIN");
           return true;
-        } else if (rol === 'ROLE_USER') {
+        } else if (rol === ROLES.ROLE_USER) {
           console.log("🚫 No es admin, redirigiendo a dashboard de usuario...");
           return this.router.parseUrl('/inicio'); // 👈 AQUÍ la corrección
         }

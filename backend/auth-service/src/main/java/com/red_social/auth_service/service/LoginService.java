@@ -56,7 +56,6 @@ public class LoginService {
 
     public Login registrar(String codigo, String username, String email, String telefono, String password, String rol) {
 
-        validarDuplicados(username, email, telefono);
 
         Rol roles = rolRepository.findByNombre(rol)
                 .orElseThrow(() -> new ResourceNotFoundException("Default role not found"));
