@@ -80,9 +80,11 @@ export class Login {
               if (rol == ROLES.ROLE_ADMIN) {
                 localStorage.setItem('username', user.username)
                 console.log("INGRESO A ADMINISTRADOR" + user)
-                this.router.navigate(['/dashboard-admin']);
+                this.router.navigate(['/admin']);
               } else if (rol == ROLES.ROLE_MODERADOR) {
-
+                localStorage.setItem('username', user.username)
+                console.log("INGRESO A ADMINISTRADOR" + user)
+                this.router.navigate(['/moderador']);
               } else {
                 console.log("INGRESO USER")
                 localStorage.setItem('username', user.username)

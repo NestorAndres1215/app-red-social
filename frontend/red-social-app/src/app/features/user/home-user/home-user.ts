@@ -5,7 +5,7 @@ import { SidebarUser } from "../../../shared/layout/sidebar-user/sidebar-user";
 @Component({
   selector: 'app-home-user',
     standalone: true,
-  imports: [NavbarUser, SidebarUser],
+  imports: [ SidebarUser],
   templateUrl: './home-user.html',
   styleUrl: './home-user.css'
 })

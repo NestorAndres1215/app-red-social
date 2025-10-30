@@ -32,7 +32,6 @@ public class Login {
     private String telefono;
 
     @Column(name = "lg_contrasena")
-    @Size(min = 8, max = 255, message = "La contraseña debe tener al menos 8 caracteres")
     private String password;
 
     @Column(name = "lg_ultimoLogin")

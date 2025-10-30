@@ -5,6 +5,7 @@ import { HomeUser } from './features/user/home-user/home-user';
 import { UserGuard } from './core/guards/user.guard';
 import { HomeModerador } from './features/moderador/home-moderador/home-moderador';
 import { Error } from './shared/error/error';
+import { NoAuthGuard } from './core/guards/noauth.guard';
 
 export const routes: Routes = [
 
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'error', component: Error },
   {
     path: 'auth',
+    canActivate: [NoAuthGuard],
     loadChildren: () => import('./features/auth/auth.routes')
       .then(m => m.AUTH_ROUTES) // <--- CORRECTO AQUÍ
   },
@@ -26,6 +28,7 @@ export const routes: Routes = [
   },
   {
     path: 'profile/:codigo/:userParam',
+    canActivate: [UserGuard],
     loadComponent: () => import('./features/user/profile/perfil-user/perfil-user')
       .then(m => m.PerfilUser)
   }
