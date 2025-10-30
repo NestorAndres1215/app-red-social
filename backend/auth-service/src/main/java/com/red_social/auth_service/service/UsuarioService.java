@@ -4,7 +4,8 @@ import com.red_social.auth_service.constants.AuthConstants;
 import com.red_social.auth_service.constants.EstadoConstants;
 import com.red_social.auth_service.constants.RolesConstants;
 import com.red_social.auth_service.dto.request.RegisterRequest;
-import com.red_social.auth_service.dto.response.UsuarioDetalleResponse;
+import com.red_social.auth_service.dto.response.UsuarioDTO;
+
 import com.red_social.auth_service.exception.ResourceAlreadyExistsException;
 import com.red_social.auth_service.exception.ResourceNotFoundException;
 import com.red_social.auth_service.kafka.KafkaProducerService;
@@ -102,7 +103,7 @@ public class UsuarioService {
 
         String ultimoCodigoUsuario = ultimoCodigo();
         String nuevoCodigoUsuario = SecuenciaUtil.generarSiguienteCodigo(ultimoCodigoUsuario);
-
+/*
         UserEvent userEvent = UserEvent.builder()
                 .eventType("USER_REGISTERED")
                 .userId(nuevoCodigoUsuario)
@@ -120,7 +121,7 @@ public class UsuarioService {
                 .fechaRegistro(LocalDateTime.now())
                 .build();
 
-        kafkaProducerService.publishEvent(userEvent);
+        kafkaProducerService.publishEvent(userEvent);*/
 
         Usuario usuario = Usuario.builder()
                 .codigo(nuevoCodigoUsuario)
@@ -141,43 +142,39 @@ public class UsuarioService {
         return usuarioRepository.obtenerCodigo();
     }
 
-    public List<UsuarioDetalleResponse> listarUsuarios() {
-        List<Object[]> results = usuarioRepository.listarUsuariosConDetalleNative();
-        List<UsuarioDetalleResponse> lista = new ArrayList<>();
+    public UsuarioDTO getUsuarioByCodigo(String codigo) {
+        List<Object[]> result = usuarioRepository.spGetUsuarioPorCodigo("1", codigo);
 
-        for (Object[] row : results) {
-            LocalDate fechaNacimiento = null;
-            if (row[4] != null) {
-                fechaNacimiento = ((java.sql.Date) row[4]).toLocalDate(); // ✅ convertir
-            }
-
-            LocalDateTime ultimoLogin = null;
-            if (row[15] != null) {
-                ultimoLogin = ((java.sql.Timestamp) row[15]).toLocalDateTime(); // ✅ convertir
-            }
-
-            lista.add(new UsuarioDetalleResponse(
-                    (String) row[0], // codigo
-                    (String) row[1], // nombre
-                    (String) row[2], // apellido
-                    row[3] != null ? ((Number) row[3]).intValue() : null, // edad
-                    fechaNacimiento, // fechaNacimiento
-                    (String) row[5], // genero
-                    (String) row[6], // nacionalidad
-                    (String) row[7], // presentacion
-                    (String) row[8], // photoUrl
-                    (byte[]) row[9],  // banner
-                    (byte[]) row[10], // perfil
-                    (String) row[11], // correo
-                    (String) row[12], // telefono
-                    (String) row[13], // username
-                    (String) row[14], // rolNombre
-                    ultimoLogin,      // ultimoLogin
-                    (String) row[16]  // estadoNombre
-            ));
+        if (result.isEmpty()) {
+            return null;
         }
 
-        return lista;
+        Object[] obj = result.get(0);
+        UsuarioDTO dto = new UsuarioDTO();
+
+        dto.setCodigoUsuario((String) obj[0]);
+        dto.setNombre((String) obj[1]);
+        dto.setApellido((String) obj[2]);
+        dto.setEdad(obj[3] != null ? ((Number) obj[3]).intValue() : null);
+        dto.setFechaNacimiento(obj[4] != null ? obj[4].toString() : null);
+        dto.setGenero((String) obj[5]);
+        dto.setNacionalidad((String) obj[6]);
+        dto.setPresentacion((String) obj[7]);
+        dto.setPhotoUrl((String) obj[8]);
+        dto.setBanner((String) obj[9]);
+        dto.setPerfil((String) obj[10]);
+        dto.setCorreo((String) obj[11]);
+        dto.setTelefono((String) obj[12]);
+        dto.setUsername((String) obj[13]);
+        dto.setRol((String) obj[14]);
+        dto.setUltimoLogin(obj[15] != null ? obj[15].toString() : null);
+        dto.setFechaCreacion(obj[16] != null ? obj[16].toString() : null);
+        dto.setCodigoLogin((String) obj[17]);
+        dto.setEstadoNombre((String) obj[18]);
+        dto.setEstadoDescripcion((String) obj[19]);
+
+        return dto;
     }
+
 
 }

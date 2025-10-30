@@ -1,7 +1,8 @@
 package com.red_social.auth_service.controller;
 
 import com.red_social.auth_service.dto.request.RegisterRequest;
-import com.red_social.auth_service.dto.response.UsuarioDetalleResponse;
+import com.red_social.auth_service.dto.response.UsuarioDTO;
+
 import com.red_social.auth_service.exception.ResourceNotFoundException;
 import com.red_social.auth_service.model.Usuario;
 import com.red_social.auth_service.service.UsuarioService;
@@ -52,9 +53,9 @@ public class UsuarioController {
     public ResponseEntity<Usuario> registrarUsuario(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(usuarioService.registrar(request));
     }
-    @GetMapping("/detalle")
-    public ResponseEntity<List<UsuarioDetalleResponse>> listarUsuariosConDetalle() {
-        return ResponseEntity.ok(usuarioService.listarUsuarios());
+    @GetMapping("/detalle/{codigo}")
+    public UsuarioDTO getUsuario(@PathVariable String codigo) {
+        return usuarioService.getUsuarioByCodigo(codigo);
     }
-
 }
+

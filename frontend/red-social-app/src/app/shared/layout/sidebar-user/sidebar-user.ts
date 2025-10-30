@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar-user',
-  imports: [NavbarUser, RouterModule,CommonModule],
+  imports: [NavbarUser, RouterModule, CommonModule],
   templateUrl: './sidebar-user.html',
   styleUrl: './sidebar-user.css'
 })
@@ -15,6 +15,7 @@ export class SidebarUser {
   isLoggedIn: boolean = true;
   usuario: any = null;
   displayName: string = '';
+  nombre: String = '';
 
   constructor(private googleService: GoogleService) { } // nombre consistente
 
@@ -38,10 +39,11 @@ export class SidebarUser {
     this.googleService.getCurrentUser().subscribe({
       next: (user) => {
         this.usuario = user;
+  
         // Si username está vacío, usar email
         this.displayName = this.usuario.username?.trim() || this.usuario.email;
         console.log(this.displayName)
-        
+
       },
       error: (err) => {
         console.error('Error al obtener usuario', err);

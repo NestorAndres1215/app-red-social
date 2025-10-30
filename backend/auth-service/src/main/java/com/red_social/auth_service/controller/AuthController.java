@@ -38,4 +38,6 @@ public class AuthController {
     public ResponseEntity<Login> obtenerUsuarioActual(Principal principal) {
         return ResponseEntity.ok(authService.actualUsuario(principal));
     }
+
+
 }
