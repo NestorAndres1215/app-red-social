@@ -10,7 +10,7 @@ import { ROLES } from '../constants/roles.contants';
 })
 export class AdminGuard implements CanActivate {
 
-  constructor(private authService: AuthService,private googleService:GoogleService, private router: Router) {}
+  constructor(private authService: AuthService, private googleService: GoogleService, private router: Router) { }
 
   async canActivate(
     route: ActivatedRouteSnapshot,
@@ -21,22 +21,18 @@ export class AdminGuard implements CanActivate {
       const user = await firstValueFrom(this.googleService.getCurrentUser());
       const rol = user?.role?.name;
 
-      console.log("🛡️ AdminGuard → Usuario:", user);
-
       if (token && this.googleService.isLoggedIn()) {
         if (rol === ROLES.ROLE_ADMIN) {
-          console.log("✅ Acceso permitido: ADMIN");
           return true;
         } else if (rol === ROLES.ROLE_USER) {
-          console.log("🚫 No es admin, redirigiendo a dashboard de usuario...");
           return this.router.parseUrl('/inicio'); // 👈 AQUÍ la corrección
+        } else if (rol === ROLES.ROLE_MODERADOR) {
+          return this.router.parseUrl('/moderador');
         }
       }
-
-      console.log("🚫 No logueado, redirigiendo a /login...");
       return this.router.parseUrl('/auth/login');
     } catch (error) {
-      console.error('❌ Error en AdminGuard:', error);
+
       return this.router.parseUrl('/auth/login');
     }
   }

@@ -10,7 +10,7 @@ import { ROLES } from '../constants/roles.contants';
 })
 export class UserGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router,private googleService:GoogleService) {}
+  constructor(private authService: AuthService, private router: Router, private googleService: GoogleService) { }
 
   async canActivate(
     route: ActivatedRouteSnapshot,
@@ -25,18 +25,16 @@ export class UserGuard implements CanActivate {
 
       if (token && this.googleService.isLoggedIn()) {
         if (rol === ROLES.ROLE_USER) {
-          console.log("✅ Acceso permitido: USER");
           return true;
         } else if (rol === ROLES.ROLE_ADMIN) {
-          console.log("🚫 No es usuario, redirigiendo a dashboard de admin...");
-          return this.router.parseUrl('/dashboard-admin'); // 👈 redirección correcta
+
+          return this.router.parseUrl('/inicio'); // 👈 redirección correcta
+        } else if (rol === ROLES.ROLE_MODERADOR) {
+          return this.router.parseUrl('/moderador');
         }
       }
-
-      console.log("🚫 No logueado, redirigiendo a /login...");
       return this.router.parseUrl('/auth/login');
     } catch (error) {
-      console.error('❌ Error en UserGuard:', error);
       return this.router.parseUrl('/auth/login');
     }
   }
