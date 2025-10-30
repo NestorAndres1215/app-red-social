@@ -1,0 +1,240 @@
+.profile-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.cover-photo {
+    height: 320px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: flex-end;
+    /* BOTÓN A LA DERECHA */
+    align-items: flex-end;
+    padding: 0 16px 16px;
+}
+
+.cover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+.add-cover-btn {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.22);
+    color: #1e3a8a;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.add-cover-btn:hover {
+    background: #1e3a8a;
+    color: #fcfcfc;
+}
+
+.add-cover-btn i {
+    font-size: 15px;
+}
+
+.profile-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+    padding: 0 16px 16px;
+    position: relative;
+}
+
+.profile-picture {
+    position: relative;
+    width: 168px;
+    height: 168px;
+    flex-shrink: 0;
+    margin-top: -84px;
+    z-index: 3;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fcfcfc;
+    box-shadow: 0 4px 12px rgba(212, 200, 200, 0.4);
+}
+
+.camera-icon {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: #ffffff;
+    color: #1e3a8a;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.camera-icon:hover {
+    background: #1e3a8a;
+    color: #fcfcfc;
+}
+
+.user-details {
+    flex: 1;
+    min-width: 280px;
+    padding-top: 20px;
+}
+
+.username {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 4px;
+    word-break: break-word;
+}
+
+.friends-count {
+    font-size: 15px;
+    color: #3b82f6;
+    font-weight: 500;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: auto;
+    padding-top: 8px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.add-story-btn {
+    background: #1e3a8a;
+    color: white;
+}
+
+.add-story-btn:hover {
+    background: #3b82f6;
+}
+
+.edit-profile-btn {
+    background: #1e3a8a;
+    color: #e4e6eb;
+}
+
+.edit-profile-btn:hover {
+    background: #3b82f6;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .profile-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .action-buttons {
+        margin: 12px auto 0;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .user-details {
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .cover-photo {
+        height: 200px;
+        padding-bottom: 12px;
+    }
+
+    .add-cover-btn {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+
+    .add-cover-btn .btn-text {
+        display: none;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+        margin-top: -60px;
+    }
+
+    .profile-picture img {
+        border-width: 4px;
+    }
+
+    .username {
+        font-size: 24px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 7px 14px;
+    }
+
+    .more-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 400px) {
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

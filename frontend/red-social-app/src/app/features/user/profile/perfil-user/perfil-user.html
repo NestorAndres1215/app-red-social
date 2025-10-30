@@ -1,0 +1,45 @@
+<app-navbar-user />
+
+<body>
+
+    <div class="profile-container">
+
+        <!-- FOTO DE PORTADA + BOTÓN A LA DERECHA -->
+        <div class="cover-photo" [ngStyle]="{'background-image': 'url(' + backgroundUrl + ')'}">
+            <div class="cover-overlay"></div>
+            <button class="add-cover-btn" aria-label="Añadir foto de portada">
+                <i class="fas fa-camera"></i> <span class="btn-text">Añadir foto de portada</span>
+            </button>
+        </div>
+
+        <!-- INFORMACIÓN DEL PERFIL -->
+        <div class="profile-info">
+
+            <!-- Foto de perfil -->
+            <div class="profile-picture">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Nestor Andres" />
+                <button class="camera-icon" aria-label="Cambiar foto de perfil">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+
+            <!-- Nombre y amigos -->
+            <div class="user-details">
+                <h1 class="username">Nestor Andres</h1>
+                <p class="friends-count">38 amigos</p>
+            </div>
+
+            <!-- Botones -->
+            <div class="action-buttons">
+                <a href="#" class="btn add-story-btn">
+                    <i class="fas fa-plus"></i> Añadir a historia
+                </a>
+                <a href="#" class="btn edit-profile-btn">
+                    <i class="fas fa-pencil-alt"></i> Editar perfil
+                </a>
+               
+            </div>
+        </div>
+    </div>
+
+</body>

@@ -23,6 +23,11 @@ export const routes: Routes = [
     loadChildren: () => import('./features/user/routes/user.routes')
       .then(m => m.USER_ROUTES) // <--- CORRECTO AQUÍ
 
+  },
+  {
+    path: 'profile/:codigo/:userParam',
+    loadComponent: () => import('./features/user/profile/perfil-user/perfil-user')
+      .then(m => m.PerfilUser)
   }
 
 ];
