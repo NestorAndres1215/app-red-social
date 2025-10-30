@@ -19,4 +19,8 @@ export class UsuarioService {
     return this.http.post<any>(`${this.backendUrl}/usuario/registrar`, registerUser);
   }
 
+  usuarioPorCodigo(codigo: string): Observable<any> {
+    return this.http.get(`${this.backendUrl}/usuario/detalle/${codigo}`);
+  }
+  
 }

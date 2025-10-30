@@ -23,3 +23,8 @@ export function edadConvertir(valor: string): number {
 
   return edad;
 }
+
+export function obtenerImagenPerfil(perfil: string | null | undefined): string | null {
+  const base = 'data:image/jpeg;base64,';
+  return perfil ? base + perfil : null;
+}

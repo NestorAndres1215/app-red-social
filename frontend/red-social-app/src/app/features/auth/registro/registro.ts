@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterUser } from '../../../core/models/register-user.model';
 import { AlertService } from '../../../core/services/alert.service';
 import { UsuarioService } from '../../../core/services/usuario.service';
+import { GoogleService } from '../../../core/services/google.service';
 
 
 @Component({
@@ -18,8 +19,10 @@ import { UsuarioService } from '../../../core/services/usuario.service';
 export class Registro {
 
 
+
   constructor(
     private alertService: AlertService,
+    private googleService: GoogleService,
     private usuarioService: UsuarioService,
     private router: Router,
     private fb: FormBuilder
@@ -44,9 +47,14 @@ export class Registro {
     this.router.navigate(['/auth/login']);
   }
 
+  google() {
+    this.googleService.login();
+  }
+
   soloNumerosInput(event: any) {
     event.target.value = filtrarSoloNumeros(event.target.value);
   }
+
   initForm() {
     this.formulario = this.fb.group({
       usuario: ['', Validators.required],
@@ -60,6 +68,7 @@ export class Registro {
       fechaNacimiento: ['', Validators.required],
     })
   }
+
   operar() {
 
     if (this.formulario.valid) {
@@ -81,7 +90,7 @@ export class Registro {
       this.usuarioService.registrar(register).subscribe({
         next: (data: any) => {
           this.alertService.aceptacion("REGISTRADO", "SE REGISTRO CORRECTAMENTE EL USUARIO")
-            this.router.navigate(['/auth/login']);
+          this.router.navigate(['/auth/login']);
         },
         error: (error) => {
           console.error('Error generando token:', error);

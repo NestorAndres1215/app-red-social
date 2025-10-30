@@ -17,7 +17,18 @@
 
             <!-- Foto de perfil -->
             <div class="profile-picture">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Nestor Andres" />
+                @if(backgroundUrl === null) {
+
+                @if(mostrarImagen(usuario)) {
+                <img [src]="mostrarImagen(usuario)" alt="Imagen" class="img-marca rounded-circle img-fluid">
+                } @else {
+                <img src="perfil/perfil.png" alt="Imagen predeterminada" class="img-marca rounded-circle img-fluid">
+                }
+
+                } @else {
+                <img [src]="backgroundUrl" alt="Imagen de fondo" class="img-marca rounded-circle img-fluid">
+                }
+
                 <button class="camera-icon" aria-label="Cambiar foto de perfil">
                     <i class="fas fa-camera"></i>
                 </button>
@@ -25,7 +36,7 @@
 
             <!-- Nombre y amigos -->
             <div class="user-details">
-                <h1 class="username">Nestor Andres</h1>
+                <h1 class="username">{{nombreCompleto}}</h1>
                 <p class="friends-count">38 amigos</p>
             </div>
 
@@ -37,9 +48,38 @@
                 <a href="#" class="btn edit-profile-btn">
                     <i class="fas fa-pencil-alt"></i> Editar perfil
                 </a>
-               
+
             </div>
         </div>
+        <hr>
+
+<mat-tab-group
+  class="profile-tabs"
+  [(selectedIndex)]="activeTab"
+  animationDuration="300ms"
+  (selectedTabChange)="onTabChange($event)"
+>
+  @for (tab of tabs; track tab.label; let i = $index) {
+    <mat-tab [label]="tab.label">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          @switch (i) {
+            @case (0) { <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quos, reprehenderit aperiam fugit autem beatae commodi officia modi iste a at nemo architecto, perferendis necessitatibus distinctio expedita omnis accusantium delectus.</p> }
+            @case (1) { <p>info</p> }
+            @case (2) { <p>mmmmm</p> }
+            @case (3) { <p>ssss</p> }
+            @case (4) { <p>aaaa</p> }
+            @case (5) { <p>aaaxxx</p> }
+            @default { <p>Sin contenido.</p> }
+          }
+        </div>
+      </ng-template>
+    </mat-tab>
+  }
+</mat-tab-group>
+
+
     </div>
+
 
 </body>
