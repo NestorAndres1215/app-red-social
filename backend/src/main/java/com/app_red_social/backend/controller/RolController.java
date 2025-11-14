@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/rol")
-@Tag(name = "Rol", description = "Controlador para la gestión de roles")
+@Tag(name = "Rol")
 public class RolController {
 
     private final RolService rolService;

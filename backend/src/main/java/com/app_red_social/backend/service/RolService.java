@@ -39,9 +39,12 @@ public class RolService {
     public Rol registrar(Rol rol) {
         validarRolPermitido(rol.getNombre());
         validarLimitesRoles();
+
         rolRepository.findByNombre(rol.getNombre())
                 .ifPresent(r -> {
-                    throw new ResourceAlreadyExistsException("El rol '" + rol.getNombre() + "' ya existe");
+                    throw new ResourceAlreadyExistsException(
+                            String.format(ROL_YA_EXISTE, rol.getNombre().toUpperCase())
+                    );
                 });
 
         String ultimoCodigo = ultimoCodigo();
