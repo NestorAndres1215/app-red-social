@@ -1,6 +1,8 @@
 package com.app_red_social.backend.service;
 
 
+import com.app_red_social.backend.constants.Mensaje;
+import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.exception.BadRequestException;
 import com.app_red_social.backend.exception.ResourceAlreadyExistsException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
@@ -11,9 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static com.app_red_social.backend.constants.Mensaje.*;
-import static com.app_red_social.backend.constants.Roles.*;
 
 
 @Service
@@ -33,7 +32,7 @@ public class RolService {
     public Rol listarCodigo(String codigo) {
         return rolRepository.findById(codigo)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException(CODIGO_NO_ENCONTRADO));
+                        new ResourceNotFoundException(Mensaje.CODIGO_NO_ENCONTRADO));
     }
 
     public Rol registrar(Rol rol) {
@@ -42,9 +41,7 @@ public class RolService {
 
         rolRepository.findByNombre(rol.getNombre())
                 .ifPresent(r -> {
-                    throw new ResourceAlreadyExistsException(
-                            String.format(ROL_YA_EXISTE, rol.getNombre().toUpperCase())
-                    );
+                    throw new ResourceAlreadyExistsException(Mensaje.ROL_YA_EXISTE);
                 });
 
         String ultimoCodigo = ultimoCodigo();
@@ -56,14 +53,9 @@ public class RolService {
     }
 
     private void validarRolPermitido(String nombreRol) {
-        List<String> rolesPermitidos = List.of(
-                ROLE_ADMIN,
-                ROLE_USER,
-                ROLE_MODERADOR
-        );
-
+        List<String> rolesPermitidos = List.of(Roles.ROLE_ADMIN, Roles.ROLE_USER, Roles.ROLE_MODERADOR);
         if (!rolesPermitidos.contains(nombreRol.toUpperCase())) {
-            throw new BadRequestException(ROL_NO_PERMITIDO);
+            throw new BadRequestException(Mensaje.ROL_NO_PERMITIDO);
         }
     }
 
@@ -72,7 +64,7 @@ public class RolService {
         long totalRoles = rolRepository.count();
 
         if (totalRoles >= 3) {
-            throw new BadRequestException(LIMITE_ROLES_SUPERADO);
+            throw new BadRequestException(Mensaje.LIMITE_ROLES_SUPERADO);
         }
     }
 }

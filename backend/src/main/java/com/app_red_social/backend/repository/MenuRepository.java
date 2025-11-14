@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface MenuRepository extends JpaRepository<Menu, String> {
+
     List<Menu> findByRol(Rol rol);
 
     List<Menu> findByNombre(Rol rol);
@@ -17,4 +18,5 @@ public interface MenuRepository extends JpaRepository<Menu, String> {
 
     @Query("SELECT DISTINCT m FROM Menu m JOIN m.roles r WHERE r.codigo IN (:codigos)")
     List<Menu> findMenusByRolesCodigos(@Param("codigos") List<String> codigos);
+
 }

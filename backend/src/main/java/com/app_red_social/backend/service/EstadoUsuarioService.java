@@ -1,18 +1,15 @@
 package com.app_red_social.backend.service;
 
-import com.app_red_social.backend.exception.BadRequestException;
+import com.app_red_social.backend.constants.Mensaje;
 import com.app_red_social.backend.exception.ResourceAlreadyExistsException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.model.EstadoUsuario;
-import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.repository.EstadoUsuarioRepository;
 import com.app_red_social.backend.util.Secuencia;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static com.app_red_social.backend.constants.Mensaje.*;
 
 @Service
 @RequiredArgsConstructor
@@ -31,15 +28,14 @@ public class EstadoUsuarioService {
     public EstadoUsuario listarCodigo(String codigo) {
         return estadoUsuarioRepository.findById(codigo)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException(CODIGO_NO_ENCONTRADO));
+                        new ResourceNotFoundException(Mensaje.CODIGO_NO_ENCONTRADO));
     }
 
     public EstadoUsuario registrar(EstadoUsuario estadoUsuario) {
 
         estadoUsuarioRepository.findByNombre(estadoUsuario.getNombre())
                 .ifPresent(r -> {
-                    throw new ResourceAlreadyExistsException(
-                            String.format(ESTADO_USUARIO_YA_EXISTE, estadoUsuario.getNombre().toUpperCase()));
+                    throw new ResourceAlreadyExistsException(Mensaje.ESTADO_USUARIO_YA_EXISTE);
                 });
 
         String ultimoCodigo = ultimoCodigo();

@@ -1,20 +1,14 @@
 package com.app_red_social.backend.service;
 
+import com.app_red_social.backend.constants.Mensaje;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.model.Menu;
 import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.repository.MenuRepository;
-import com.app_red_social.backend.repository.RolRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
-
-import static com.app_red_social.backend.constants.Mensaje.CODIGO_NO_ENCONTRADO;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +29,7 @@ public class MenuService {
     public Menu listarCodigo(String codigo) {
         return menuRepository.findById(codigo)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException(CODIGO_NO_ENCONTRADO));
+                        new ResourceNotFoundException(Mensaje.CODIGO_NO_ENCONTRADO));
     }
 
     public List<Menu> obtenerMenuPorNivel(int nivel) {
