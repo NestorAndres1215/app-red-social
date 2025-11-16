@@ -35,13 +35,9 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
 
         String email = oAuth2User.getAttribute("email");
-        String name = oAuth2User.getAttribute("name");
         String picture = oAuth2User.getAttribute("picture");
         String givenName = oAuth2User.getAttribute("given_name");
         String familyName = oAuth2User.getAttribute("family_name");
-        String locale = oAuth2User.getAttribute("locale");
-        String providerId = oAuth2User.getAttribute("sub");
-        Boolean emailVerified = Boolean.parseBoolean(oAuth2User.getAttribute("email_verified").toString());
 
         UsuarioRequest usuarioRequest = UsuarioRequest.builder()
                 .email(email)
@@ -58,7 +54,6 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         System.out.println("🔐 Token generado: " + token);
 
         try {
-
             String encodedToken = URLEncoder.encode(token, StandardCharsets.UTF_8);
             String redirectUrl = "http://localhost:4200/oauth2/redirect?token=" + encodedToken;
             response.sendRedirect(redirectUrl);

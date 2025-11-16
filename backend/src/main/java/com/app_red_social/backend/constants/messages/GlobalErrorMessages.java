@@ -15,5 +15,11 @@ public class GlobalErrorMessages {
     public static final String LIMITE_ROLES_SUPERADO = "SE HA ALCANZADO EL LÍMITE MÁXIMO DE 3 PERMITIDOS.";
     public static final String ROL_NO_PERMITIDO = "ROL NO PERMITIDO.";
     public static final String LOGIN_NO_VALIDO = "RECURSO INGRESADO NO VALIDO";
+    public static final String TOKEN_INVALIDO = "TOKEN_INVÁLIDO";
+    public static final String TOKEN_NO_VALIDO_PARA_USUARIO = "TOKEN_NO_VALIDO_PARA_USUARIO";
+    public static final String ERROR_VALIDANDO_TOKEN = "ERROR_VALIDANDO_TOKEN";
+    public static final String TOKEN_EXPIRADO = "TOKEN_EXPIRADO";
+    public static final String TOKEN_NO_ENCONTRADO = "TOKEN_NO_ENCONTRADO";
+    public static final String AUTH_HEADER_INVALIDO = "AUTHORIZATION_HEADER_INVALIDO";
 
 }
