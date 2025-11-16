@@ -19,17 +19,17 @@ public class MenuController {
 
     private final MenuService menuService;
 
-    @GetMapping("/listar/menuPrimero")
+    @GetMapping("/listar/nivel/primero")
     public ResponseEntity<List<Menu>> menuPrimero() {
         return ResponseEntity.ok(menuService.obtenerMenuPorNivel(1));
     }
 
-    @GetMapping("/listar/menuSegundo")
+    @GetMapping("/listar/nivel/segundo")
     public ResponseEntity<List<Menu>> menuSegundo() {
         return ResponseEntity.ok(menuService.obtenerMenuPorNivel(2));
     }
 
-    @GetMapping("/listar/menuTercero")
+    @GetMapping("/listar/nivel/tercero")
     public ResponseEntity<List<Menu>> menuTercero() {
         return ResponseEntity.ok(menuService.obtenerMenuPorNivel(3));
     }
@@ -44,7 +44,7 @@ public class MenuController {
         return ResponseEntity.ok(menuService.listarRoles(rol));
     }
 
-    @GetMapping("/listar/{codigo}")
+    @GetMapping("/listar/codigo/{codigo}")
     public ResponseEntity<Menu> listarPorCodigo(@PathVariable String codigo) {
         return ResponseEntity.ok(menuService.listarCodigo(codigo));
     }

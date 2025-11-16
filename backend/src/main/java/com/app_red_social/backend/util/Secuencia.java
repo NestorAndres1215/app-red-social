@@ -1,8 +1,8 @@
 package com.app_red_social.backend.util;
 
-import com.app_red_social.backend.exception.BadRequestException;
 
-import static com.app_red_social.backend.constants.Mensaje.SECUENCIA_INVALIDA;
+import com.app_red_social.backend.constants.messages.GlobalErrorMessages;
+import com.app_red_social.backend.exception.BadRequestException;
 
 public final class Secuencia {
 
@@ -28,7 +28,7 @@ public final class Secuencia {
 
             return parteAlfabetica + String.format("%02d", numero);
         } catch (NumberFormatException e) {
-            throw new BadRequestException(SECUENCIA_INVALIDA);
+            throw new BadRequestException(GlobalErrorMessages.SECUENCIA_INVALIDA);
         }
     }
 

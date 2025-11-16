@@ -23,7 +23,7 @@ public class EstadoUsuarioController {
         return ResponseEntity.ok(estadoUsuarioService.listar());
     }
 
-    @GetMapping("/listarCodigo/{codigo}")
+    @GetMapping("/listar/listarCodigo/{codigo}")
     public ResponseEntity<EstadoUsuario> listarCodigo(@PathVariable String codigo) {
         return ResponseEntity.ok(estadoUsuarioService.listarCodigo(codigo));
     }

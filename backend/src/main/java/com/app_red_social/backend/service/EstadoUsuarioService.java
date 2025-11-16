@@ -1,6 +1,7 @@
 package com.app_red_social.backend.service;
 
-import com.app_red_social.backend.constants.Mensaje;
+import com.app_red_social.backend.constants.messages.DuplicateErrorMessages;
+import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.exception.ResourceAlreadyExistsException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.model.EstadoUsuario;
@@ -28,18 +29,18 @@ public class EstadoUsuarioService {
     public EstadoUsuario listarCodigo(String codigo) {
         return estadoUsuarioRepository.findById(codigo)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException(Mensaje.CODIGO_NO_ENCONTRADO));
+                        new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
     }
+
 
     public EstadoUsuario registrar(EstadoUsuario estadoUsuario) {
 
         estadoUsuarioRepository.findByNombre(estadoUsuario.getNombre())
                 .ifPresent(r -> {
-                    throw new ResourceAlreadyExistsException(Mensaje.ESTADO_USUARIO_YA_EXISTE);
+                    throw new ResourceAlreadyExistsException(DuplicateErrorMessages.ESTADO_USUARIO_EXISTENTE);
                 });
 
-        String ultimoCodigo = ultimoCodigo();
-        String nuevoCodigo = Secuencia.generarSiguienteCodigo(ultimoCodigo);
+        final String nuevoCodigo = Secuencia.generarSiguienteCodigo(ultimoCodigo());
 
         estadoUsuario.setCodigo(nuevoCodigo);
 

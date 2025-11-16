@@ -1,12 +1,16 @@
 package com.app_red_social.backend.repository;
 
+import com.app_red_social.backend.model.Administrador;
 import com.app_red_social.backend.model.Login;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface LoginRepository extends JpaRepository<Login, String> {
+
+    Optional<Login> findByCodigo(String codigo);
 
     Optional<Login> findByUsername(String username);
 
@@ -16,4 +20,11 @@ public interface LoginRepository extends JpaRepository<Login, String> {
 
     @Query(value = "SELECT MAX(lg_codigo) FROM Login", nativeQuery = true)
     String obtenerCodigo();
+
+    boolean existsByEmail(String email);
+
+    boolean existsByUsername(String username);
+
+    boolean existsByTelefono(String telefono);
+
 }

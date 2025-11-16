@@ -1,10 +1,9 @@
 package com.app_red_social.backend.exception;
 
-import com.app_red_social.backend.constants.ErrorGlobal;
+
+import com.app_red_social.backend.constants.messages.GlobalErrorMessages;
 import com.app_red_social.backend.dto.response.ErrorResponse;
 import jakarta.validation.ValidationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -12,10 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
-import static com.app_red_social.backend.constants.ErrorGlobal.*;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -33,47 +29,47 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(JwtAuthenticationException.class)
     public ResponseEntity<ErrorResponse> handleJwtException(JwtAuthenticationException ex) {
-        return buildResponse(HttpStatus.UNAUTHORIZED, ErrorGlobal.NO_AUTORIZADO, ex.getMessage());
+        return buildResponse(HttpStatus.UNAUTHORIZED, GlobalErrorMessages.NO_AUTORIZADO, ex.getMessage());
     }
 
 
     @ExceptionHandler(ResourceAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handleResourceExists(ResourceAlreadyExistsException ex) {
-        return buildResponse(HttpStatus.CONFLICT, ErrorGlobal.CONFLICTO, ex.getMessage());
+        return buildResponse(HttpStatus.CONFLICT, GlobalErrorMessages.CONFLICTO, ex.getMessage());
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleNotFound(ResourceNotFoundException ex) {
-        return buildResponse(HttpStatus.NOT_FOUND, ErrorGlobal.NO_ENCONTRADO, ex.getMessage());
+        return buildResponse(HttpStatus.NOT_FOUND, GlobalErrorMessages.NO_ENCONTRADO, ex.getMessage());
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ErrorResponse> handleAccessDenied(AccessDeniedException ex) {
-        return buildResponse(HttpStatus.FORBIDDEN, ErrorGlobal.PROHIBIDO, ex.getMessage());
+        return buildResponse(HttpStatus.FORBIDDEN, GlobalErrorMessages.PROHIBIDO, ex.getMessage());
     }
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> handleBadRequest(BadRequestException ex) {
-        return buildResponse(HttpStatus.BAD_REQUEST, ErrorGlobal.SOLICITUD_INVALIDA, ex.getMessage());
+        return buildResponse(HttpStatus.BAD_REQUEST, GlobalErrorMessages.SOLICITUD_INVALIDA, ex.getMessage());
     }
 
     @ExceptionHandler(GoogleServiceException.class)
     public ResponseEntity<ErrorResponse> handleGoogleService(GoogleServiceException ex) {
-        return buildResponse(HttpStatus.BAD_GATEWAY, ErrorGlobal.ERROR_API_GOOGLE, ex.getMessage());
+        return buildResponse(HttpStatus.BAD_GATEWAY, GlobalErrorMessages.ERROR_API_GOOGLE, ex.getMessage());
     }
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ErrorResponse> handleValidation(ValidationException ex) {
-        return buildResponse(HttpStatus.UNPROCESSABLE_ENTITY, ErrorGlobal.ERROR_VALIDACION, ex.getMessage());
+        return buildResponse(HttpStatus.UNPROCESSABLE_ENTITY, GlobalErrorMessages.ERROR_VALIDACION, ex.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorResponse> handleRuntime(RuntimeException ex) {
-        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, ErrorGlobal.ERROR_INTERNO, ex.getMessage());
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, GlobalErrorMessages.ERROR_INTERNO, ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneral(Exception ex) {
-        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, ErrorGlobal.ERROR_PROCESO, ex.getMessage());
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, GlobalErrorMessages.ERROR_PROCESO, ex.getMessage());
     }
 }

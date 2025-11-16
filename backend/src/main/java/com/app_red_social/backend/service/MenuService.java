@@ -1,6 +1,6 @@
 package com.app_red_social.backend.service;
 
-import com.app_red_social.backend.constants.Mensaje;
+import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.model.Menu;
 import com.app_red_social.backend.model.Rol;
@@ -29,7 +29,7 @@ public class MenuService {
     public Menu listarCodigo(String codigo) {
         return menuRepository.findById(codigo)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException(Mensaje.CODIGO_NO_ENCONTRADO));
+                        new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
     }
 
     public List<Menu> obtenerMenuPorNivel(int nivel) {

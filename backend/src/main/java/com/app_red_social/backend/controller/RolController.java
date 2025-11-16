@@ -23,7 +23,7 @@ public class RolController {
         return ResponseEntity.ok(rolService.listar());
     }
 
-    @GetMapping("/listarCodigo/{id}")
+    @GetMapping("/listar/listarCodigo/{id}")
     public ResponseEntity<Rol> listarCodigo(@PathVariable String codigo) {
         return ResponseEntity.ok(rolService.listarCodigo(codigo));
     }

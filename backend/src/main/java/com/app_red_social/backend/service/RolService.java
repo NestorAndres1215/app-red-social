@@ -1,8 +1,10 @@
 package com.app_red_social.backend.service;
 
 
-import com.app_red_social.backend.constants.Mensaje;
-import com.app_red_social.backend.constants.Roles;
+import com.app_red_social.backend.constants.*;
+import com.app_red_social.backend.constants.messages.DuplicateErrorMessages;
+import com.app_red_social.backend.constants.messages.GlobalErrorMessages;
+import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.exception.BadRequestException;
 import com.app_red_social.backend.exception.ResourceAlreadyExistsException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
@@ -32,8 +34,9 @@ public class RolService {
     public Rol listarCodigo(String codigo) {
         return rolRepository.findById(codigo)
                 .orElseThrow(() ->
-                        new ResourceNotFoundException(Mensaje.CODIGO_NO_ENCONTRADO));
+                        new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
     }
+
 
     public Rol registrar(Rol rol) {
         validarRolPermitido(rol.getNombre());
@@ -41,7 +44,7 @@ public class RolService {
 
         rolRepository.findByNombre(rol.getNombre())
                 .ifPresent(r -> {
-                    throw new ResourceAlreadyExistsException(Mensaje.ROL_YA_EXISTE);
+                    throw new ResourceAlreadyExistsException(DuplicateErrorMessages.ROL_EXISTENTE);
                 });
 
         String ultimoCodigo = ultimoCodigo();
@@ -55,7 +58,7 @@ public class RolService {
     private void validarRolPermitido(String nombreRol) {
         List<String> rolesPermitidos = List.of(Roles.ROLE_ADMIN, Roles.ROLE_USER, Roles.ROLE_MODERADOR);
         if (!rolesPermitidos.contains(nombreRol.toUpperCase())) {
-            throw new BadRequestException(Mensaje.ROL_NO_PERMITIDO);
+            throw new BadRequestException(GlobalErrorMessages.ROL_NO_PERMITIDO);
         }
     }
 
@@ -64,7 +67,7 @@ public class RolService {
         long totalRoles = rolRepository.count();
 
         if (totalRoles >= 3) {
-            throw new BadRequestException(Mensaje.LIMITE_ROLES_SUPERADO);
+            throw new BadRequestException(GlobalErrorMessages.LIMITE_ROLES_SUPERADO);
         }
     }
 }
