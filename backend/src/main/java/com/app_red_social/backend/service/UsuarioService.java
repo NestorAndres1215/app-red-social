@@ -16,12 +16,18 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
     private final LoginService loginService;
+
+    public List<Usuario> listar() {
+        return usuarioRepository.findAll();
+    }
 
     public Usuario listarUsername(String username) {
         return usuarioRepository.findByLogin_Username(username)
@@ -37,7 +43,6 @@ public class UsuarioService {
         return usuarioRepository.findByLogin_Telefono(telefono)
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.TELEFONO_NO_ENCONTRADO));
     }
-
 
     public Usuario saveOrUpdateGoogleUser(UsuarioRequest usuarioRequest) {
 
@@ -86,7 +91,6 @@ public class UsuarioService {
                 .build();
         return usuarioRepository.save(usuario);
     }
-
 
     public String ultimoCodigo() {
         return usuarioRepository.obtenerCodigo();

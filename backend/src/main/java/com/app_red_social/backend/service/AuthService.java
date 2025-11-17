@@ -34,29 +34,25 @@ public class AuthService {
                         .orElseThrow(() -> new UsernameNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO)));
         return login;
     }
+
     public TokenResponse login(LoginRequest loginRequest) {
         String identificador = loginRequest.getLogin();
         String password = loginRequest.getPassword();
 
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(identificador, password)
+        );
 
-            // Autenticación con Spring Security
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(identificador, password)
-            );
+        Login usuario = loginRepository.findByUsername(identificador)
+                .orElseGet(() -> loginRepository.findByEmail(identificador)
+                        .orElseGet(() -> loginRepository.findByTelefono(identificador)
+                                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO))
+                        )
+                );
+        String token = jwtUtils.generateToken(usuario);
+        tokenService.createToken(token);
 
-            // Buscar usuario por username, email o teléfono
-            Login usuario = loginRepository.findByUsername(identificador)
-                    .orElseGet(() -> loginRepository.findByEmail(identificador)
-                            .orElseGet(() -> loginRepository.findByTelefono(identificador)
-                                    .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado: " + identificador))
-                            )
-                    );
-
-            // 🔹 Generar token
-            String token = jwtUtils.generateToken(usuario);
-            tokenService.createToken(token);
-
-            return new TokenResponse(token);
+        return new TokenResponse(token);
 
 
     }

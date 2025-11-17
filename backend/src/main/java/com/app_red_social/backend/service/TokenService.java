@@ -19,7 +19,6 @@ import java.util.List;
 public class TokenService {
 
     private final TokenRepository tokenRepository;
-    private final LoginService loginService;
 
     public void invalidarToken(String jwt) {
         Token token = tokenRepository.findByToken(jwt)
@@ -29,11 +28,9 @@ public class TokenService {
         tokenRepository.save(token);
     }
 
-
     public List<Token> obtenerTokenInactivo() {
         return tokenRepository.findByValido(Estados.INACTIVO);
     }
-
 
     @Scheduled(cron = "0 0 0 ? * SUN")
     public void deleteInactiveTokensWeekly() {
@@ -57,7 +54,6 @@ public class TokenService {
 
         return tokenRepository.save(token);
     }
-
 
     public String ultimoCodigo() {
         return tokenRepository.obtenerCodigo();

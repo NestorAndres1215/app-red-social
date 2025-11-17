@@ -1,9 +1,9 @@
 package com.app_red_social.backend.dto.request;
 
 import jakarta.validation.constraints.*;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import java.time.LocalDate;
+
 @Data
 @Builder
 public class RegisterRequest {
@@ -15,9 +15,11 @@ public class RegisterRequest {
     private String apellido;
 
     @NotNull(message = "La edad es obligatoria.")
+    @Min(value = 18, message = "Debe tener al menos 18 años.")
     private Integer edad;
 
     @NotNull(message = "La fecha de nacimiento es obligatoria.")
+    @Past(message = "La fecha de nacimiento debe ser una fecha pasada.")
     private LocalDate fechaNacimiento;
 
     @NotBlank(message = "El género es obligatorio.")

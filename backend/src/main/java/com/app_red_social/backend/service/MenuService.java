@@ -17,7 +17,6 @@ public class MenuService {
     private final MenuRepository menuRepository;
     private final RolService rolService;
 
-
     public List<Menu> listar() {
         return menuRepository.findAll();
     }
@@ -41,6 +40,5 @@ public class MenuService {
         List<String> codigos = List.of(rolCodigo);
         return menuRepository.findMenusByRolesCodigos(codigos);
     }
-
 
 }

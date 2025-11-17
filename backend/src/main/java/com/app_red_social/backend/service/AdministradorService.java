@@ -65,7 +65,6 @@ public class AdministradorService {
         );
 
         Login login = loginService.listarCodigo(nuevoCodigoLogin);
-
         final String nuevoCodigoAdmin = Secuencia.generarSiguienteCodigo(ultimoCodigo());
 
         Administrador admin = Administrador.builder()

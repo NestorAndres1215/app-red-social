@@ -38,6 +38,11 @@ public class RolService {
                         new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
     }
 
+    public Rol listarNombre(String nombre) {
+        return rolRepository.findByNombre(nombre)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(NotFoundMessages.ROL_NO_ENCONTRADO));
+    }
 
     public Rol registrar(Rol rol) {
         validarRolPermitido(rol.getNombre());
@@ -62,7 +67,6 @@ public class RolService {
             throw new BadRequestException(GlobalErrorMessages.ROL_NO_PERMITIDO);
         }
     }
-
 
     private void validarLimitesRoles() {
         long totalRoles = rolRepository.count();

@@ -49,7 +49,6 @@ public class LoginService {
                         new ResourceNotFoundException(NotFoundMessages.EMAIL_NO_ENCONTRADO));
     }
 
-
     public Login listarTelefono(String telefono) {
         return loginRepository.findByTelefono(telefono)
                 .orElseThrow(() ->
@@ -95,7 +94,6 @@ public class LoginService {
             throw new ResourceAlreadyExistsException(DuplicateErrorMessages.TELEFONO_EXISTENTE);
         }
     }
-
 
     public Login actualizar(String codigo, String username, String email, String telefono, String password, String rol) {
 

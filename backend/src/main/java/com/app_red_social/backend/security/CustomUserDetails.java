@@ -53,9 +53,8 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        // solo bloqueado si estado es LOCKED
         return login.getEstadoUsuario() == null ||
-                !login.getEstadoUsuario().getNombre().equalsIgnoreCase("LOCKED");
+                !login.getEstadoUsuario().getNombre().equalsIgnoreCase(Estados.BLOQUEADO);
     }
 
     @Override

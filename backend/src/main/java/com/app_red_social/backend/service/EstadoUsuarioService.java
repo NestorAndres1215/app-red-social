@@ -42,11 +42,9 @@ public class EstadoUsuarioService {
                 });
 
         final String nuevoCodigo = Secuencia.generarSiguienteCodigo(ultimoCodigo());
-
         estadoUsuario.setCodigo(nuevoCodigo);
 
         return estadoUsuarioRepository.save(estadoUsuario);
     }
-
 
 }

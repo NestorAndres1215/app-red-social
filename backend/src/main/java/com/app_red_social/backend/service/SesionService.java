@@ -38,7 +38,6 @@ public class SesionService {
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
     }
 
-
     public Sesion registrar(SessionRequest sessionRequest) {
 
         Login user = loginService.listarUsername(sessionRequest.getUsername());

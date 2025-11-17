@@ -1,7 +1,6 @@
 package com.app_red_social.backend.dto.request;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder

@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/usuario")
@@ -17,6 +19,12 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+
+
+    @GetMapping("/listar")
+    public ResponseEntity<List<Usuario>> listar() {
+        return ResponseEntity.ok(usuarioService.listar());
+    }
 
     @GetMapping("/listar/username/{username}")
     public ResponseEntity<Usuario> obtenerPorUsername(@PathVariable String username) {

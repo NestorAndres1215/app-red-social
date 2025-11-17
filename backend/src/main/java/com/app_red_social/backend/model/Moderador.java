@@ -3,7 +3,6 @@ package com.app_red_social.backend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Entity

@@ -20,7 +20,7 @@ public class AdministradorController {
     private final AdministradorService administradorService;
 
     @GetMapping("/listar")
-    public ResponseEntity<List<Administrador>> listar(@PathVariable String usuarioCodigo) {
+    public ResponseEntity<List<Administrador>> listar() {
         return ResponseEntity.ok(administradorService.listar());
     }
 
