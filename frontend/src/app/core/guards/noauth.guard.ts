@@ -19,23 +19,19 @@ export class NoAuthGuard implements CanActivate {
                 const user = await firstValueFrom(this.authService.getCurrentUser());
                 const role = user?.rol?.name;
 
-                // Definir destino según rol
                 const destino: string =
                     role === ROLES.ROLE_ADMIN ? '/admin' :
                         role === ROLES.ROLE_MODERADOR ? '/moderador' :
                             role === ROLES.ROLE_USER ? '/inicio' :
                                 '/auth/login';
 
-                // Retornar UrlTree → Angular hace la navegación
                 return this.router.parseUrl(destino);
 
             } catch (error) {
-                console.error('Error obteniendo usuario:', error);
                 return this.router.parseUrl('/auth/login');
             }
         }
 
-        // No está logueado → puede continuar
         return true;
     }
 }

@@ -33,4 +33,10 @@ export class AuthService {
       return true;
     }
   }
+  get token(): string | null {
+    return localStorage.getItem('jwt');
+  }
+  setToken(token: string) {
+    localStorage.setItem('jwt', token);
+  }
 }
