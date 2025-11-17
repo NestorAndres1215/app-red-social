@@ -1,5 +1,6 @@
 package com.app_red_social.backend.security;
 
+import com.app_red_social.backend.constants.Auth;
 import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.dto.request.RegisterRequest;
 import com.app_red_social.backend.dto.request.UsuarioRequest;
@@ -44,14 +45,12 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
                 .nombre(givenName)
                 .photoUrl(picture)
                 .apellido(familyName)
-                .provider("google")
+                .provider(Auth.GOGGLE)
                 .rol(Roles.ROLE_USER)
                 .build();
 
         Usuario user = usuarioService.saveOrUpdateGoogleUser(usuarioRequest);
-
         String token = jwtTokenProvider.generateToken(user.getLogin());
-        System.out.println("🔐 Token generado: " + token);
 
         try {
             String encodedToken = URLEncoder.encode(token, StandardCharsets.UTF_8);

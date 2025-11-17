@@ -1,15 +1,14 @@
 package com.app_red_social.backend.controller;
 
+import com.app_red_social.backend.dto.request.RegisterRequest;
 import com.app_red_social.backend.model.Administrador;
 import com.app_red_social.backend.model.Usuario;
 import com.app_red_social.backend.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,6 +33,9 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.listarTelefono(telefono));
     }
 
-
+    @PostMapping("/registrar")
+    public ResponseEntity<Usuario> registrarUsuario(@Valid @RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(usuarioService.registrar(request));
+    }
 
 }

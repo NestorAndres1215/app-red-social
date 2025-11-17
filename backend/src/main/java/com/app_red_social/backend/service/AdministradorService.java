@@ -8,6 +8,7 @@ import com.app_red_social.backend.model.Administrador;
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.repository.AdministradorRepository;
 import com.app_red_social.backend.util.Secuencia;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class AdministradorService {
 
 
     public Administrador listarAdministradorCodigoUser(String usuarioCodigo) {
-        return administradorRepository.findByUsuario_Codigo(usuarioCodigo)
+        return administradorRepository.findByLogin_Codigo(usuarioCodigo)
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
     }
 
@@ -79,7 +80,6 @@ public class AdministradorService {
 
         return administradorRepository.save(admin);
     }
-
 
     public String ultimoCodigo() {
         return administradorRepository.obtenerCodigo();

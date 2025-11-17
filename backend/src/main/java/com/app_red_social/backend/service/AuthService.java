@@ -1,0 +1,64 @@
+package com.app_red_social.backend.service;
+
+import com.app_red_social.backend.constants.messages.GlobalErrorMessages;
+import com.app_red_social.backend.constants.messages.NotFoundMessages;
+import com.app_red_social.backend.dto.request.LoginRequest;
+import com.app_red_social.backend.dto.response.TokenResponse;
+import com.app_red_social.backend.exception.BadRequestException;
+import com.app_red_social.backend.exception.JwtAuthenticationException;
+import com.app_red_social.backend.exception.ResourceNotFoundException;
+import com.app_red_social.backend.model.Login;
+import com.app_red_social.backend.repository.LoginRepository;
+import com.app_red_social.backend.security.JwtUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.security.Principal;
+
+@RequiredArgsConstructor
+@Service
+public class AuthService {
+
+    private final LoginRepository loginRepository;
+    private final AuthenticationManager authenticationManager;
+    private final TokenService tokenService;
+    private final JwtUtil jwtUtils;
+
+    public Login actualUsuario(Principal principal) {
+        Login login = loginRepository.findByUsername(principal.getName())
+                .orElseGet(() -> loginRepository.findByEmail(principal.getName())
+                        .orElseThrow(() -> new UsernameNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO)));
+        return login;
+    }
+    public TokenResponse login(LoginRequest loginRequest) {
+        String identificador = loginRequest.getLogin();
+        String password = loginRequest.getPassword();
+
+
+            // Autenticación con Spring Security
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(identificador, password)
+            );
+
+            // Buscar usuario por username, email o teléfono
+            Login usuario = loginRepository.findByUsername(identificador)
+                    .orElseGet(() -> loginRepository.findByEmail(identificador)
+                            .orElseGet(() -> loginRepository.findByTelefono(identificador)
+                                    .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado: " + identificador))
+                            )
+                    );
+
+            // 🔹 Generar token
+            String token = jwtUtils.generateToken(usuario);
+            tokenService.createToken(token);
+
+            return new TokenResponse(token);
+
+
+    }
+
+}

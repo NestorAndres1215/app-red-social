@@ -8,6 +8,8 @@ import lombok.*;
 @Entity
 @Setter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Rol {
 
     @Id

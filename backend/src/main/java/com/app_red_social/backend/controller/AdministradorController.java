@@ -2,7 +2,6 @@ package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.dto.request.RegisterRequest;
 import com.app_red_social.backend.model.Administrador;
-import com.app_red_social.backend.model.EstadoUsuario;
 import com.app_red_social.backend.service.AdministradorService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/estado-usuario")
+@RequestMapping("/administrador")
 @Tag(name = "Administrador")
 public class AdministradorController {
 

@@ -1,5 +1,6 @@
 package com.app_red_social.backend.service;
 
+import com.app_red_social.backend.constants.Auth;
 import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.dto.request.UsuarioRequest;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .photoUrl((String) attributes.get("picture"))
                 .nombre((String) attributes.get("given_name"))
                 .apellido((String) attributes.get("family_name"))
-                .provider("google")
+                .provider(Auth.GOGGLE)
                 .rol(Roles.ROLE_USER)
                 .build();
 

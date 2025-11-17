@@ -44,7 +44,7 @@ public class Login {
     private EstadoUsuario estadoUsuario;
 
     @ManyToOne
-    @JoinColumn(name = "lg_rol", referencedColumnName = "tr_codigo")
+    @JoinColumn(name = "lg_rol", referencedColumnName = "rl_codigo")
     private Rol rol;
 
 }

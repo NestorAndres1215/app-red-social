@@ -1,7 +1,9 @@
 package com.app_red_social.backend.service;
 
+import com.app_red_social.backend.constants.Auth;
 import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
+import com.app_red_social.backend.dto.request.RegisterRequest;
 import com.app_red_social.backend.dto.request.UsuarioRequest;
 import com.app_red_social.backend.exception.ResourceAlreadyExistsException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
@@ -10,6 +12,7 @@ import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.Usuario;
 import com.app_red_social.backend.repository.UsuarioRepository;
 import com.app_red_social.backend.util.Secuencia;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +65,28 @@ public class UsuarioService {
             return usuarioRepository.save(usuario);
         });
     }
+
+    public Usuario registrar(RegisterRequest registerRequest) {
+
+        final String nuevoCodigoLogin = Secuencia.generarSiguienteCodigo(loginService.ultimoCodigo());
+        loginService.registrar(nuevoCodigoLogin, registerRequest.getUsername(), registerRequest.getEmail(), registerRequest.getTelefono(), registerRequest.getPassword(), Roles.ROLE_USER);
+        Login login = loginService.listarCodigo(nuevoCodigoLogin);
+        final String nuevoCodigoUsuario = Secuencia.generarSiguienteCodigo(ultimoCodigo());
+
+        Usuario usuario = Usuario.builder()
+                .codigo(nuevoCodigoUsuario)
+                .nombre(registerRequest.getNombre())
+                .apellido(registerRequest.getApellido())
+                .edad(registerRequest.getEdad())
+                .fechaNacimiento(registerRequest.getFechaNacimiento())
+                .provider(Auth.LOCAL)
+                .genero(registerRequest.getGenero())
+                .nacionalidad(registerRequest.getNacionalidad())
+                .login(login)
+                .build();
+        return usuarioRepository.save(usuario);
+    }
+
 
     public String ultimoCodigo() {
         return usuarioRepository.obtenerCodigo();

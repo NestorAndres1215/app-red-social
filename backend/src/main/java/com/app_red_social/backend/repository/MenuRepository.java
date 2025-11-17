@@ -16,7 +16,8 @@ public interface MenuRepository extends JpaRepository<Menu, String> {
 
     List<Menu> findByNivel(Integer menuNivel);
 
-    @Query("SELECT DISTINCT m FROM Menu m JOIN m.roles r WHERE r.codigo IN (:codigos)")
-    List<Menu> findMenusByRolesCodigos(@Param("codigos") List<String> codigos);
+    @Query("SELECT m FROM Menu m WHERE m.rol.codigo IN (:codigos)")
+    List<Menu> findMenusByRolesCodigos(List<String> codigos);
+
 
 }

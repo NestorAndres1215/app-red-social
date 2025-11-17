@@ -1,5 +1,6 @@
 package com.app_red_social.backend.security;
 
+import com.app_red_social.backend.constants.Estados;
 import com.app_red_social.backend.model.Login;
 
 import lombok.RequiredArgsConstructor;
@@ -36,12 +37,13 @@ public class CustomUserDetails implements UserDetails {
         if (login.getUsername() != null && !login.getUsername().isBlank()) {
             return login.getUsername();
         }
-
         if (login.getEmail() != null && !login.getEmail().isBlank()) {
             return login.getEmail();
         }
-
-        return login.getTelefono();
+        if (login.getTelefono() != null && !login.getTelefono().isBlank()) {
+            return login.getTelefono();
+        }
+        return "unknown_user";
     }
 
     @Override
@@ -51,10 +53,9 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        if (login.getEstadoUsuario() != null) {
-            return !"BLOCKED".equalsIgnoreCase(login.getEstadoUsuario().getNombre());
-        }
-        return true;
+        // solo bloqueado si estado es LOCKED
+        return login.getEstadoUsuario() == null ||
+                !login.getEstadoUsuario().getNombre().equalsIgnoreCase("LOCKED");
     }
 
     @Override
@@ -64,10 +65,8 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        if (login.getEstadoUsuario() != null) {
-            return !"BLOCKED".equalsIgnoreCase(login.getEstadoUsuario().getNombre());
-        }
-        return true;
+        return login.getEstadoUsuario() == null ||
+                login.getEstadoUsuario().getNombre().equalsIgnoreCase(Estados.ACTIVO);
     }
 
 }

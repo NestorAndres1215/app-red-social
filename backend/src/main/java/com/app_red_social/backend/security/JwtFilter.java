@@ -65,7 +65,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 } else {
-                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, GlobalErrorMessages.TOKEN_INVALIDO);
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, GlobalErrorMessages.TOKEN_NO_VALIDO_PARA_USUARIO);
                     return;
                 }
 
