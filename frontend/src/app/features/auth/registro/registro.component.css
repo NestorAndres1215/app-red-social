@@ -9,7 +9,6 @@
     padding: 2.5rem;
     max-width: 650px;
     width: 100%;
-    animation: fadeInUp 0.8s ease;
     transition: all 0.3s ease;
 }
 .register-title {
