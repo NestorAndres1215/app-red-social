@@ -1,1 +1,117 @@
-<p>registro.component works!</p>
+<div class="d-flex align-items-center justify-content-center min-vh-100 p-3 body">
+    <div class="register-container w-100 w-md-75 w-lg-50">
+        <div class="text-center mb-4">
+            <h2 class="register-title">Crear Cuenta</h2>
+            <p class="text-muted">Registrar en SocialLike para comenzar a conectar</p>
+        </div>
+        <form [formGroup]="formulario" (ngSubmit)="operar()">
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="username" class="form-label fw-semibold">
+                            <i class="fas fa-user me-1"></i> Usuario
+                        </label>
+                        <input type="text" formControlName="usuario" name="username" class="form-control"
+                            placeholder="Ingresa tu usuario" required />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="password" class="form-label fw-semibold">
+                            <i class="fas fa-lock me-1"></i> Contraseña
+                        </label>
+                        <div class="password-wrapper position-relative">
+                            <input [type]="showPassword ? 'text' : 'password'" formControlName="contrasena"
+                                name="password" class="form-control" placeholder="Ingresa tu contraseña" required />
+                            <i class="fas password-toggle position-absolute top-50 end-0 translate-middle-y me-3"
+                                [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"
+                                (click)="togglePassword()"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="nombre" class="form-label fw-semibold">
+                            <i class="fas fa-user me-1"></i> Nombre
+                        </label>
+                        <input type="text" formControlName="nombre" name="nombre" class="form-control"
+                            placeholder="Ingresa tu nombre" required />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="apellido" class="form-label fw-semibold">
+                            <i class="fas fa-user me-1"></i> Apellido
+                        </label>
+                        <input type="text" formControlName="apellido" name="apellido" class="form-control"
+                            placeholder="Ingresa tu apellido" required />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="email" class="form-label fw-semibold">
+                            <i class="fas fa-envelope me-1"></i> Email
+                        </label>
+                        <input type="email" formControlName="correo" name="email" class="form-control"
+                            placeholder="Ingresa tu email" required />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="telefono" class="form-label fw-semibold">
+                            <i class="fas fa-phone me-1"></i> Teléfono
+                        </label>
+                        <input type="tel" name="telefono" formControlName="telefono" class="form-control"
+                            placeholder="Ingresa tu teléfono" (input)="soloNumerosInput($event)" required />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="nacionalidad" class="form-label fw-semibold">
+                            <i class="fas fa-flag me-1"></i> Nacionalidad
+                        </label>
+                        <select formControlName="nacionalidad" class="form-select" required>
+                            <option value="" disabled selected>Selecciona tu nacionalidad</option>
+                            <option *ngFor="let n of nacionalidades" [value]="n">{{ n }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        <label for="genero" class="form-label fw-semibold">
+                            <i class="fas fa-venus-mars me-1"></i> Género
+                        </label>
+                        <select formControlName="genero" class="form-select" required>
+                            <option value="" disabled selected>Selecciona tu género</option>
+                            <option *ngFor="let g of generos" [value]="g.toLowerCase()">{{ g }}</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="fechaNacimiento" class="form-label fw-semibold">
+                            <i class="fas fa-calendar-alt me-1"></i> Fecha de Nacimiento
+                        </label>
+                        <input type="date" formControlName="fechaNacimiento" name="fechaNacimiento"
+                            [max]="maxFechaNacimiento" class="form-control" required />
+                    </div>
+                </div>
+
+            </div>
+            <div class=" mt-4">
+                <button type="submit" class="btn btn-login  w-100 mb-3">
+                    <i class="fas fa-sign-in-alt me-2"></i> Registrar
+                </button>
+            </div>
+            <div class="divider"><span>o</span></div>
+            <button type="button" class="btn btn-google btn btn-login w-100 mb-3">
+                <i class="fab fa-google me-2"></i> Continuar con Google
+            </button>
+            <div class="text-center mt-3 register-text">
+                ¿Ya tienes una cuenta?
+                <a class="text-link" (click)="login()"> Inicia sesión aquí</a>
+            </div>
+        </form>
+    </div>
+</div>
