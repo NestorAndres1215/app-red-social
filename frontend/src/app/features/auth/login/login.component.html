@@ -1,13 +1,10 @@
 <div class="d-flex align-items-center justify-content-center min-vh-100 p-3 body">
     <div class="login-container">
         <div class="text-center mb-4">
-
-            <h2 class="login-title">Iniciar Sesion</h2>
-            <p class="login-subtitle">Inicia sesión para continuar con tu experiencia.</p>
+            <h2 class="login-title">Iniciar Sesión</h2>
+            <p class="text-muted">Inicia sesión para continuar con tu experiencia.</p>
         </div>
-
         <form [formGroup]="formulario" (ngSubmit)="operar()">
-            <!-- Usuario -->
             <div class="form-group mb-3">
                 <label for="username" class="form-label fw-semibold">
                     <i class="fas fa-user me-1"></i> Usuario
@@ -15,8 +12,6 @@
                 <input type="text" formControlName="login" name="username" class="form-control"
                     placeholder="Ingresa tu usuario" required />
             </div>
-
-            <!-- Contraseña -->
             <div class="form-group mb-3">
                 <label for="password" class="form-label fw-semibold">
                     <i class="fas fa-lock me-1"></i> Contraseña
@@ -31,21 +26,15 @@
                     <a class="text-link small">¿Olvidaste tu contraseña?</a>
                 </div>
             </div>
-
-            <!-- Botón Login -->
             <button type="submit" class="btn btn-login w-100 mb-3">
                 <i class="fas fa-sign-in-alt me-2"></i> Iniciar Sesión
             </button>
-
-            <!-- Divisor -->
-            <div class="divider"><span>o</span></div>
-
-            <!-- Google -->
+            <div class="divider">
+                <span>o</span>
+            </div>
             <button type="button" class="btn btn-google w-100 mb-3">
                 <i class="fab fa-google me-2"></i> Continuar con Google
             </button>
-
-            <!-- Registro -->
             <div class="text-center mt-3 register-text">
                 ¿No tienes cuenta?
                 <a class="text-link">Regístrate aquí</a>
