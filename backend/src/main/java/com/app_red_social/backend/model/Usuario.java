@@ -28,7 +28,7 @@ public class Usuario {
     @Column(name = "us_edad")
     private Integer edad;
 
-    @Column(name = "us_fechaNacimiento")
+    @Column(name = "us_fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
     @Lob

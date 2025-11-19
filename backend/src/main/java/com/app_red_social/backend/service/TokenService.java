@@ -48,7 +48,7 @@ public class TokenService {
                 .codigo(nuevoCodigo)
                 .token(jwt)
                 .valido(Estados.ACTIVO)
-                .fechaCreacion(LocalDateTime.now())
+                .fechaRegistro(LocalDateTime.now())
                 .fechaExpiracion(LocalDateTime.now().plusDays(7))
                 .build();
 

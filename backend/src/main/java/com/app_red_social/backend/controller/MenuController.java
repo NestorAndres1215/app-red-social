@@ -49,8 +49,8 @@ public class MenuController {
         return ResponseEntity.ok(menuService.listarCodigo(codigo));
     }
 
-    @GetMapping("/listar/{rolCodigo}")
-    public ResponseEntity<List<Menu>> obtenerMenusPorDosRoles(@PathVariable String rolCodigo) {
-        return ResponseEntity.ok(menuService.obtenerMenusPorDosRoles(rolCodigo));
+    @GetMapping("/listar/roles/codigo/{codigo}")
+    public ResponseEntity<List<Menu>> obtenerMenusPorDosRoles(@PathVariable String codigo) {
+        return ResponseEntity.ok(menuService.obtenerMenusPorDosRoles(codigo));
     }
 }

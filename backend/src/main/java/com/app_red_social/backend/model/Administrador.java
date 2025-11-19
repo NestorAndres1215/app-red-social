@@ -27,7 +27,7 @@ public class Administrador {
     @Column(name = "ad_edad")
     private Integer edad;
 
-    @Column(name = "ad_fechaNacimiento")
+    @Column(name = "ad_fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
     @Lob

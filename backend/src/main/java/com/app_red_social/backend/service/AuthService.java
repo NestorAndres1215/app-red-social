@@ -39,9 +39,7 @@ public class AuthService {
         String identificador = loginRequest.getLogin();
         String password = loginRequest.getPassword();
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(identificador, password)
-        );
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(identificador, password));
 
         Login usuario = loginRepository.findByUsername(identificador)
                 .orElseGet(() -> loginRepository.findByEmail(identificador)
@@ -51,10 +49,7 @@ public class AuthService {
                 );
         String token = jwtUtils.generateToken(usuario);
         tokenService.createToken(token);
-
         return new TokenResponse(token);
-
-
     }
 
 }

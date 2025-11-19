@@ -5,7 +5,9 @@ import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
@@ -19,5 +21,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
     @Query(value = "SELECT MAX(us_codigo) FROM Usuario", nativeQuery = true)
     String obtenerCodigo();
+
+
+    @Query(value = "CALL sp_listar_usuarios(:option, :username, :estado)", nativeQuery = true)
+    List<Object[]> listarUsuarios(
+            @Param("option") Integer option,
+            @Param("username") String username,
+            @Param("estado") String estado
+    );
 
 }

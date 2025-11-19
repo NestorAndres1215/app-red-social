@@ -28,8 +28,8 @@ public class Token {
     @Column(name = "tk_fechaExpiracion", nullable = false)
     private LocalDateTime fechaExpiracion;
 
-    @Column(name = "tk_fechaCreacion")
-    private LocalDateTime fechaCreacion;
+    @Column(name = "tk_fecha_registro")
+    private LocalDateTime fechaRegistro;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tk_login", referencedColumnName = "lg_codigo")

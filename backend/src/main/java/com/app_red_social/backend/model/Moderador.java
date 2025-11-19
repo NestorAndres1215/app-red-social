@@ -28,7 +28,7 @@ public class Moderador {
     @Column(name = "mod_edad")
     private Integer edad;
 
-    @Column(name = "mod_fechaNacimiento")
+    @Column(name = "mod_fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
     @Column(name = "mod_nacionalidad")

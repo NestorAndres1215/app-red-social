@@ -119,7 +119,7 @@ public class LoginService {
             if (loginRepository.existsByTelefono(telefono)) {
                 throw new ResourceAlreadyExistsException(DuplicateErrorMessages.TELEFONO_EXISTENTE);
             }
-            login.setTelefono(telefono); // actualizar
+            login.setTelefono(telefono);
         }
 
         if (rol != null && !rol.isBlank()) {

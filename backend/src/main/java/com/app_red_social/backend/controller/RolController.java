@@ -33,7 +33,6 @@ public class RolController {
         return ResponseEntity.ok(rolService.listarNombre(nombre));
     }
 
-
     @PostMapping("/registrar")
     public ResponseEntity<Rol> registrar(@RequestBody Rol rol) {
         return ResponseEntity.ok(rolService.registrar(rol));

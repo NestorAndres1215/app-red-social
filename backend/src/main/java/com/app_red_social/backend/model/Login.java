@@ -32,14 +32,14 @@ public class Login {
     @JsonIgnore
     private String password;
 
-    @Column(name = "lg_ultimoLogin")
+    @Column(name = "lg_ultimo_login")
     private LocalDateTime ultimoLogin;
 
-    @Column(name = "lg_fechaCreacion")
+    @Column(name = "lg_fecha_registro")
     private LocalDateTime fechaCreacion;
 
     @ManyToOne
-    @JoinColumn(name = "lg_estadoUsuario", referencedColumnName = "st_codigo")
+    @JoinColumn(name = "lg_estado_usuario", referencedColumnName = "st_codigo")
     private EstadoUsuario estadoUsuario;
 
     @ManyToOne
