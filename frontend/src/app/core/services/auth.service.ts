@@ -22,6 +22,9 @@ export class AuthService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.backendUrl}/auth/actual-usuario`, { headers });
   }
+  generateToken(loginData: any) {
+    return this.http.post(`${this.backendUrl}/auth/generate-token`, loginData);
+  }
 
 
 
