@@ -25,8 +25,8 @@ export class HistorialUsuarioService {
     return this.http.get<any>(`${this.backendUrl}/historial-usuario/listar/historial/${username}/${estado}`);
   }
 
-  registrar(body: HistorialUsuarioModel): Observable<HistorialUsuarioModel> {
-    return this.http.post<HistorialUsuarioModel>(`${this.backendUrl}/historial-usuario/registrar`, body);
+  registrar(body: HistorialUsuarioModel): Observable<any> {
+    return this.http.post<any>(`${this.backendUrl}/historial-usuario/registrar`, body);
   }
 
   inactivar(codigo: string): Observable<any> {
