@@ -11,14 +11,11 @@ export class ModeradorGuard implements CanActivate {
 
     constructor(private authService: AuthService,  private router: Router) { }
 
-    async canActivate(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ): Promise<boolean | UrlTree> {
+    async canActivate(): Promise<boolean | UrlTree> {
         try {
             const token = this.authService.token;
             const user = await firstValueFrom(this.authService.getCurrentUser());
-            const rol = user?.role?.name;
+            const rol = user.role.nombre;
 
             if (token && this.authService.isLoggedIn()) {
                 if (rol === ROLES.ROLE_MODERADOR) {

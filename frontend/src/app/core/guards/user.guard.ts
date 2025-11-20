@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { ROLES } from '../constants/roles.contants';
@@ -11,23 +11,18 @@ export class UserGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  async canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Promise<boolean | UrlTree> {
+  async canActivate(): Promise<boolean | UrlTree> {
     try {
       const token = this.authService.token;
       const user = await firstValueFrom(this.authService.getCurrentUser());
-      const rol = user?.rol?.nombre;
+      const rol = user.rol.nombre;
 
-      console.log("🛡️ UserGuard → Usuario:", user);
 
       if (token && this.authService.isLoggedIn()) {
         if (rol === ROLES.ROLE_USER) {
           return true;
         } else if (rol === ROLES.ROLE_ADMIN) {
-
-          return this.router.parseUrl('/inicio'); // 👈 redirección correcta
+          return this.router.parseUrl('/inicio');
         } else if (rol === ROLES.ROLE_MODERADOR) {
           return this.router.parseUrl('/moderador');
         }
