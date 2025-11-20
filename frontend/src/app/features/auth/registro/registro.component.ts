@@ -64,6 +64,41 @@ export class RegistroComponent {
   }
 
   operar() {
+    if (this.formulario.valid) {
+      const edad = edadConvertir(this.formulario.value.fechaNacimiento)
 
+      const register: RegisterUser = {
+        nombre: this.formulario.value.nombre,
+        apellido: this.formulario.value.apellido,
+        edad: edad,
+        fechaNacimiento: this.formulario.value.fechaNacimiento,
+        genero: this.formulario.value.genero,
+        nacionalidad: this.formulario.value.nacionalidad,
+        username: this.formulario.value.usuario,
+        email: this.formulario.value.correo,
+        telefono: this.formulario.value.telefono,
+        password: this.formulario.value.contrasena
+      };
+      console.log(register)
+
+      this.usuarioService.registrar(register).subscribe({
+        next: (data: any) => {
+          this.alertService.aceptacion("REGISTRADO", "SE REGISTRO CORRECTAMENTE EL USUARIO")
+          this.router.navigate(['/auth/login']);
+        },
+        error: (error) => {
+          console.error('Error generando token:', error);
+          this.alertService.error('Error', error.error.message);
+        },
+        complete() {
+          console.log('Proceso de autenticación completado');
+        },
+      })
+      
+    } else {
+      this.alertService.advertencia('Campos incompletos', 'Por favor, completa todos los campos requeridos.');
+      this.formulario.markAllAsTouched();
+    }
   }
 }
+

@@ -53,10 +53,7 @@ export class LoginComponent {
 
   operar() {
     if (this.formulario.invalid) {
-      this.alertService.advertencia(
-        'Campos incompletos',
-        'Por favor, completa todos los campos requeridos.'
-      );
+      this.alertService.advertencia('Campos incompletos', 'Por favor, completa todos los campos requeridos.');
       this.formulario.markAllAsTouched();
       return;
     }
@@ -68,16 +65,13 @@ export class LoginComponent {
 
     this.authService.generateToken(login).subscribe({
       next: (data: any) => {
-        // Guardar token
         this.authService.setToken(data.token);
 
-        // Obtener usuario actual
         this.authService.getCurrentUser().subscribe({
           next: (user) => {
             const rol = user.rol?.nombre;
 
             if (!rol) {
-              console.error("El usuario no tiene un rol asignado.");
               return;
             }
 
@@ -85,17 +79,14 @@ export class LoginComponent {
 
             switch (rol) {
               case ROLES.ROLE_ADMIN:
-                console.log("Ingreso a ADMINISTRADOR");
                 this.router.navigate(['/admin']);
                 break;
 
               case ROLES.ROLE_MODERADOR:
-                console.log("Ingreso a MODERADOR");
                 this.router.navigate(['/moderador']);
                 break;
 
               default:
-                console.log("Ingreso a USER");
                 this.router.navigate(['/inicio']);
                 break;
             }
