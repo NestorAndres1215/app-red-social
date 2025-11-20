@@ -41,7 +41,9 @@ export class LoginComponent {
       password: ['', Validators.required]
     });
   }
-
+  loginWithGoogle(): void {
+    this.authService.loginWithGoogle(); // redirige al backend
+  }
   registro() {
     this.router.navigate(['/auth/registro']);
   }

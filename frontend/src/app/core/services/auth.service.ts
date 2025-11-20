@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,11 @@ export class AuthService {
 
   private backendUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+
+  constructor(
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
   getCurrentUser() {
     const token = localStorage.getItem('jwt');
@@ -22,11 +27,10 @@ export class AuthService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.backendUrl}/auth/actual-usuario`, { headers });
   }
+
   generateToken(loginData: any) {
     return this.http.post(`${this.backendUrl}/auth/generate-token`, loginData);
   }
-
-
 
   isLoggedIn() {
     let tokenStr = localStorage.getItem('jwt');
@@ -36,10 +40,48 @@ export class AuthService {
       return true;
     }
   }
+
   get token(): string | null {
     return localStorage.getItem('jwt');
   }
+
   setToken(token: string) {
     localStorage.setItem('jwt', token);
+  }
+
+loginWithGoogle(): void {
+  try {
+    window.location.href = 'http://localhost:8090/red-social-app/auth-service/api/v1/oauth2/authorization/google';
+  } catch (error) {
+    console.error('Error al intentar redirigir a Google OAuth:', error);
+    alert('Ocurrió un error al iniciar sesión con Google. Inténtalo nuevamente.');
+  }
+}
+
+
+handleTokenFromUrl(): void {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+
+    if (token) {
+      this.setToken(token);
+      this.router.navigate(['/inicio'], { replaceUrl: true });
+    } else {
+      console.warn('No se encontró token en la URL');
+    }
+  } catch (error) {
+    console.error('Error al procesar el token de Google OAuth:', error);
+  }
+}
+
+
+  logout(): void {
+    localStorage.removeItem('jwt');
+    this.router.navigate(['/auth/login']);
+  }
+
+  isAuthenticated(): boolean {
+    return this.token !== null;
   }
 }
