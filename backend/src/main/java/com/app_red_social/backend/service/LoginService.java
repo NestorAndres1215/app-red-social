@@ -81,18 +81,19 @@ public class LoginService {
     }
 
     private void validarDuplicados(String username, String email, String telefono) {
-
+System.out.println(email);
         if (loginRepository.existsByEmail(email)) {
             throw new ResourceAlreadyExistsException(DuplicateErrorMessages.EMAIL_EXISTENTE);
         }
 
-        if (loginRepository.existsByUsername(username)) {
+        if (username != null && !username.trim().isEmpty() && loginRepository.existsByUsername(username)) {
             throw new ResourceAlreadyExistsException(DuplicateErrorMessages.USERNAME_EXISTENTE);
         }
 
-        if (loginRepository.existsByTelefono(telefono)) {
+        if (telefono != null && !telefono.trim().isEmpty() && loginRepository.existsByTelefono(telefono)) {
             throw new ResourceAlreadyExistsException(DuplicateErrorMessages.TELEFONO_EXISTENTE);
         }
+
     }
 
     public Login actualizar(String codigo, String username, String email, String telefono, String password, String rol) {

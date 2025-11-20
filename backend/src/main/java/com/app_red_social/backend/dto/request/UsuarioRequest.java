@@ -4,6 +4,7 @@ import lombok.*;
 
 @Data
 @Builder
+@ToString
 public class UsuarioRequest {
     private String nombre;
     private String apellido;

@@ -39,7 +39,8 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         String picture = oAuth2User.getAttribute("picture");
         String givenName = oAuth2User.getAttribute("given_name");
         String familyName = oAuth2User.getAttribute("family_name");
-
+System.out.println("EMAIL"+ email);
+        System.out.println("PICTURE"+ picture);
         UsuarioRequest usuarioRequest = UsuarioRequest.builder()
                 .email(email)
                 .nombre(givenName)
@@ -48,7 +49,7 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
                 .provider(Auth.GOGGLE)
                 .rol(Roles.ROLE_USER)
                 .build();
-
+        System.out.println(usuarioRequest);
         Usuario user = usuarioService.saveOrUpdateGoogleUser(usuarioRequest);
         String token = jwtTokenProvider.generateToken(user.getLogin());
 

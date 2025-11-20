@@ -63,7 +63,7 @@ public class UsuarioService {
 
             final String nuevoCodigoLogin = Secuencia.generarSiguienteCodigo(loginService.ultimoCodigo());
             loginService.registrar(nuevoCodigoLogin, "", usuarioRequest.getEmail(), "", "", Roles.ROLE_USER);
-            Login login = loginService.listarCodigo(usuarioRequest.getEmail());
+            Login login = loginService.listarEmail(usuarioRequest.getEmail());
             final String nuevoCodigoUsuario = Secuencia.generarSiguienteCodigo(ultimoCodigo());
 
             Usuario usuario = Usuario.builder()
