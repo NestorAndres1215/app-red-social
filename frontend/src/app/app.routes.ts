@@ -23,10 +23,10 @@ export const routes: Routes = [
       },
       {
             path: 'auth',
-            canActivate: [NoAuthGuard],
-            loadChildren: () => import('./features/auth/auth.routes')
-                  .then(m => m.AUTH_ROUTES)
+            loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
+            canActivate: [NoAuthGuard]
       },
+
       {
             path: '',
             component: HomeUserComponent,
