@@ -5,8 +5,10 @@ import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.dto.request.RegisterRequest;
 import com.app_red_social.backend.dto.request.UsuarioRequest;
+import com.app_red_social.backend.dto.response.UsuarioActualResponse;
 import com.app_red_social.backend.dto.response.UsuarioListaResponse;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
+import com.app_red_social.backend.mapper.UsuarioActualMapper;
 import com.app_red_social.backend.mapper.UsuarioMapper;
 
 import com.app_red_social.backend.model.Login;
@@ -25,6 +27,7 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final LoginService loginService;
     private final UsuarioMapper usuarioMapper;
+    private final UsuarioActualMapper usuarioActualMapper;
 
     public List<Usuario> listar() {
         return usuarioRepository.findAll();
@@ -103,8 +106,21 @@ public class UsuarioService {
     }
 
     public List<UsuarioListaResponse> listarUsuarios(Integer option, String username, String estado) {
+
+        usuarioRepository.findByLogin_Username(username)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO));
+
         List<Object[]> result = usuarioRepository.listarUsuarios(option, username, estado);
         return usuarioMapper.toDtoList(result);
     }
 
+    public List<UsuarioActualResponse> obtenerUsuario( String codigo) {
+
+        usuarioRepository.findById(codigo)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
+
+        List<Object[]> result = usuarioRepository.obtenerUsuarioActual(1, codigo);
+
+        return usuarioActualMapper.toList(result);
+    }
 }

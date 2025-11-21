@@ -16,10 +16,8 @@ import { MENSAJES } from '../../../core/constants/mensajes.constants';
 })
 export class RegistroComponent {
 
-
   constructor(
     private alertService: AlertService,
-
     private usuarioService: UsuarioService,
     private router: Router,
     private fb: FormBuilder
@@ -43,8 +41,6 @@ export class RegistroComponent {
   login() {
     this.router.navigate(['/auth/login']);
   }
-
-
 
   soloNumerosInput(event: any) {
     event.target.value = filtrarSoloNumeros(event.target.value);

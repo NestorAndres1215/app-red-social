@@ -17,6 +17,7 @@ import { MENSAJES } from '../../../core/constants/mensajes.constants';
 export class LoginComponent {
 
   formulario!: FormGroup;
+  showPassword = false;
 
   constructor(
     private fb: FormBuilder,
@@ -29,9 +30,6 @@ export class LoginComponent {
     this.initForm();
   }
 
-
-  showPassword = false;
-
   togglePassword(): void {
     this.showPassword = !this.showPassword;
   }
@@ -42,12 +40,15 @@ export class LoginComponent {
       password: ['', Validators.required]
     });
   }
+
   loginWithGoogle(): void {
     this.authService.loginWithGoogle(); // redirige al backend
   }
+
   registro() {
     this.router.navigate(['/auth/registro']);
   }
+
   olvidarContrasena() {
     //   this.router.navigate(['/auth/olvidar-contrasena'])
   }
@@ -102,6 +103,5 @@ export class LoginComponent {
       }
     });
   }
-
 
 }
