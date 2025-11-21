@@ -1,0 +1,32 @@
+<header class="shadow position-sticky top-0 z-3">
+  <div class="container">
+    <nav class="d-flex align-items-center justify-content-between py-3">
+      <div class="logo">
+        <div class="logo-icon">
+          <img src="logo/logo_original.png" alt="SocialLike Logo" />
+        </div>
+        <h1>SocialLike</h1>
+      </div>
+      <button class="hamburger" aria-label="Toggle menu" (click)="toggleNav()">
+        <i class="fas" [ngClass]="isNavActive ? 'fa-times' : 'fa-bars'"></i>
+      </button>
+      <div class="nav-links" [ngClass]="{'active': isNavActive}">
+        <a  [routerLink]="'/inicio'" class="nav-link">
+          <i class="fas fa-home"></i>
+            @if (isNavActive) {
+            <span>Inicio</span>
+            }
+        </a>
+
+        <a href="#" class="nav-link"><i class="fas fa-users"></i><span *ngIf="isNavActive">Amigos</span> </a>
+        <a href="#" class="nav-link"><i class="fas fa-message"></i> <span *ngIf="isNavActive">Mesage</span> </a>
+        <a href="#" class="nav-link"><i class="fas fa-video"></i> <span *ngIf="isNavActive">Video</span> </a>
+        <a href="#" class="nav-link"><i class="fas fa-bell"></i> <span *ngIf="isNavActive">Notificaciones</span>
+        </a>
+        <a (click)="logout()" class="nav-link" role="button">
+          <i class="fas fa-sign-out-alt"></i> <span *ngIf="isNavActive">Cerrar Sesión</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
