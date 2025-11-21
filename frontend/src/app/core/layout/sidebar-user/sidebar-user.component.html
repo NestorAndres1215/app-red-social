@@ -1,1 +1,44 @@
 <app-layout-user />
+<main>
+  <div class="sidebar">
+    <ul>
+      <li>
+        <a [routerLink]="['/profile', usuario.codigo, displayName]" class="nav-link">
+          <i class="fas fa-user"></i> {{ displayName }}
+        </a>
+
+
+      </li>
+      <li><a href="#" class="nav-link"><i class="fas fa-search"></i> Buscar</a></li>
+      <!-- 🔹 Acciones principales -->
+      <li><a href="#"><i class="fas fa-plus-circle"></i> Crear fotos o historia</a></li>
+      <li><a href="#"><i class="fas fa-calendar-plus"></i> Evento</a></li>
+
+      <!-- 🔹 Interacción social -->
+      <li><a href="#"><i class="fas fa-envelope"></i> Mensajes</a></li>
+      <li><a href="#"><i class="fas fa-users"></i> Grupos</a></li>
+      <li><a href="#"> <i class="fas fa-user-friends"></i>Amigos</a></li>
+      <!-- 🔹 Explorar contenido -->
+      <li><a href="#"><i class="fas fa-rss"></i> Feeds</a></li>
+      <li><a href="#"><i class="fas fa-video"></i> Videos</a></li>
+      <li><a href="#"><i class="fas fa-store"></i> Marketplace</a></li>
+      <li><a href="#"><i class="fas fa-clock"></i> Recuerdos</a></li>
+
+      <!-- 🔹 Extras -->
+      <li><a href="#"><i class="fas fa-bookmark"></i> Guardados</a></li>
+      <li><a href="#"><i class="fas fa-birthday-cake"></i> Cumpleaños</a></li>
+      <li><a href="#"><i class="fas fa-compass"></i> Explorar</a></li>
+      @if (isLoggedIn) {
+      <li>
+        <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+      </li>
+      }
+
+      <li><a href="#"><i class="fas fa-cog"></i> Configuración</a></li>
+
+    </ul>
+  </div>
+</main>
+<div class="main-content">
+  <router-outlet />
+</div>
