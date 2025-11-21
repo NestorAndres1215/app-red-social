@@ -6,6 +6,7 @@ import { AlertService } from '../../../core/services/alert.service';
 import { UsuarioService } from '../../../core/services/usuario.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MENSAJES } from '../../../core/constants/mensajes.constants';
 
 @Component({
   selector: 'app-registro.component',
@@ -65,7 +66,7 @@ export class RegistroComponent {
 
   operar() {
     if (this.formulario.valid) {
-      const edad = edadConvertir(this.formulario.value.fechaNacimiento)
+      const edad = edadConvertir(this.formulario.value.fechaNacimiento);
 
       const register: RegisterUser = {
         nombre: this.formulario.value.nombre,
@@ -79,26 +80,21 @@ export class RegistroComponent {
         telefono: this.formulario.value.telefono,
         password: this.formulario.value.contrasena
       };
-      console.log(register)
 
       this.usuarioService.registrar(register).subscribe({
         next: (data: any) => {
-          this.alertService.aceptacion("REGISTRADO", "SE REGISTRO CORRECTAMENTE EL USUARIO")
+          this.alertService.aceptacion(MENSAJES.REGISTRO_EXITOSO_TITULO, MENSAJES.REGISTRO_EXITOSO_MENSAJE);
           this.router.navigate(['/auth/login']);
         },
         error: (error) => {
-          console.error('Error generando token:', error);
-          this.alertService.error('Error', error.error.message);
-        },
-        complete() {
-          console.log('Proceso de autenticación completado');
-        },
-      })
-      
+          this.alertService.error(MENSAJES.ERROR_TITULO, error.error.message);
+        }
+      });
     } else {
-      this.alertService.advertencia('Campos incompletos', 'Por favor, completa todos los campos requeridos.');
+      this.alertService.advertencia(MENSAJES.CAMPOS_INCOMPLETOS_TITULO, MENSAJES.CAMPOS_INCOMPLETOS_MENSAJE);
       this.formulario.markAllAsTouched();
     }
   }
+
 }
 

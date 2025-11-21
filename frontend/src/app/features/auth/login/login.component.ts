@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { LoginAuth } from '../../../core/models/login-auth.model';
 import { ROLES } from '../../../core/constants/roles.contants';
+import { MENSAJES } from '../../../core/constants/mensajes.constants';
 
 @Component({
   selector: 'app-login.component',
@@ -53,7 +54,7 @@ export class LoginComponent {
 
   operar() {
     if (this.formulario.invalid) {
-      this.alertService.advertencia('Campos incompletos', 'Por favor, completa todos los campos requeridos.');
+      this.alertService.advertencia(MENSAJES.CAMPOS_INCOMPLETOS_TITULO, MENSAJES.CAMPOS_INCOMPLETOS_MENSAJE);
       this.formulario.markAllAsTouched();
       return;
     }
@@ -92,21 +93,12 @@ export class LoginComponent {
             }
           },
           error: (error) => {
-            console.error('Error obteniendo usuario actual:', error);
-          },
-          complete: () => {
-            console.log('Solicitud de usuario completada');
+            this.alertService.error(MENSAJES.ERROR_TITULO, error.error.message);
           }
         });
       },
-
       error: (error) => {
-        console.error('Error generando token:', error);
-        this.alertService.error('Error', error.error?.message || 'Error en la autenticación');
-      },
-
-      complete: () => {
-        console.log('Proceso de autenticación completado');
+        this.alertService.error(MENSAJES.ERROR_TITULO, error.error.message);
       }
     });
   }

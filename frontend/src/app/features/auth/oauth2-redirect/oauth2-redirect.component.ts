@@ -13,11 +13,9 @@ export class Oauth2RedirectComponent {
 
   ngOnInit(): void {
     const token = this.route.snapshot.queryParamMap.get('token');
-  
-    
     if (token) {
-      this.authService.setToken(token);          // guarda token en localStorage
-      this.router.navigate(['/inicio'], { replaceUrl: true }); // redirige limpio
+      this.authService.setToken(token);
+      this.router.navigate(['/inicio'], { replaceUrl: true });
     } else {
       this.router.navigate(['/login']);
     }
