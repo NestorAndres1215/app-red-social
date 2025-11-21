@@ -7,24 +7,23 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDate;
-
 @Data
 public class HistorialUsuarioRequest {
 
     private String codigo;
 
-    @NotNull(message = "La fecha del historial es obligatoria.")
-    @PastOrPresent(message = "La fecha del historial no puede ser futura.")
+    @NotNull(message = "LA FECHA DEL HISTORIAL ES OBLIGATORIA.")
+    @PastOrPresent(message = "LA FECHA DEL HISTORIAL NO PUEDE SER FUTURA.")
     private LocalDate fecha;
 
-    @NotBlank(message = "El usuario del historial es obligatorio.")
+    @NotBlank(message = "EL USUARIO DEL HISTORIAL ES OBLIGATORIO.")
     private String usuario;
 
-    @NotBlank(message = "El estado del historial es obligatorio.")
+    @NotBlank(message = "EL ESTADO DEL HISTORIAL ES OBLIGATORIO.")
     private String estado;
 
-    @NotBlank(message = "El detalle del historial es obligatorio.")
-    @Size(max = 500, message = "El detalle no puede exceder los 500 caracteres.")
+    @NotBlank(message = "EL DETALLE DEL HISTORIAL ES OBLIGATORIO.")
+    @Size(max = 500, message = "EL DETALLE NO PUEDE EXCEDER LOS 500 CARACTERES.")
     private String detalle;
 
 }

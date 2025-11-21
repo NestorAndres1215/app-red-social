@@ -6,10 +6,11 @@ import lombok.*;
 @Data
 public class LoginRequest {
 
-    @NotBlank(message = "El usuario o correo es obligatorio.")
+    @NotBlank(message = "EL USUARIO O CORREO ES OBLIGATORIO.")
     private String login;
 
-    @NotBlank(message = "La contraseña es obligatoria.")
+    @NotBlank(message = "LA CONTRASEÑA ES OBLIGATORIA.")
     private String password;
 
 }
+
