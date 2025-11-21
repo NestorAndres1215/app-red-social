@@ -11,7 +11,6 @@ import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.repository.EstadoUsuarioRepository;
 import com.app_red_social.backend.repository.LoginRepository;
 import com.app_red_social.backend.repository.RolRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -81,7 +80,7 @@ public class LoginService {
     }
 
     private void validarDuplicados(String username, String email, String telefono) {
-System.out.println(email);
+
         if (loginRepository.existsByEmail(email)) {
             throw new ResourceAlreadyExistsException(DuplicateErrorMessages.EMAIL_EXISTENTE);
         }

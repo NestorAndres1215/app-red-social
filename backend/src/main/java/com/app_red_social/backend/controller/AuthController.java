@@ -21,7 +21,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/generate-token")
-    public ResponseEntity<TokenResponse> generarToken(@RequestBody LoginRequest jwtRequest) throws Exception {
+    public ResponseEntity<TokenResponse> generarToken(@Valid @RequestBody LoginRequest jwtRequest) throws Exception {
         return ResponseEntity.ok(authService.login(jwtRequest));
     }
 

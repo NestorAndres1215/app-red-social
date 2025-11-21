@@ -24,7 +24,7 @@ public class Sesion {
     @Column(name = "se_finSesion")
     private LocalDateTime finSesion;
 
-    @Column(name = "se_ubicacion", length = 255)
+    @Column(name = "se_ubicacion", length = 250)
     private String ubicacion;
 
     @Column(name = "se_navegador", length = 100)

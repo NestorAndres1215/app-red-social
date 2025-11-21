@@ -8,5 +8,4 @@ public class DuplicateErrorMessages {
     public static final String TELEFONO_EXISTENTE = "EL TELEFONO YA SE ENCUENTRA REGISTRADO.";
     public static final String EMAIL_EXISTENTE = "EL CORREO YA SE ENECUENTR5A REGISTRADO";
 
-
 }

@@ -31,7 +31,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                 .provider(Auth.GOGGLE)
                 .rol(Roles.ROLE_USER)
                 .build();
-System.out.println(user);
         return (OAuth2User) usuarioService.saveOrUpdateGoogleUser(user);
     }
 

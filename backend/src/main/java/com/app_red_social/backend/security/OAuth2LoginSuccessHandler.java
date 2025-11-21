@@ -39,8 +39,7 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         String picture = oAuth2User.getAttribute("picture");
         String givenName = oAuth2User.getAttribute("given_name");
         String familyName = oAuth2User.getAttribute("family_name");
-System.out.println("EMAIL"+ email);
-        System.out.println("PICTURE"+ picture);
+
         UsuarioRequest usuarioRequest = UsuarioRequest.builder()
                 .email(email)
                 .nombre(givenName)

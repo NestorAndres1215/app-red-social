@@ -1,18 +1,14 @@
 package com.app_red_social.backend.service;
 
-import com.app_red_social.backend.constants.messages.GlobalErrorMessages;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.dto.request.LoginRequest;
 import com.app_red_social.backend.dto.response.TokenResponse;
-import com.app_red_social.backend.exception.BadRequestException;
-import com.app_red_social.backend.exception.JwtAuthenticationException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.repository.LoginRepository;
 import com.app_red_social.backend.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

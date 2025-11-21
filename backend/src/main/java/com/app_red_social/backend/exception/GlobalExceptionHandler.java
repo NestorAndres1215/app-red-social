@@ -3,7 +3,6 @@ package com.app_red_social.backend.exception;
 
 import com.app_red_social.backend.constants.messages.GlobalErrorMessages;
 import com.app_red_social.backend.dto.response.ErrorResponse;
-import jakarta.validation.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;

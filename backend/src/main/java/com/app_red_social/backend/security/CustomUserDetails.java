@@ -2,13 +2,10 @@ package com.app_red_social.backend.security;
 
 import com.app_red_social.backend.constants.Estados;
 import com.app_red_social.backend.model.Login;
-
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.Collections;
 

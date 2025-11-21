@@ -21,7 +21,7 @@ import java.util.function.Function;
 public class JwtUtil {
 
     @Value("${jwt.secret:${JWT_SECRET}}")
-    private String SECRET_KEY;
+    private  String SECRET_KEY;
 
     @Value("${jwt.expirationMs:${JWT_EXPIRATION}}")
     private long JWT_EXPIRATION_MS;

@@ -2,9 +2,7 @@ package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.dto.request.HistorialUsuarioRequest;
 import com.app_red_social.backend.dto.response.HistorialResponse;
-import com.app_red_social.backend.model.EstadoUsuario;
 import com.app_red_social.backend.model.HistorialUsuario;
-import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.service.HistorialUsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

@@ -6,15 +6,13 @@ import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.dto.request.RegisterRequest;
 import com.app_red_social.backend.dto.request.UsuarioRequest;
 import com.app_red_social.backend.dto.response.UsuarioListaResponse;
-import com.app_red_social.backend.exception.ResourceAlreadyExistsException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.mapper.UsuarioMapper;
-import com.app_red_social.backend.model.Administrador;
+
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.Usuario;
 import com.app_red_social.backend.repository.UsuarioRepository;
 import com.app_red_social.backend.util.Secuencia;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

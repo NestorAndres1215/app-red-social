@@ -53,8 +53,7 @@ public class RolService {
                     throw new ResourceAlreadyExistsException(DuplicateErrorMessages.ROL_EXISTENTE);
                 });
 
-        String ultimoCodigo = ultimoCodigo();
-        String nuevoCodigo = Secuencia.generarSiguienteCodigo(ultimoCodigo);
+       final  String nuevoCodigo = Secuencia.generarSiguienteCodigo(ultimoCodigo());
 
         rol.setCodigo(nuevoCodigo);
 

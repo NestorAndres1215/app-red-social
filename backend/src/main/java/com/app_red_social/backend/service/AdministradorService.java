@@ -8,7 +8,6 @@ import com.app_red_social.backend.model.Administrador;
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.repository.AdministradorRepository;
 import com.app_red_social.backend.util.Secuencia;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

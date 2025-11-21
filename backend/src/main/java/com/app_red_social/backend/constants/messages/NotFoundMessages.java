@@ -9,5 +9,4 @@ public class NotFoundMessages {
     public static  final String ROL_NO_ENCONTRADO="ROL NO ENCOONTRADO";
     public static final String ESTADO_USUARIO_NO_ENCONTRADO = "EL ESTADO DE USUARIO ESPECIFICADO NO FUE ENCONTRADO.";
 
-
 }

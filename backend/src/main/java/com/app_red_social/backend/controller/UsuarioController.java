@@ -2,8 +2,6 @@ package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.dto.request.RegisterRequest;
 import com.app_red_social.backend.dto.response.UsuarioListaResponse;
-import com.app_red_social.backend.model.Administrador;
-import com.app_red_social.backend.model.HistorialUsuario;
 import com.app_red_social.backend.model.Usuario;
 import com.app_red_social.backend.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
