@@ -1,22 +1,17 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LayoutAdminComponent } from './layout-admin.component';
 
 describe('LayoutAdminComponent', () => {
   let component: LayoutAdminComponent;
   let fixture: ComponentFixture<LayoutAdminComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LayoutAdminComponent ]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [LayoutAdminComponent]
     })
-    .compileComponents();
-  }));
+      .compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LayoutAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -38,6 +38,7 @@ export class LayoutAdminComponent implements OnInit {
 
     this.isLoggedIn = this.authService.isLoggedIn();
     this.user = this.authService.token;
+    console.log("HOLA"+this.user)
     this.authService.loginStatusSubjec.asObservable().subscribe(
       data => {
         this.isLoggedIn = this.authService.isLoggedIn();

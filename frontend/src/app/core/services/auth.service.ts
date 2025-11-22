@@ -11,7 +11,7 @@ export class AuthService {
 
   private backendUrl = environment.baseUrl;
 
- public loginStatusSubjec = new Subject<boolean>();
+  public loginStatusSubjec = new Subject<boolean>();
   constructor(
     private router: Router,
     private http: HttpClient
@@ -49,18 +49,13 @@ export class AuthService {
     localStorage.setItem('jwt', token);
   }
 
-loginWithGoogle(): void {
-  try {
-    window.location.href = 'http://localhost:8090/red-social-app/auth-service/api/v1/oauth2/authorization/google';
-  } catch (error) {
-    console.error('Error al intentar redirigir a Google OAuth:', error);
-    alert('Ocurrió un error al iniciar sesión con Google. Inténtalo nuevamente.');
+  loginWithGoogle(): void {
+      window.location.href = 'http://localhost:8090/red-social-app/auth-service/api/v1/oauth2/authorization/google';
   }
-}
 
 
-handleTokenFromUrl(): void {
-  try {
+  handleTokenFromUrl(): void {
+
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
 
@@ -70,10 +65,8 @@ handleTokenFromUrl(): void {
     } else {
       console.warn('No se encontró token en la URL');
     }
-  } catch (error) {
-    console.error('Error al procesar el token de Google OAuth:', error);
+
   }
-}
 
 
   logout(): void {

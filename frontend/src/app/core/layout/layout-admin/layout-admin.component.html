@@ -40,7 +40,7 @@
       <mat-list>
         <ng-container *ngFor="let menuItem of datosmenuPrimero">
           <!-- Ítem principal -->
-          <mat-list-item (click)="handleClick(menuItem)">
+          <mat-list-item (click)="handleClick(menuItem)" style="cursor: pointer;">
             <mat-icon>{{ menuItem.icono }}</mat-icon>
             <span>{{ menuItem.nombre }}</span>
             <mat-icon *ngIf="tieneSubMenu(menuItem)">expand_more</mat-icon>

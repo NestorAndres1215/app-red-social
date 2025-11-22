@@ -1,22 +1,17 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidebarUserComponent } from './sidebar-user.component';
 
 describe('SidebarUserComponent', () => {
   let component: SidebarUserComponent;
   let fixture: ComponentFixture<SidebarUserComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SidebarUserComponent ]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [SidebarUserComponent]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(SidebarUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

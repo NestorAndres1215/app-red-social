@@ -1,22 +1,18 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutModeradorComponent } from './layout-moderador.component';
 
-describe('LayoutModeradorComponent', () => {
+describe('LayoutUserComponent', () => {
   let component: LayoutModeradorComponent;
   let fixture: ComponentFixture<LayoutModeradorComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LayoutModeradorComponent ]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [LayoutModeradorComponent]
     })
     .compileComponents();
-  }));
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LayoutModeradorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
