@@ -1,3 +1,68 @@
-<p>
-  layout-admin works!
-</p>
+<div class="example-container">
+  <div>
+    <mat-toolbar class="example-toolbar">
+      <button mat-icon-button (click)="sidenav.toggle()" class="sidenav-icon">
+        <i class="fas fa-bars fa-lg" *ngIf="!sidenav.opened" style="font-size: 26px;"></i>
+        <i class="fas fa-times fa-lg" *ngIf="sidenav.opened" style="font-size: 26px;"></i>
+      </button>
+
+
+      <span class="example-spacer"></span>
+
+      <div class="navegador">
+        <h4 *ngIf="isLoggedIn && user"> {{ user.username }} </h4>
+        <h4 class="tittle">
+          - Administrador
+        </h4>
+      </div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" class="btn-icon">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>check_circle</mat-icon>
+          <span>Version: <strong>1.0.0</strong></span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Configuracion <strong></strong></span>
+        </button>
+        <button mat-menu-item *ngIf="isLoggedIn" (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+  </div>
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #sidenav mode="push" [opened]="false">
+      <mat-divider></mat-divider>
+      <mat-list>
+        <ng-container *ngFor="let menuItem of datosmenuPrimero">
+          <!-- Ítem principal -->
+          <mat-list-item (click)="handleClick(menuItem)">
+            <mat-icon>{{ menuItem.icono }}</mat-icon>
+            <span>{{ menuItem.nombre }}</span>
+            <mat-icon *ngIf="tieneSubMenu(menuItem)">expand_more</mat-icon>
+          </mat-list-item>
+
+          <!-- Submenús, solo si existen -->
+          <ng-container *ngIf="menuItem.mostrarSubMenu && tieneSubMenu(menuItem)">
+            <mat-list-item *ngFor="let subMenuItem of menu2FiltradoPorCategoria[menuItem.categoria]"
+              (click)="irARuta(subMenuItem.ruta)">
+              <mat-icon>{{ subMenuItem.icono }}</mat-icon>
+              <span>{{ subMenuItem.nombre }}</span>
+            </mat-list-item>
+          </ng-container>
+        </ng-container>
+      </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="sidenav-content">
+      <div class="content-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</div>

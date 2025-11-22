@@ -1,0 +1,120 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 100vh;
+}
+
+.example-toolbar {
+    background: linear-gradient(to right, #1e40af, #3b82f6);
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidenav-icon {
+    background-color: #1e40af;
+    border: none;
+    color: white;
+}
+
+.example-app-name {
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+.img-logo {
+    max-width: 100%;
+    width: 12%;
+    height: auto;
+}
+
+.navegador {
+    justify-content: center;
+    display: flex;
+    margin: initial;
+}
+
+.btn-icon {
+    background-color: #3b82f6;
+    border: none;
+    color: white;
+}
+
+.example-sidenav-container {
+    flex: 1;
+    background-color: #e8f0fe;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+mat-sidenav {
+    width: 28%;
+    min-width: 350px;
+}
+
+mat-list-item {
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+mat-list-item span {
+    color: black;
+    margin-left: 8px;
+    transform: translateY(-6px);
+    display: inline-block;
+}
+
+
+mat-list-item:hover {
+    background-color: #dbeafe;
+}
+
+mat-list-item mat-icon {
+    color: #1e40af;
+    margin-right: 8px;
+}
+
+.sidenav-content {
+    height: 90vh;
+    padding: 20px;
+    background-color: #f0f7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+/* Menu Dropdown */
+mat-menu {
+    background-color: white;
+}
+
+mat-menu button mat-icon {
+    color: #1e40af;
+}
+
+mat-menu button span {
+    color: #333;
+
+}
+
+mat-menu button:hover {
+    background-color: #dbeafe;
+}
+
+.tittle {
+    display: inline;
+    margin-left: 8px;
+}
