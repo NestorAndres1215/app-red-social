@@ -11,6 +11,11 @@ export const ADMIN_ROUTES: Routes = [
     loadComponent: () => import('../principal-admin/principal-admin.component')
       .then(m => m.PrincipalAdminComponent)
   },
+    {
+    path: 'user-admin',
+    loadComponent: () => import('../administrador-user/admin-user.component/admin-user.component')
+      .then(m => m.AdminUserComponent)
+  },
 
 ];
 

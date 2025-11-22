@@ -9,9 +9,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { MenuService } from '../../services/menu.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-layout-admin',
-  imports: [MatMenuTrigger, RouterModule, MatToolbarModule, MatDialogModule, MatIconModule, MatSidenavModule, MatListModule, MatMenuModule, CommonModule],
+  imports: [RouterModule, MatToolbarModule, MatDialogModule, MatIconModule, MatSidenavModule, MatListModule, MatMenuModule, CommonModule],
   templateUrl: './layout-admin.component.html',
   styleUrls: ['./layout-admin.component.css']
 })
@@ -19,97 +20,86 @@ export class LayoutAdminComponent implements OnInit {
 
   isLoggedIn = false;
   user: any;
-  isRouteActive: boolean = true;
-  rolMenu: any
+  rolMenu: any;
   status = false;
-  datosmenuPrimero: any
-  menuPrimero: any
-  menuSegundo: any
-  constructor(
-    public authService: AuthService,
-    private dialog: MatDialog,
-    private router: Router,
-    private menuService: MenuService) { }
+  datosmenuPrimero: any[] = [];
+  menuPrimero: any[] = [];
+  menuSegundo: any[] = [];
+  menu2FiltradoPorCategoria: { [categoria: string]: any[] } = {};
 
+  private loginSub!: Subscription;
+  @ViewChild(MatMenuTrigger) mainMenuTrigger!: MatMenuTrigger;
+  username!: string;
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private menuService: MenuService
+  ) { }
 
   ngOnInit(): void {
-    this.listarRolMenu()
-
+    this.listarRolMenu();
 
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.user = this.authService.token;
-    console.log("HOLA"+this.user)
-    this.authService.loginStatusSubjec.asObservable().subscribe(
-      data => {
-        this.isLoggedIn = this.authService.isLoggedIn();
-        this.user = this.authService.token;
-      }
-    )
+    this.username = localStorage.getItem('username') || '';
+    this.loginSub = this.authService.loginStatusSubjec.asObservable().subscribe(() => {
+      this.isLoggedIn = this.authService.isLoggedIn();
 
+
+    });
   }
+
+  ngOnDestroy(): void {
+    if (this.loginSub) this.loginSub.unsubscribe();
+  }
+
   async listarRolMenu() {
     this.menuService.obtenerMenusPorDosRoles("ROL00001").subscribe(data => {
-      this.rolMenu = data
-      console.log(this.rolMenu)
+      this.rolMenu = data;
       this.listarMenuPrimero();
-      this.listarMenuSegundo('');
-    })
+      this.listarMenuSegundo();
+    });
   }
 
   async listarMenuPrimero() {
-    this.menuService.obtenerMenuNivel1().subscribe(
-      data => {
-        this.menuPrimero = data
-        console.log(this.menuPrimero)
-        this.datosmenuPrimero = this.menuPrimero.filter(
-          (item: { rol: { codigo: string } | null }) =>
-            item.rol && (item.rol.codigo === 'ROL00001')
-        );
-        console.log(this.datosmenuPrimero);
-      }
-    );
+    this.menuService.obtenerMenuNivel1().subscribe(data => {
+      this.menuPrimero = data;
+      this.datosmenuPrimero = this.menuPrimero.filter(
+        (item: any) => item.rol && item.rol.codigo === 'ROL00001'
+      );
+    });
   }
-  //* Filtrar el menú por categoría y asignar a menu2FiltradoPorCategoria
-  menu2FiltradoPorCategoria: { [categoria: string]: any[] } = {};
+
+  async listarMenuSegundo() {
+    this.menuService.obtenerMenuNivel2().subscribe(data => {
+      this.menuSegundo = data;
+    });
+  }
+
+  handleClick(menuItem: any): void {
+
+    if (this.menuSegundo?.some(i => i.categoria === menuItem.categoria)) {
+      menuItem.mostrarSubMenu = !menuItem.mostrarSubMenu;
+
+      this.menu2FiltradoPorCategoria[menuItem.categoria] = this.menuSegundo
+        .filter(i => i.categoria === menuItem.categoria);
+    }
+    else if (menuItem.menuRuta) {
+      this.irARuta(menuItem.menuRuta);
+    }
+  }
+
   toggleSubMenu(menuItem: any): void {
     menuItem.mostrarSubMenu = !menuItem.mostrarSubMenu;
-    //* Filtrar el menú por categoría y asignar a menu2FiltradoPorCategoria
+
     if (menuItem.mostrarSubMenu) {
-      console.log(menuItem.mostrarSubMenu)
-      //* Filtrar el menú por categoría y asignar a menu2FiltradoPorCategoria
-      this.menu2FiltradoPorCategoria[menuItem.categoria] = this.menuSegundo.filter((i: { categoria: any; }) => i.categoria === menuItem.categoria);
-      console.log(this.menu2FiltradoPorCategoria[menuItem.categoria])
-      if (this.menu2FiltradoPorCategoria[menuItem.categoria].length === 0) {
-        this.router.navigate(['/administrador']);
-      }
+      this.menu2FiltradoPorCategoria[menuItem.categoria] = this.menuSegundo
+        .filter(i => i.categoria === menuItem.categoria && i.nivel === 2);
     } else {
       this.menu2FiltradoPorCategoria[menuItem.categoria] = [];
     }
   }
 
 
-  async listarMenuSegundo(categoria: any) {
-    this.menuService.obtenerMenuNivel2().subscribe(
-      data => {
-        this.menuSegundo = data
-      }
-    );
-  }
-
-  public logout() {
-    this.authService.logout();
-    window.location.href = '/auth/login';
-  }
-
-
-  addToggle() {
-    this.status = !this.status;
-  }
-
-  @ViewChild(MatMenuTrigger) mainMenuTrigger!: MatMenuTrigger;
-  closeMainMenu() {
-    this.mainMenuTrigger.closeMenu();
-  }
   tieneSubMenu(menuItem: any): boolean {
     return (
       this.menu2FiltradoPorCategoria[menuItem.categoria] &&
@@ -117,15 +107,21 @@ export class LayoutAdminComponent implements OnInit {
     );
   }
 
-  handleClick(menuItem: any): void {
-    if (this.tieneSubMenu(menuItem)) {
-      menuItem.mostrarSubMenu = !menuItem.mostrarSubMenu;
-    } else {
-      this.irARuta(menuItem.ruta);
-    }
-  }
-  irARuta(ruta: string): void {
+  irARuta(ruta: string | undefined): void {
     this.router.navigateByUrl('/' + ruta);
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.href = '/auth/login';
+  }
+
+  addToggle() {
+    this.status = !this.status;
+  }
+
+  closeMainMenu() {
+    this.mainMenuTrigger.closeMenu();
   }
 
 }

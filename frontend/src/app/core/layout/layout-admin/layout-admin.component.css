@@ -22,23 +22,6 @@
     color: white;
 }
 
-.example-app-name {
-    display: flex;
-    align-items: center;
-    width: max-content;
-}
-
-.img-logo {
-    max-width: 100%;
-    width: 12%;
-    height: auto;
-}
-
-.navegador {
-    justify-content: center;
-    display: flex;
-    margin: initial;
-}
 
 .btn-icon {
     background-color: #3b82f6;
@@ -96,25 +79,3 @@ mat-list-item mat-icon {
     width: 100%;
 }
 
-/* Menu Dropdown */
-mat-menu {
-    background-color: white;
-}
-
-mat-menu button mat-icon {
-    color: #1e40af;
-}
-
-mat-menu button span {
-    color: #333;
-
-}
-
-mat-menu button:hover {
-    background-color: #dbeafe;
-}
-
-.tittle {
-    display: inline;
-    margin-left: 8px;
-}
