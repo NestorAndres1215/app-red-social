@@ -4,7 +4,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -26,9 +26,10 @@ export class LayoutAdminComponent implements OnInit {
   menuPrimero: any[] = [];
   menuSegundo: any[] = [];
   menu2FiltradoPorCategoria: { [categoria: string]: any[] } = {};
-
   private loginSub!: Subscription;
   @ViewChild(MatMenuTrigger) mainMenuTrigger!: MatMenuTrigger;
+  @ViewChild('sidenav') sidenav!: MatSidenav;
+
   username!: string;
   constructor(
     private authService: AuthService,
@@ -43,8 +44,6 @@ export class LayoutAdminComponent implements OnInit {
     this.username = localStorage.getItem('username') || '';
     this.loginSub = this.authService.loginStatusSubjec.asObservable().subscribe(() => {
       this.isLoggedIn = this.authService.isLoggedIn();
-
-
     });
   }
 
@@ -74,7 +73,7 @@ export class LayoutAdminComponent implements OnInit {
       this.menuSegundo = data;
     });
   }
-
+  
   handleClick(menuItem: any): void {
 
     if (this.menuSegundo?.some(i => i.categoria === menuItem.categoria)) {
@@ -84,6 +83,7 @@ export class LayoutAdminComponent implements OnInit {
         .filter(i => i.categoria === menuItem.categoria);
     }
     else if (menuItem.menuRuta) {
+      this.sidenav.close();
       this.irARuta(menuItem.menuRuta);
     }
   }
@@ -99,7 +99,6 @@ export class LayoutAdminComponent implements OnInit {
     }
   }
 
-
   tieneSubMenu(menuItem: any): boolean {
     return (
       this.menu2FiltradoPorCategoria[menuItem.categoria] &&
@@ -109,11 +108,12 @@ export class LayoutAdminComponent implements OnInit {
 
   irARuta(ruta: string | undefined): void {
     this.router.navigateByUrl('/' + ruta);
+    this.sidenav.close();
   }
 
   logout() {
     this.authService.logout();
-    window.location.href = '/auth/login';
+    this.router.navigate(['/auth/login']);
   }
 
   addToggle() {

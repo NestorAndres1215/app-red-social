@@ -23,7 +23,6 @@ export class AuthService {
     if (!token) {
       return throwError(() => new Error('No hay token disponible'));
     }
-    console.log(token)
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.backendUrl}/auth/actual-usuario`, { headers });
   }
