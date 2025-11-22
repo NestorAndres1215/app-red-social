@@ -2,7 +2,6 @@ package com.app_red_social.backend.mapper;
 
 import com.app_red_social.backend.dto.response.UsuarioListaResponse;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component

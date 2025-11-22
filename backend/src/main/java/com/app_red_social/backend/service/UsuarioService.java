@@ -10,14 +10,12 @@ import com.app_red_social.backend.dto.response.UsuarioListaResponse;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.mapper.UsuarioActualMapper;
 import com.app_red_social.backend.mapper.UsuarioMapper;
-
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.Usuario;
 import com.app_red_social.backend.repository.UsuarioRepository;
 import com.app_red_social.backend.util.Secuencia;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
