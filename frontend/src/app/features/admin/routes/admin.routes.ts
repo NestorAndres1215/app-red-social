@@ -22,7 +22,16 @@ export const ADMIN_ROUTES: Routes = [
     loadComponent: () => import('../administrador-user/reg-user-admin/reg-user-admin.component')
       .then(m => m.RegUserAdminComponent)
   },
-
+  {
+    path: 'user-moderador',
+    loadComponent: () => import('../moderador-user/mod-user/mod-user.component')
+      .then(m => m.ModUserComponent)
+  },
+  {
+    path: 'reg-moderador',
+    loadComponent: () => import('../moderador-user/reg-moderador-user/reg-moderador-user.component')
+      .then(m => m.RegModeradorUserComponent)
+  },
 ];
 
 

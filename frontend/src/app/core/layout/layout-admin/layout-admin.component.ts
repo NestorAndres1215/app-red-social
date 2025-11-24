@@ -22,6 +22,7 @@ export class LayoutAdminComponent implements OnInit {
   user: any;
   rolMenu: any;
   status = false;
+  username!: string;
   datosmenuPrimero: any[] = [];
   menuPrimero: any[] = [];
   menuSegundo: any[] = [];
@@ -30,7 +31,7 @@ export class LayoutAdminComponent implements OnInit {
   @ViewChild(MatMenuTrigger) mainMenuTrigger!: MatMenuTrigger;
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  username!: string;
+  
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -39,7 +40,6 @@ export class LayoutAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarRolMenu();
-
     this.isLoggedIn = this.authService.isLoggedIn();
     this.username = localStorage.getItem('username') || '';
     this.loginSub = this.authService.loginStatusSubjec.asObservable().subscribe(() => {
