@@ -1,1 +1,20 @@
-<p>reg-user-admin.component works!</p>
+<div class="container my-4 pb-5">
+
+  <app-tittle title="Lista de Usuarios" icon="fas fa-users"></app-tittle>
+  <app-search (searchChange)="filtrar($event)"></app-search>
+<app-filter-select
+  label="Filtrar por Rol"
+  [options]="roles"
+  (valueChange)="filtrarPorRol($event)"
+></app-filter-select>
+  <app-table [columnas]="columnas" [datos]="datosFiltrados"
+    [botonesConfig]="{ ver: true, actualizar: true, eliminar: true }" (ver)="onVer($event)"
+    (eliminar)="onEliminar($event)">
+  </app-table>
+
+  <app-pagination [page]="page" [totalPages]="Math.ceil(datosOriginal.length / itemsPerPage)"
+    (pageChange)="onPageChange($event)">
+  </app-pagination>
+
+
+</div>

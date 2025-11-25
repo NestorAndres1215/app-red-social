@@ -1,0 +1,13 @@
+<div class="pagination-container">
+  <button class="btn btn-light" (click)="prev()" [disabled]="page === 1">
+    Anterior
+  </button>
+
+  <span class="mx-2">
+    Página {{ page }} de {{ totalPages }}
+  </span>
+
+  <button class="btn btn-light" (click)="next()" [disabled]="page === totalPages">
+    Siguiente
+  </button>
+</div>

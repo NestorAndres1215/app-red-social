@@ -1,0 +1,13 @@
+<div class="input-group search-box mb-3">
+  <span class="input-group-text search-icon">
+    <i class="fas fa-search"></i>
+  </span>
+
+  <input 
+    type="text"
+    class="form-control search-input"
+    placeholder="Buscar..."
+    [(ngModel)]="searchText"
+    (input)="onInputChange($event.target.value)"
+  >
+</div>
