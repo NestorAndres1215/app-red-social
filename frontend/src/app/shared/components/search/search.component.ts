@@ -11,12 +11,17 @@ import { CommonModule } from '@angular/common';
 })
 export class SearchComponent {
 
-  searchText: string = '';
+ searchText = '';
+  isFocused = false;
 
   @Output() searchChange = new EventEmitter<string>();
 
   onInputChange(value: string) {
     this.searchText = value;
     this.searchChange.emit(this.searchText);  
+  }
+  clearSearch() {
+    this.searchText = '';
+    this.onInputChange('');
   }
 }

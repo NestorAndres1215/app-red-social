@@ -7,7 +7,7 @@ import { FilterSelectComponent } from '../../../../shared/components/filter-sele
 
 @Component({
   selector: 'app-reg-user-admin',
-  imports: [TittleComponent, TableComponent, PaginationComponent,SearchComponent,FilterSelectComponent],
+  imports: [TittleComponent, TableComponent, PaginationComponent, SearchComponent, FilterSelectComponent],
   templateUrl: './reg-user-admin.component.html',
   styleUrls: ['./reg-user-admin.component.css'],
 })
@@ -85,9 +85,9 @@ export class RegUserAdminComponent implements OnInit {
     this.page = p;
     this.applyPagination();
   }
-  roles = ['Administrador', 'Superadmin', 'Moderador', 'Suspendido', 'Activo', 'Inactivo'];
+  roles = ['Administrador', 'Superadmin', 'Moderador', 'Suspendido'];
 
- filtrar(text: string) {
+  filtrar(text: string) {
     this.page = 1;
 
     // Filtra en todos los campos
@@ -97,17 +97,16 @@ export class RegUserAdminComponent implements OnInit {
 
     this.applyPagination();
   }
-filtrarPorRol(rol: string) {
-  if (!rol) {
-    this.datosOriginal = [...this.datos]; // sin filtro
-  } else {
-    this.datosOriginal = this.datos.filter(d => 
-      d.rol.toLowerCase() === rol.toLowerCase()
-    );
-  }
+  rolSeleccionado: string | null = null;   // <--- AÑADE ESTA LÍNEA
+  filtrarPorRol(rol: string) {
+    if (rol === 'TODOS' || !rol) {
+      this.datosOriginal = [...this.datos];
+    } else {
+      this.datosOriginal = this.datos.filter(d => d.rol === rol);
+    }
 
-  this.page = 1;
-  this.applyPagination();
-}
+    this.page = 1;
+    this.applyPagination();
+  }
 
 }

@@ -1,20 +1,11 @@
 <div class="container my-4 pb-5">
 
-  <app-tittle title="Lista de Usuarios" icon="fas fa-users"></app-tittle>
-  <app-search (searchChange)="filtrar($event)"></app-search>
-<app-filter-select
-  label="Filtrar por Rol"
-  [options]="roles"
-  (valueChange)="filtrarPorRol($event)"
-></app-filter-select>
+  <app-tittle title="Lista de Usuarios" icon="fas fa-users" />
+  <app-search (searchChange)="filtrar($event)" />
+  <app-filter-select label="Filtrar por Rol" [options]="roles" (valueChange)="filtrarPorRol($event)" />
   <app-table [columnas]="columnas" [datos]="datosFiltrados"
     [botonesConfig]="{ ver: true, actualizar: true, eliminar: true }" (ver)="onVer($event)"
-    (eliminar)="onEliminar($event)">
-  </app-table>
-
+    (eliminar)="onEliminar($event)" />
   <app-pagination [page]="page" [totalPages]="Math.ceil(datosOriginal.length / itemsPerPage)"
-    (pageChange)="onPageChange($event)">
-  </app-pagination>
-
-
+    (pageChange)="onPageChange($event)" />
 </div>

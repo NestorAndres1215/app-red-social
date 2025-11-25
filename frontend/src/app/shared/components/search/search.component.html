@@ -1,13 +1,16 @@
-<div class="input-group search-box mb-3">
-  <span class="input-group-text search-icon">
-    <i class="fas fa-search"></i>
-  </span>
+<div class="search-container">
+  <div class="search-box" [class.focused]="isFocused" [class.filled]="searchText.length > 0">
+    <div class="search-icon">
+      <i class="fas fa-search"></i>
+    </div>
 
-  <input 
-    type="text"
-    class="form-control search-input"
-    placeholder="Buscar..."
-    [(ngModel)]="searchText"
-    (input)="onInputChange($event.target.value)"
-  >
+    <input type="text" class="search-input" placeholder="Buscar..." [(ngModel)]="searchText"
+      (input)="onInputChange($event.target.value)" (focus)="isFocused = true" (blur)="isFocused = false"
+      autocomplete="off">
+
+    <button *ngIf="searchText.length > 0" class="clear-btn" (click)="clearSearch()" type="button"
+      aria-label="Limpiar búsqueda">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
 </div>

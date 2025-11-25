@@ -12,13 +12,14 @@ import { FormsModule } from '@angular/forms';
 export class FilterSelectComponent {
 
   @Input() label: string = 'Filtrar por';
-  @Input() options: string[] = [];   // Lista de opciones
-  @Input() value: string = '';       // Valor actual
+  @Input() options: string[] = [];        // Lista de opciones
 
+  @Input() value: string = '';            // Valor inicial vacío (placeholder)
   @Output() valueChange = new EventEmitter<string>();
 
   onSelectChange(v: string) {
     this.value = v;
     this.valueChange.emit(this.value);
   }
+
 }
