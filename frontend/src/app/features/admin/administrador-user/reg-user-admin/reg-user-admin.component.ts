@@ -4,10 +4,13 @@ import { TableComponent } from '../../../../shared/components/table/table.compon
 import { PaginationComponent } from '../../../../shared/components/pagination/pagination.component';
 import { SearchComponent } from '../../../../shared/components/search/search.component';
 import { FilterSelectComponent } from '../../../../shared/components/filter-select/filter-select.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalEliminacionComponent } from '../../../../shared/components/modal-eliminacion/modal-eliminacion.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-reg-user-admin',
-  imports: [TittleComponent, TableComponent, PaginationComponent, SearchComponent, FilterSelectComponent],
+  imports: [TittleComponent, FormsModule,TableComponent, PaginationComponent, SearchComponent, FilterSelectComponent],
   templateUrl: './reg-user-admin.component.html',
   styleUrls: ['./reg-user-admin.component.css'],
 })
@@ -21,6 +24,10 @@ export class RegUserAdminComponent implements OnInit {
   get Math() {
     return Math;
   }
+
+    constructor(
+    
+    private dialog: MatDialog,) { }
 
   columnas = [
     { etiqueta: 'ID', clave: 'id' },
@@ -64,7 +71,18 @@ export class RegUserAdminComponent implements OnInit {
   onRegistrar() { console.log('Registrar'); }
   onVer(item: any) { console.log('Ver:', item); }
   onActualizar(item: any) { console.log('Actualizar:', item); }
-  onEliminar(item: any) { console.log('Eliminar:', item); }
+ eliminar(fila: any): void {
+    const dialogEliminar = this.dialog.open(ModalEliminacionComponent, {
+      disableClose: true,
+      width: '700px',
+      height: '318px',
+      data: {
+        fila,
+        titulo: 'Desactivar Usuario',
+        subtitulo: `¿Deseas desactivar el usuario ${fila.Nombre} ? `
+      },
+    });
+  }
   onImprimir(item: any) { console.log('Imprimir:', item); }
 
   applyPagination() {
@@ -98,7 +116,7 @@ export class RegUserAdminComponent implements OnInit {
     this.applyPagination();
   }
   rolSeleccionado: string | null = null;   // <--- AÑADE ESTA LÍNEA
-  filtrarPorRol(rol: string) {
+  filtrarPorRol(rol: string| number) {
     if (rol === 'TODOS' || !rol) {
       this.datosOriginal = [...this.datos];
     } else {
@@ -108,5 +126,15 @@ export class RegUserAdminComponent implements OnInit {
     this.page = 1;
     this.applyPagination();
   }
+// Cambiar cantidad de items por página
+rolesPerPage = [5, 10, 15, 20];
+
+onItemsPerPageChange(n: string | number) {
+  this.itemsPerPage = Number(n); // se asegura de que sea number
+  this.page = 1;
+  this.applyPagination();
+}
+
+
 
 }

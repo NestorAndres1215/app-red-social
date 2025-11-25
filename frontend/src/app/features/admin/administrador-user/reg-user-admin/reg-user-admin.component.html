@@ -2,10 +2,12 @@
 
   <app-tittle title="Lista de Usuarios" icon="fas fa-users" />
   <app-search (searchChange)="filtrar($event)" />
-  <app-filter-select label="Filtrar por Rol" [options]="roles" (valueChange)="filtrarPorRol($event)" />
-  <app-table [columnas]="columnas" [datos]="datosFiltrados"
-    [botonesConfig]="{ ver: true, actualizar: true, eliminar: true }" (ver)="onVer($event)"
-    (eliminar)="onEliminar($event)" />
-  <app-pagination [page]="page" [totalPages]="Math.ceil(datosOriginal.length / itemsPerPage)"
-    (pageChange)="onPageChange($event)" />
+  <app-filter-select [options]="[5,10,15,20]" (valueChange)="onItemsPerPageChange($event)"></app-filter-select>
+
+
+<app-filter-select label="Filtrar por Rol" [options]="roles" (valueChange)="filtrarPorRol($event)" />
+<app-table [columnas]="columnas" [datos]="datosFiltrados" [botonesConfig]="botonesConfig" (ver)="onVer($event)"
+  [onEliminar]="eliminar.bind(this)" />
+<app-pagination [page]="page" [totalPages]="Math.ceil(datosOriginal.length / itemsPerPage)"
+  (pageChange)="onPageChange($event)" />
 </div>

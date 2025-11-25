@@ -1,0 +1,26 @@
+<div class="content-area">
+    <div class="card-header">
+        <h2>{{titulo}}</h2>
+    </div>
+    <div class="card-body">
+        <p [innerHTML]="getHTML()"></p>
+        <mat-form-field *ngIf="razon != undefined && razon.trim() != ''">
+            <div>
+                <input #input [placeholder]="razon" />
+            </div>
+        </mat-form-field>
+        <div class="row justify-content-center mt-4 button-group">
+            <div class="col-12 col-md-auto text-center mb-2 mb-md-0">
+                <button type="button" class="btn confirm w-100 w-md-auto" (click)="close('CONFIRMAR')">
+                    <i class="fas fa-check"></i> Confirmar
+                </button>
+            </div>
+            <div class="col-12 col-md-auto text-center">
+                <button type="button" class="btn cancel w-100 w-md-auto" (click)="close('CANCELAR')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
