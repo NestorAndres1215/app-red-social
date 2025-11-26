@@ -22,7 +22,7 @@ header h1 {
     letter-spacing: -0.5px;
     transition: all 0.3s ease;
 }
-header h1 i {
+header  i {
     margin-right: 16px;
     background: linear-gradient(135deg, #1e3a8a, #3b82f6);
     background-clip: text;

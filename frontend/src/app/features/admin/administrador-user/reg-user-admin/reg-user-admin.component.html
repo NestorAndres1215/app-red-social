@@ -1,4 +1,4 @@
-<div class="container my-4 pb-5">
+
 
   <app-tittle title="Lista de Usuarios" icon="fas fa-users" />
   <app-search (searchChange)="filtrar($event)" />
@@ -10,4 +10,3 @@
   [onEliminar]="eliminar.bind(this)" />
 <app-pagination [page]="page" [totalPages]="Math.ceil(datosOriginal.length / itemsPerPage)"
   (pageChange)="onPageChange($event)" />
-</div>
