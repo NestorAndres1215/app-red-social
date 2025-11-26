@@ -9,4 +9,9 @@ import { TittleComponent } from '../../../../shared/components/tittle/tittle.com
 })
 export class AdminUserComponent {
 
+  titulo = 'Mantenimiento de Administradores';
+  icono = 'fas fa-user-shield';
+
+  
 }
+
