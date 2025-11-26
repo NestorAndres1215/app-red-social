@@ -3,8 +3,10 @@ package com.app_red_social.backend.service;
 import com.app_red_social.backend.constants.messages.DuplicateErrorMessages;
 import com.app_red_social.backend.constants.Estados;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
+import com.app_red_social.backend.dto.response.RoleUserStatsResponse;
 import com.app_red_social.backend.exception.ResourceAlreadyExistsException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
+import com.app_red_social.backend.mapper.RoleUserStatsMapper;
 import com.app_red_social.backend.model.EstadoUsuario;
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.Rol;
@@ -16,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -135,5 +138,7 @@ public class LoginService {
 
         return loginRepository.save(login);
     }
+
+
 
 }

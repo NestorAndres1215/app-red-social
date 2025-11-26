@@ -5,9 +5,11 @@ import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.dto.request.RegisterRequest;
 import com.app_red_social.backend.dto.request.UsuarioRequest;
+import com.app_red_social.backend.dto.response.RoleUserStatsResponse;
 import com.app_red_social.backend.dto.response.UsuarioActualResponse;
 import com.app_red_social.backend.dto.response.UsuarioListaResponse;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
+import com.app_red_social.backend.mapper.RoleUserStatsMapper;
 import com.app_red_social.backend.mapper.UsuarioActualMapper;
 import com.app_red_social.backend.mapper.UsuarioMapper;
 import com.app_red_social.backend.model.Login;
@@ -16,6 +18,7 @@ import com.app_red_social.backend.repository.UsuarioRepository;
 import com.app_red_social.backend.util.Secuencia;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -112,7 +115,7 @@ public class UsuarioService {
         return usuarioMapper.toDtoList(result);
     }
 
-    public List<UsuarioActualResponse> obtenerUsuario( String codigo) {
+    public List<UsuarioActualResponse> obtenerUsuario(String codigo) {
 
         usuarioRepository.findById(codigo)
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
@@ -120,5 +123,14 @@ public class UsuarioService {
         List<Object[]> result = usuarioRepository.obtenerUsuarioActual(1, codigo);
 
         return usuarioActualMapper.toList(result);
+    }
+
+    public List<RoleUserStatsResponse> listarPorcentajeTiempo(int opcion) {
+        if (opcion < 1 || opcion > 4) {
+            throw new ResourceNotFoundException(NotFoundMessages.OPCION_NO_ENCONTRADA);
+        }
+        List<Object[]> results = usuarioRepository.listarPorcentajeTiempo(opcion);
+
+        return RoleUserStatsMapper.toList(results);
     }
 }

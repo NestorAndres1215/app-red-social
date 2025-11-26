@@ -1,6 +1,7 @@
 package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.dto.request.RegisterRequest;
+import com.app_red_social.backend.dto.response.RoleUserStatsResponse;
 import com.app_red_social.backend.dto.response.UsuarioActualResponse;
 import com.app_red_social.backend.dto.response.UsuarioListaResponse;
 import com.app_red_social.backend.model.Usuario;
@@ -72,5 +73,8 @@ public class UsuarioController {
         return usuarioService.obtenerUsuario(codigo);
     }
 
-
+    @GetMapping("/porcentaje/tiempo/{opcion}")
+    public List<RoleUserStatsResponse> listarPorcentajeTiempo(@PathVariable int opcion) {
+        return usuarioService.listarPorcentajeTiempo(opcion);
+    }
 }
