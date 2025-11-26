@@ -10,38 +10,49 @@ import { AdminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
 
-      {
-            path: '',
-            component: PrincipalComponent,
-            pathMatch: 'full'
-      },
-      {
-            path: 'oauth2/redirect',
-            component: Oauth2RedirectComponent
-      },
-      {
-            path: 'error',
-            component: ErrorComponent
-      },
-      {
-            path: 'auth',
-            loadChildren: () => import('./features/auth/auth.routes').then(m => m.AUTH_ROUTES),
-            canActivate: [NoAuthGuard]
-      },
+  {
+    path: '',
+    component: PrincipalComponent,
+    pathMatch: 'full'
+  },
 
-      {
-            path: '',
-            component: HomeUserComponent,
-            canActivate: [UserGuard],
-            loadChildren: () => import('./features/user/routes/user.routes')
-                  .then(m => m.USER_ROUTES)
-      },
+  {
+    path: 'oauth2/redirect',
+    component: Oauth2RedirectComponent
+  },
 
-      {
-            path: '',
-            component: HomeAdminComponent,
-            canActivate: [AdminGuard],
-            loadChildren: () => import('./features/admin/routes/admin.routes')
-                  .then(m => m.ADMIN_ROUTES)
-      },
+  {
+    path: 'error',
+    component: ErrorComponent
+  },
+
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./features/auth/auth.routes')
+        .then(m => m.AUTH_ROUTES),
+    canActivate: [NoAuthGuard]
+  },
+
+  // ==========================
+  // 🔥 CORRECCIÓN AQUÍ
+  // ==========================
+
+  {
+    path: 'usuario',
+    component: HomeUserComponent,
+    canActivate: [UserGuard],
+    loadChildren: () =>
+      import('./features/user/routes/user.routes')
+        .then(m => m.USER_ROUTES)
+  },
+
+  {
+    path: 'admin',
+    component: HomeAdminComponent,
+    canActivate: [AdminGuard],
+    loadChildren: () =>
+      import('./features/admin/routes/admin.routes')
+        .then(m => m.ADMIN_ROUTES)
+  }
 ];

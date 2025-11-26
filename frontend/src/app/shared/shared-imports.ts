@@ -1,29 +1,22 @@
-/*
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatIconModule } from "@angular/material/icon";
+import { MatListModule } from "@angular/material/list";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { RouterModule } from "@angular/router";
 
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-export const SHARED_IMPORTS = [
-  CommonModule,
-  RouterModule,
-  FormsModule,
-  ReactiveFormsModule,
 
-  // Material
-  MatButtonModule,
-  MatIconModule,
-  MatInputModule,
-  MatCardModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatProgressSpinnerModule,
-];*/
+export const MATERIAL_MODULE_IMPORTS = [
+    CommonModule,
+    MatSidenavModule,
+    FormsModule,
+    MatDividerModule,
+    MatListModule,
+    MatIconModule,
+    MatToolbarModule,
+    RouterModule
+];

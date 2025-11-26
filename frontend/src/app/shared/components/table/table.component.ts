@@ -1,10 +1,12 @@
+
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+
 @Component({
   selector: 'app-table',
-  standalone: true,
+
   imports: [CommonModule, NgxPaginationModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',

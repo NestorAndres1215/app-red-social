@@ -1,24 +1,27 @@
 import { Component, Inject } from '@angular/core';
 import { RespuestaModel } from '../../../core/models/respuesta.model';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
 
 @Component({
   selector: 'app-modal-eliminacion',
-  imports: [CommonModule,
-        MatFormFieldModule,  // <-- Asegúrate de incluir este
-    MatInputModule,      // <-- Si usas <input matInput>
-    MatDialogModule,     // <-- Si usas diálogos
 
+  imports: [
+     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
   ],
   templateUrl: './modal-eliminacion.component.html',
   styleUrl: './modal-eliminacion.component.css',
 })
 export class ModalEliminacionComponent {
- titulo: string = "";
+  titulo: string = "";
   subtitulo: string = "";
   razon: string = "";
   meses: any[] = [];
@@ -27,7 +30,7 @@ export class ModalEliminacionComponent {
 
   constructor(private dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA) private data: any,
- 
+
     private sanitizer: DomSanitizer) { }
 
 
@@ -36,7 +39,7 @@ export class ModalEliminacionComponent {
     this.titulo = this.data['titulo'];
     this.subtitulo = this.data['subtitulo'];
     this.razon = this.data['razon'];
-  
+
 
   }
 
@@ -45,10 +48,10 @@ export class ModalEliminacionComponent {
       boton: mensaje,
       razon: this.razon,
     }
-  
+
     this.dialogRef.close(respuesta);
   }
   getHTML(): SafeHtml {
-    return  this.sanitizer.bypassSecurityTrustHtml(this.subtitulo + this.mesActual + this.mesCambio);
+    return this.sanitizer.bypassSecurityTrustHtml(this.subtitulo + this.mesActual + this.mesCambio);
   }
 }

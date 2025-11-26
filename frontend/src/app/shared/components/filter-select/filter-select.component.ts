@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-filter-select',
-  standalone: true,
+
   imports: [CommonModule, FormsModule],
   templateUrl: './filter-select.component.html',
   styleUrls: ['./filter-select.component.css']

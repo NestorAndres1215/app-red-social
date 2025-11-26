@@ -1,20 +1,38 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+
+
+import { MatSidenav, MatSidenavModule, MatSidenavContainer } from '@angular/material/sidenav';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
-import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Router, RouterModule } from '@angular/router';
+
+
 import { AuthService } from '../../services/auth.service';
 import { MenuService } from '../../services/menu.service';
 import { Subscription } from 'rxjs';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+
+
+
 @Component({
   selector: 'app-layout-admin',
-  imports: [RouterModule, MatToolbarModule, MatDialogModule, MatIconModule, MatSidenavModule, MatListModule, MatMenuModule, CommonModule],
   templateUrl: './layout-admin.component.html',
-  styleUrls: ['./layout-admin.component.css']
+  styleUrls: ['./layout-admin.component.scss'],
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    FormsModule,
+    MatDividerModule,
+    MatListModule,
+    MatIconModule,
+    MatToolbarModule,
+    RouterModule
+  ]
 })
 export class LayoutAdminComponent implements OnInit {
 
@@ -31,7 +49,7 @@ export class LayoutAdminComponent implements OnInit {
   @ViewChild(MatMenuTrigger) mainMenuTrigger!: MatMenuTrigger;
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -73,7 +91,7 @@ export class LayoutAdminComponent implements OnInit {
       this.menuSegundo = data;
     });
   }
-  
+
   handleClick(menuItem: any): void {
 
     if (this.menuSegundo?.some(i => i.categoria === menuItem.categoria)) {

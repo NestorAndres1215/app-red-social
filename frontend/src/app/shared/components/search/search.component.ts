@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-search',
-  standalone: true,
+
   imports: [FormsModule, CommonModule],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
