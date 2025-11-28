@@ -1,0 +1,113 @@
+<button class="btn-custom" [ngClass]="[
+    'btn-' + color,
+    size,
+    block ? 'w-100' : '',
+    loading ? 'loading' : ''
+  ]" [disabled]="disabled || loading" (click)="handleClick()">
+    <!-- Spinner -->
+    <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+
+    <!-- Icon Left -->
+    <i *ngIf="icon && iconPosition === 'left' && !loading" [class]="icon"></i>
+
+    <span>{{ label }}</span>
+
+    <!-- Icon Right -->
+    <i *ngIf="icon && iconPosition === 'right' && !loading" [class]="icon"></i>
+</button>
+<!---
+
+<app-button label="Registrar" icon="fas fa-plus-circle" color="add"></app-button>
+
+<app-button label="Detalle" icon="fas fa-eye" color="info"></app-button>
+
+<app-button label="Editar" icon="fas fa-edit" color="edit"></app-button>
+
+<app-button label="Eliminar" icon="fas fa-trash" color="delete"></app-button>
+
+<app-button label="Suspender" icon="fas fa-pause-circle" color="secondary"></app-button>
+<app-button label="Bloquear" icon="fas fa-lock" color="dark"></app-button>
+<app-button label="Inhabilitar" icon="fas fa-user-slash" color="danger"></app-button>
+<app-button label="Desactivar" icon="fas fa-toggle-off" color="secondary"></app-button>
+
+
+<app-button label="Imprimir" icon="fas fa-print" color="primary"></app-button>
+<app-button label="PDF" icon="fas fa-file-pdf" color="danger"></app-button>
+<app-button label="Excel" icon="fas fa-file-excel" color="success"></app-button>
+<app-button label="Imagen" icon="fas fa-image" color="info"></app-button>
+
+<app-button label="Importar PDF" icon="fas fa-file-import" color="primary"></app-button>
+<app-button label="Importar Excel" icon="fas fa-file-excel" color="success"></app-button>
+<app-button label="Importar Imagen" icon="fas fa-file-image" color="info"></app-button>
+
+
+<app-button label="Abrir Modal" icon="fas fa-window-maximize" color="primary"></app-button>
+<app-button label="Subir Imagen" icon="fas fa-upload" color="secondary"></app-button>
+<app-button label="Galería" icon="fas fa-images" color="info"></app-button>
+
+<app-button label="Archivar" icon="fas fa-archive" color="secondary"></app-button>
+<app-button label="Desarchivar" icon="fas fa-folder-open" color="success"></app-button>
+<app-button label="Restaurar" icon="fas fa-undo" color="warning"></app-button>
+<app-button label="Eliminar permanente" icon="fas fa-trash-alt" color="danger"></app-button>
+<app-button label="Ver historial" icon="fas fa-history" color="info"></app-button>
+<app-button label="Resetear contraseña" icon="fas fa-key" color="warning"></app-button>
+<app-button label="Enviar verificación" icon="fas fa-envelope" color="primary"></app-button>
+<app-button label="Aprobar" icon="fas fa-check-circle" color="success"></app-button>
+<app-button label="Rechazar" icon="fas fa-times-circle" color="danger"></app-button>
+<app-button label="Pendiente" icon="fas fa-clock" color="warning"></app-button>
+<app-button label="Reintentar" icon="fas fa-redo" color="info"></app-button>
+<app-button label="Seleccionar todo" icon="fas fa-check-square" color="secondary"></app-button>
+<app-button label="Borrar seleccionados" icon="fas fa-trash" color="danger"></app-button>
+<app-button label="Exportar seleccionados" icon="fas fa-file-export" color="primary"></app-button>
+<app-button label="Exportar CSV" icon="fas fa-file-csv" color="primary"></app-button>
+<app-button label="Exportar JSON" icon="fas fa-file-code" color="primary"></app-button>
+<app-button label="Me gusta" icon="fas fa-heart" color="danger"></app-button>
+
+<app-button label="Comentar" icon="fas fa-comment" color="primary"></app-button>
+
+<app-button label="Compartir" icon="fas fa-share" color="info"></app-button>
+
+<app-button label="Guardar" icon="fas fa-bookmark" color="secondary"></app-button>
+
+<app-button label="Enviar" icon="fas fa-paper-plane" color="primary"></app-button>
+<app-button label="Me encanta" icon="fas fa-heart" color="danger"></app-button>
+<app-button label="Me alegra" icon="fas fa-smile" color="warning"></app-button>
+<app-button label="Me sorprende" icon="fas fa-surprise" color="info"></app-button>
+<app-button label="Me enoja" icon="fas fa-angry" color="dark"></app-button>
+<app-button label="Crear historia" icon="fas fa-camera" color="primary"></app-button>
+
+<app-button label="Subir foto" icon="fas fa-image" color="success"></app-button>
+
+<app-button label="Subir video" icon="fas fa-video" color="danger"></app-button>
+
+<app-button label="Ver historia" icon="fas fa-book-open" color="info"></app-button>
+<app-button label="Ver más" icon="fas fa-ellipsis-h" color="secondary"></app-button>
+<app-button label="Ver detalles" icon="fas fa-eye" color="info"></app-button>
+<app-button label="Reproducir" icon="fas fa-play" color="success"></app-button>
+<app-button label="Pausar" icon="fas fa-pause" color="warning"></app-button>
+<app-button label="Seguir" icon="fas fa-user-plus" color="primary"></app-button>
+
+<app-button label="Dejar de seguir" icon="fas fa-user-minus" color="secondary"></app-button>
+
+<app-button label="Amigo" icon="fas fa-user-friends" color="success"></app-button>
+
+<app-button label="Mensajear" icon="fas fa-envelope" color="info"></app-button>
+<app-button label="Agregar comentario" icon="fas fa-comment-dots" color="primary"></app-button>
+
+<app-button label="Responder" icon="fas fa-reply" color="info"></app-button>
+
+<app-button label="Citar" icon="fas fa-quote-right" color="secondary"></app-button>
+
+<app-button label="Editar comentario" icon="fas fa-edit" color="warning"></app-button>
+
+<app-button label="Eliminar comentario" icon="fas fa-trash" color="danger"></app-button>
+<app-button label="Crear publicación" icon="fas fa-pen" color="primary"></app-button>
+
+<app-button label="Crear historia" icon="fas fa-camera" color="info"></app-button>
+
+<app-button label="Live" icon="fas fa-broadcast-tower" color="danger"></app-button>
+
+<app-button label="Crear evento" icon="fas fa-calendar-plus" color="success"></app-button>
+
+
+--->

@@ -39,7 +39,7 @@ export const routes: Routes = [
   // ==========================
 
   {
-    path: 'usuario',
+    path: '',
     component: HomeUserComponent,
     canActivate: [UserGuard],
     loadChildren: () =>
@@ -54,5 +54,14 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/admin/routes/admin.routes')
         .then(m => m.ADMIN_ROUTES)
+  },
+
+  {
+    path: 'mod-admin',
+    component: HomeAdminComponent,
+    canActivate: [AdminGuard],
+    loadChildren: () =>
+      import('./features/admin/routes/mod.routes')
+        .then(m => m.MOD_ADMIN_ROUTES)
   }
 ];

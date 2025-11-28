@@ -1,13 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-
-import { MatSidenav, MatSidenavModule, MatSidenavContainer } from '@angular/material/sidenav';
-import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
+import {  MatMenuTrigger } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
-
 import { AuthService } from '../../services/auth.service';
 import { MenuService } from '../../services/menu.service';
 import { Subscription } from 'rxjs';
@@ -22,7 +18,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-layout-admin',
   templateUrl: './layout-admin.component.html',
-  styleUrls: ['./layout-admin.component.scss'],
+  styleUrls: ['./layout-admin.component.css'],
+  standalone: true,
   imports: [
     CommonModule,
     MatSidenavModule,
