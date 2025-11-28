@@ -42,7 +42,7 @@ export class LoginComponent {
   }
 
   loginWithGoogle(): void {
-    this.authService.loginWithGoogle(); // redirige al backend
+    this.authService.loginWithGoogle(); 
   }
 
   registro() {

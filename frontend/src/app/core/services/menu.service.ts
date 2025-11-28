@@ -12,7 +12,7 @@ export class MenuService {
   private backendUrl = environment.baseUrl;
 
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   obtenerMenuNivel1(): Observable<any> {
     return this.http.get<any>(`${this.backendUrl}/menu/listar/nivel/primero`);
@@ -26,7 +26,7 @@ export class MenuService {
     return this.http.get<any>(`${this.backendUrl}/menu/listar/nivel/tercero`);
   }
 
-    listar(): Observable<any> {
+  listar(): Observable<any> {
     return this.http.get<any>(`${this.backendUrl}/menu/listar`);
   }
 
@@ -34,12 +34,8 @@ export class MenuService {
     return this.http.get<any>(`${this.backendUrl}/menu/listar/codigo/${codigo}`);
   }
 
-  // 🔹 Obtener menus por 2 roles
   obtenerMenusPorDosRoles(codigo: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.backendUrl}/menu/listar/roles/codigo/${codigo}`);
   }
-
-
-
 
 }

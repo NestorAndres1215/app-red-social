@@ -1,19 +1,35 @@
 <app-tittle [title]="titulo" [icon]="icono" />
 
-
-<!--<div class="container">
-    <h1><i class="fas fa-user"></i> Usuarios Operador</h1>
-    <hr>
-    <mat-tab-group [(selectedIndex)]="activeTab1">
-      <mat-tab label="Activados">
-        <div *ngIf="activeTab1 === 0">
-
-        </div>
-      </mat-tab>
-      <mat-tab label="Desactivados">
-        <div *ngIf="activeTab1 === 1">
-        
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </div>-->
+<div class="container my-4 pb-2">
+  <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
+    <div class="container my-4 pb-5">
+      <mat-tab-group [(selectedIndex)]="activeTab">
+        <mat-tab label="Activados">
+          @if (activeTab === 0) {
+          <div class="my-5 ">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, voluptatem. Provident ipsum inventore sapiente
+            culpa et dolorem dolore magnam incidunt laborum cum. Itaque esse illum doloremque aperiam minus ut
+            necessitatibus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt doloremque ut debitis fugit nihil ducimus
+            fugiat odio. Iure, officiis tempora minima eius, quidem recusandae ullam totam incidunt libero officia
+            minus.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis distinctio aperiam temporibus beatae
+            facilis totam numquam facere non, obcaecati, et consequatur fugiat! Suscipit laborum officiis nam corporis
+            dicta quas impedit.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum beatae aliquid amet deserunt officiis
+            voluptatem tenetur dicta commodi corporis quas blanditiis repudiandae, eos saepe iusto minus? Sunt sint ipsa
+            corporis.
+          </div>
+          }
+        </mat-tab>
+        <mat-tab label="Desactivados">
+          @if (activeTab === 1) {
+          <div>
+            <!-- contenido -->
+          </div>
+          }
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </header>
+</div>

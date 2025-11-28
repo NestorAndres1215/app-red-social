@@ -17,7 +17,16 @@ export const ADMIN_ROUTES: Routes = [
     loadComponent: () => import('../administrador-user/reg-user-admin/reg-user-admin.component')
       .then(m => m.RegUserAdminComponent)
   },
-
+  {
+    path: 'perfil-admin',
+    loadComponent: () => import('../administrador-user/perfil-user-admin/perfil-user-admin.component')
+      .then(m => m.PerfilUserAdminComponent)
+  },
+  {
+    path: 'historial-admin',
+    loadComponent: () => import('../administrador-user/historial-user-admin/historial-user-admin.component')
+      .then(m => m.HistorialUserAdminComponent)
+  },
 ];
 
 

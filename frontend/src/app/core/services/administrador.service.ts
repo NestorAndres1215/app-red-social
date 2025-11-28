@@ -10,7 +10,7 @@ export class AdministradorService {
 
   constructor(private http: HttpClient) { }
   private backendUrl = environment.baseUrl;
-  
+
   // Listar todos los administradores
   listar(): Observable<any> {
     return this.http.get<any>(`${this.backendUrl}/administrador/listar`);
