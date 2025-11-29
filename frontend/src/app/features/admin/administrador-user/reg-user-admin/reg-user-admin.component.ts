@@ -15,9 +15,9 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./reg-user-admin.component.css'],
 })
 export class RegUserAdminComponent implements OnInit {
+  titulo = 'Registro de Administradores';
+  icono = 'fas fa-user-plus';
 
-  iconoSeccion = 'fas fa-user-shield';
-  tituloSeccion = 'Registro de Admin';
 
   datosFiltrados: any[] = [];
   datosOriginal: any[] = [];

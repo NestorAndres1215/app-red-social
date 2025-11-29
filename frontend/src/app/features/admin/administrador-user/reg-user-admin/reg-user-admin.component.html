@@ -1,4 +1,4 @@
-<app-tittle title="Lista de Usuarios" icon="fas fa-users" />
+<app-tittle [title]="titulo" [icon]="icono" />
 <app-search (searchChange)="filtrar($event)" />
 <app-filter-select [options]="[5,10,15,20]" (valueChange)="onItemsPerPageChange($event)"></app-filter-select>
 
