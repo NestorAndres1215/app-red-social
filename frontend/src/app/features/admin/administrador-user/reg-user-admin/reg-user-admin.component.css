@@ -1,0 +1,43 @@
+.form-label {
+    color: #1e40af; /* Azul fuerte */
+}
+
+/* Inputs y selects */
+.form-control,
+.form-select {
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+}
+
+/* Password icon */
+.password-wrapper .password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.password-wrapper .password-toggle:hover {
+    color: #1e3a8a;
+}
+
+/* Botón */
+.btn-login {
+    background: #1e3a8a;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+}
