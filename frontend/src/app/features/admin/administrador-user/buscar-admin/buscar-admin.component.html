@@ -1,1 +1,8 @@
-<p>buscar-admin.component works!</p>
+<app-tittle [title]="titulo" [icon]="icono" />
+
+<div class="container my-4 pb-2">
+  <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
+    <app-search (searchChange)="filtrar($event)"></app-search>
+    <app-detalle-search [usuarios]="usuariosSeleccionados" (verDetalle)="verDetalleUsuario($event)" />
+  </header>
+</div>
