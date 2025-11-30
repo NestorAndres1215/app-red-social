@@ -6,7 +6,10 @@
 
 .filter-group {
   display: flex;
-  margin: 2rem 0;
+  flex-wrap: wrap;       
+  gap: 1rem;             
+  justify-content: center; 
+  margin: 1rem 0;
 }
 
 .placeholder-text {

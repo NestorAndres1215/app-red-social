@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TittleComponent } from "../../../../shared/components/tittle/tittle.component";
 import { SearchComponent } from "../../../../shared/components/search/search.component";
-import { DetalleSearchComponent } from "../../../../shared/components/detalle-search/detalle-search.component";
+import { DetalleSearchComponent } from "../../../../shared/components/item/detalle-search/detalle-search.component";
 import { UsuarioService } from '../../../../core/services/usuario.service';
 import { Estados } from '../../../../core/constants/estados.contants';
 

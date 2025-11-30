@@ -1,15 +1,9 @@
 <div class="filter-group">
   <div class="select-wrapper">
     <select class="modern-select" [(ngModel)]="value" (ngModelChange)="onSelectChange($event)">
-      <option value="" disabled selected>
-        <span class="placeholder-text">Seleccionar filtro</span>
-      </option>
-      <option value="TODOS">
-        <i class="fas fa-globe-americas"></i> Todos
-      </option>
-      <option *ngFor="let op of options" [value]="op">
-        {{ op }}
-      </option>
+      <option [ngValue]="null" disabled selected>Seleccionar filtro</option>
+
+      <option *ngFor="let op of options" [value]="op">{{ op }}</option>
     </select>
     <div class="select-arrow">
       <i class="fas fa-chevron-down"></i>

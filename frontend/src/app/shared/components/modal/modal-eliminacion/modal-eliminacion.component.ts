@@ -1,10 +1,11 @@
 import { Component, Inject } from '@angular/core';
-import { RespuestaModel } from '../../../core/models/respuesta.model';
+
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { RespuestaModel } from '../../../../core/models/respuesta.model';
 
 
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
+import { RegisterUser } from '../models/register-user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,7 @@ export class AdministradorService {
   }
 
 
-
+  registrar(request: RegisterUser): Observable<any> {
+    return this.http.post<any>(`${this.backendUrl}/administrador/registrar`, request);
+  }
 }

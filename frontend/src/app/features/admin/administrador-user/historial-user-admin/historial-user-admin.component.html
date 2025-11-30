@@ -1,1 +1,40 @@
-<app-tittle [title]="titulo" [icon]="icono" />
+<app-tittle [title]="titulo" [icon]="icono"></app-tittle>
+<div class="container my-4 pb-2">
+  <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
+    <div class="row g-3 justify-content-center justify-content-md-between align-items-start">
+
+      <!-- Filtro por Módulo -->
+      <div class="col-12 col-sm-6 col-md-5 mx-auto">
+        <app-filter-select label="Filtrar por Módulo" [options]="modulo" [value]="selectedModulo"
+          (valueChange)="onModuloChange($event)">
+        </app-filter-select>
+      </div>
+
+      <!-- Filtro por Año -->
+      <div class="col-12 col-sm-6 col-md-5 mx-auto">
+        <app-filter-select label="Filtrar por Año" [options]="years" [value]="selectedYear"
+          (valueChange)="onYearChange($event)">
+        </app-filter-select>
+      </div>
+
+      <!-- Historial Items -->
+      <div class="col-12 mt-3">
+        <ng-container *ngIf="historial.length > 0; else noHistorial">
+          <app-historial-item *ngFor="let item of historial" [item]="item" (viewDetail)="onViewDetail($event)"
+            (update)="onUpdate($event)" (delete)="onDelete($event)">
+          </app-historial-item>
+        </ng-container>
+
+        <ng-template #noHistorial>
+          <div class="card shadow-sm border-0 text-center p-4 p-md-5">
+            <div class="fs-1 text-secondary mb-3">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <h6 class="fw-semibold mb-0 text-secondary">No hay historial para mostrar</h6>
+          </div>
+        </ng-template>
+      </div>
+
+    </div>
+  </header>
+</div>

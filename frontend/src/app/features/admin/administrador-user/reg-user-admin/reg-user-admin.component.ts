@@ -4,8 +4,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AlertService } from '../../../../core/services/alert.service';
 import { UsuarioService } from '../../../../core/services/usuario.service';
 import { Router } from '@angular/router';
-import { filtrarSoloNumeros, obtenerMaxFechaNacimiento } from '../../../../core/utils/validators.utils';
+import { edadConvertir, filtrarSoloNumeros, obtenerMaxFechaNacimiento } from '../../../../core/utils/validators.utils';
 import { CommonModule } from '@angular/common';
+import { MENSAJES } from '../../../../core/constants/mensajes.constants';
+import { RegisterUser } from '../../../../core/models/register-user.model';
+import { AdministradorService } from '../../../../core/services/administrador.service';
 
 @Component({
   selector: 'app-reg-user-admin',
@@ -20,7 +23,7 @@ export class RegUserAdminComponent {
 
   constructor(
     private alertService: AlertService,
-    private usuarioService: UsuarioService,
+    private administradorService:   AdministradorService,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -54,9 +57,36 @@ export class RegUserAdminComponent {
 
 
   operar() {
-    throw new Error('Method not implemented.');
-  }
+    if (this.formulario.valid) {
+      const edad = edadConvertir(this.formulario.value.fechaNacimiento);
 
+      const register: RegisterUser = {
+        nombre: this.formulario.value.nombre,
+        apellido: this.formulario.value.apellido,
+        edad: edad,
+        fechaNacimiento: this.formulario.value.fechaNacimiento,
+        genero: this.formulario.value.genero,
+        nacionalidad: this.formulario.value.nacionalidad,
+        username: this.formulario.value.usuario,
+        email: this.formulario.value.correo,
+        telefono: this.formulario.value.telefono,
+        password: this.formulario.value.contrasena
+      };
+
+      this.administradorService.registrar(register).subscribe({
+        next: (data: any) => {
+          this.alertService.aceptacion(MENSAJES.REGISTRO_EXITOSO_TITULO, MENSAJES.REGISTRO_EXITOSO_MENSAJE);
+          this.router.navigate(['/admin/user-admin']);
+        },
+        error: (error) => {
+          this.alertService.error(MENSAJES.ERROR_TITULO, error.error.message);
+        }
+      });
+    } else {
+      this.alertService.advertencia(MENSAJES.CAMPOS_INCOMPLETOS_TITULO, MENSAJES.CAMPOS_INCOMPLETOS_MENSAJE);
+      this.formulario.markAllAsTouched();
+    }
+  }
 
 
   togglePassword(): void {
