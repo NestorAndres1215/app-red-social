@@ -57,9 +57,8 @@ export class AdminUserComponent {
   itemsPerPageActivo = 5;
   itemsPerPageDesactivo = 5;
   botonesConfig = {
-    registrar: true,
-    ver: true,
-    actualizar: true,
+    ver: false,
+    actualizar: false,
     eliminar: true,
     imprimir: false
   };

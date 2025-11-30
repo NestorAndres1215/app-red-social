@@ -29,10 +29,8 @@
               title="Editar">
               <i class="fas fa-edit"></i>
             </button>
-            <button *ngIf="botonesConfig.eliminar" class="btn btn-delete hover-pulse" (click)="onEliminar(fila)"
-              title="Eliminar">
-              <i class="fas fa-trash-alt"></i>
-            </button>
+            <app-button *ngIf="botonesConfig.eliminar" label="Desactivar" icon="fas fa-user-slash"
+              color="desactivar"></app-button>
             <button *ngIf="botonesConfig.imprimir" class="btn btn-print hover-pulse" (click)="onImprimir(fila)"
               title="Imprimir">
               <i class="fas fa-print"></i>

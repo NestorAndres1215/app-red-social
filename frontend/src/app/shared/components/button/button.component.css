@@ -60,3 +60,12 @@
     background: linear-gradient(135deg, #0f766e, #14b8a6);
     color: #ffffff;
 }
+
+.logout {
+    background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+    color: #ffffff;
+}
+.activar {
+    background: linear-gradient(135deg, #7a9b00, #bef453);
+     color: #ffffff;
+}

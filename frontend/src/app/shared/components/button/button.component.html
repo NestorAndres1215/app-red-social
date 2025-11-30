@@ -4,16 +4,16 @@
     block ? 'w-100' : '',
     loading ? 'loading' : ''
   ]" [disabled]="disabled || loading" (click)="handleClick()">
-    <!-- Spinner -->
-    <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+  <!-- Spinner -->
+  <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
 
-    <!-- Icon Left -->
-    <i *ngIf="icon && iconPosition === 'left' && !loading" [class]="icon"></i>
+  <!-- Icon Left -->
+  <i *ngIf="icon && iconPosition === 'left' && !loading" [class]="icon"></i>
 
-    <span>{{ label }}</span>
+  <span>{{ label }}</span>
 
-    <!-- Icon Right -->
-    <i *ngIf="icon && iconPosition === 'right' && !loading" [class]="icon"></i>
+  <!-- Icon Right -->
+  <i *ngIf="icon && iconPosition === 'right' && !loading" [class]="icon"></i>
 </button>
 <!---
 
