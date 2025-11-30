@@ -1,53 +1,55 @@
-
 <!--<div class="content-area">  <button *ngIf="botonesConfig.registrar" class="btn btn-add hover-grow" (click)="onRegistrar()">
     <i class="fas fa-plus-circle"></i> Registrar
   </button></div>
 -->
-  <div class="table-responsive table-container">
-    <table class=" custom-table">
-      <thead>
-        <tr>
-          <th 
-            *ngFor="let col of columnas" 
-            class="text-center sortable"
-            (click)="ordenarPor(col.clave)">
-            {{ col.etiqueta }}
-          </th>
-          <th *ngIf="hasActionButtons()" class="text-center">Acciones</th>
-        </tr>
-      </thead>
+<div class="table-responsive table-container">
+  <table class=" custom-table">
+    <thead>
+      <tr>
+        <th *ngFor="let col of columnas" class="text-center sortable" (click)="ordenarPor(col.clave)">
+          {{ col.etiqueta }}
+        </th>
+        <th *ngIf="hasActionButtons()" class="text-center">Acciones</th>
+      </tr>
+    </thead>
 
-      <tbody>
-        <tr *ngFor="let fila of datos | paginate: { itemsPerPage: itemsPorPagina, currentPage: paginaActual }"
-            class="table-row animate__animated animate__fadeInUp">
-          <td *ngFor="let col of columnas" class="text-center">
-            {{ obtenerValor(fila, col.clave) }}
-          </td>
-          <td *ngIf="hasActionButtons()" class="actions-column">
-            <div class="action-buttons d-flex justify-content-center">
-              <button *ngIf="botonesConfig.ver" class="btn btn-view hover-pulse" (click)="onVer(fila)" title="Ver detalles">
-                <i class="fas fa-eye"></i>
-              </button>
-              <button *ngIf="botonesConfig.actualizar" class="btn btn-edit hover-pulse" (click)="onActualizar(fila)" title="Editar">
-                <i class="fas fa-edit"></i>
-              </button>
-              <button *ngIf="botonesConfig.eliminar" class="btn btn-delete hover-pulse" (click)="onEliminar(fila)" title="Eliminar">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-              <button *ngIf="botonesConfig.imprimir" class="btn btn-print hover-pulse" (click)="onImprimir(fila)" title="Imprimir">
-                <i class="fas fa-print"></i>
-              </button>
-            </div>
-          </td>
-        </tr>
+    <tbody>
+      <tr *ngFor="let fila of datos | paginate: { itemsPerPage: itemsPorPagina, currentPage: paginaActual }"
+        class="table-row animate__animated animate__fadeInUp">
+        <td *ngFor="let col of columnas" class="text-center">
+          {{ obtenerValor(fila, col.clave) }}
+        </td>
+        <td *ngIf="hasActionButtons()" class="actions-column">
+          <div class="action-buttons d-flex justify-content-center">
+            <button *ngIf="botonesConfig.ver" class="btn btn-view hover-pulse" (click)="onVer(fila)"
+              title="Ver detalles">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button *ngIf="botonesConfig.actualizar" class="btn btn-edit hover-pulse" (click)="onActualizar(fila)"
+              title="Editar">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button *ngIf="botonesConfig.eliminar" class="btn btn-delete hover-pulse" (click)="onEliminar(fila)"
+              title="Eliminar">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+            <button *ngIf="botonesConfig.imprimir" class="btn btn-print hover-pulse" (click)="onImprimir(fila)"
+              title="Imprimir">
+              <i class="fas fa-print"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
 
-        <tr *ngIf="(datos || []).length === 0">
-          <td [attr.colspan]="columnas.length + (hasActionButtons() ? 1 : 0)" class="text-center text-muted">
-          
-            {{datos_vacio}}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <tr *ngIf="(datos || []).length === 0">
+        <td [attr.colspan]="columnas.length + (hasActionButtons() ? 1 : 0)" class="text-center text-muted">
 
+          <div class="fs-1 text-secondary mb-3">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <h6 class="fw-semibold mb-0 text-secondary">No hay historial para mostrar</h6>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

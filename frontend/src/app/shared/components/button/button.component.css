@@ -1,5 +1,4 @@
-/* === CONFIG GENERAL DEL BOTÓN === */
-.btn-custom {
+.btn {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -12,15 +11,52 @@
     letter-spacing: 0.5px;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-           background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    color: white;
 }
 
+/* ROJO - eliminar */
+.eliminar {
+    background: linear-gradient(135deg, #8b0000, #ff4d4d);
+    color: #ffffff;
+}
 
+/* VERDE - detalle */
+.detalle {
+    background: linear-gradient(135deg, #0f734d, #34d399);
+    color: #ffffff;
+}
 
-/* Deshabilitado */
-.btn-custom:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
+/* AZUL - registrar */
+.registrar {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: #ffffff;
+}
+
+.suspender {
+    background: linear-gradient(135deg, #b45309, #f59e0b);
+    color: #ffffff;
+}
+
+.bloquear {
+    background: linear-gradient(135deg, #5b21b6, #8f63f5);
+    color: #ffffff;
+}
+
+.inhabilitado {
+    background: linear-gradient(135deg, #2aa9a1, #6fd3cb);
+    color: #ffffff;
+}
+
+.imprimir {
+    background: linear-gradient(135deg, #c58a00, #fbbf24);
+    color: #ffffff;
+}
+
+.desactivar {
+    background: linear-gradient(135deg, #0e7490, #38bdf8);
+    color: #ffffff;
+}
+
+.actualizar {
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+    color: #ffffff;
 }
