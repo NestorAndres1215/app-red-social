@@ -27,6 +27,21 @@ export const ADMIN_ROUTES: Routes = [
     loadComponent: () => import('../administrador-user/historial-user-admin/historial-user-admin.component')
       .then(m => m.HistorialUserAdminComponent)
   },
+  {
+    path: 'buscar-admin',
+    loadComponent: () => import('../administrador-user/buscar-admin/buscar-admin.component')
+      .then(m => m.BuscarAdminComponent)
+  },
+  {
+    path: 'acciones-admin',
+    loadComponent: () => import('../administrador-user/accion-admin/accion-admin.component')
+      .then(m => m.AccionAdminComponent)
+  },
+  {
+    path: 'admin-suspendidos',
+    loadComponent: () => import('../administrador-user/admin-suspendidos/admin-suspendidos.component')
+      .then(m => m.AdminSuspendidosComponent)
+  },
 ];
 
 

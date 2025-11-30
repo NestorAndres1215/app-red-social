@@ -1,0 +1,16 @@
+import { Routes } from "@angular/router";
+
+export const ADMINISTRADOR_ROUTES: Routes = [
+    {
+        path: 'admin',
+        loadChildren: () =>
+            import('../admin/routes/usuario-admin.routes')
+                .then(m => m.ADMIN_ROUTES)
+    },
+    {
+        path: 'mod-admin',
+        loadChildren: () =>
+            import('../admin/routes/moderador-admin.routes')
+                .then(m => m.MOD_ADMIN_ROUTES)
+    }
+];

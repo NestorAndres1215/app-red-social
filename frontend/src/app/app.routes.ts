@@ -48,20 +48,13 @@ export const routes: Routes = [
   },
 
   {
-    path: 'admin',
+    path: '',
     component: HomeAdminComponent,
     canActivate: [AdminGuard],
     loadChildren: () =>
-      import('./features/admin/routes/admin.routes')
-        .then(m => m.ADMIN_ROUTES)
+      import('./features/routes/administradores.routes')
+        .then(m => m.ADMINISTRADOR_ROUTES)
   },
 
-  {
-    path: 'mod-admin',
-    component: HomeAdminComponent,
-    canActivate: [AdminGuard],
-    loadChildren: () =>
-      import('./features/admin/routes/mod.routes')
-        .then(m => m.MOD_ADMIN_ROUTES)
-  }
+
 ];
