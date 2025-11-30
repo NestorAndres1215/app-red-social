@@ -27,8 +27,8 @@ export class AdminUserComponent {
   titulo = 'Mantenimiento de Administradores';
   icono = 'fas fa-user-shield';
   activeTab: number = 0;
-activosLabel: string = 'Activados';
-desactivadosLabel: string = 'Desactivados';
+  activosLabel: string = 'Activados';
+  desactivadosLabel: string = 'Desactivados';
 
 
   columnas = [

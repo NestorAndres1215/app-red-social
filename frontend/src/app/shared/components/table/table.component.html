@@ -43,7 +43,8 @@
 
         <tr *ngIf="(datos || []).length === 0">
           <td [attr.colspan]="columnas.length + (hasActionButtons() ? 1 : 0)" class="text-center text-muted">
-            No hay datos para mostrar.
+          
+            {{datos_vacio}}
           </td>
         </tr>
       </tbody>

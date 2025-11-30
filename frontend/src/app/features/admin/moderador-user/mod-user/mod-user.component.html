@@ -1,1 +1,37 @@
-<p>mod-user.component works!</p>
+<app-tittle [title]="titulo" [icon]="icono" />
+
+<div class="container my-4 pb-2">
+  <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
+    <mat-tab-group [(selectedIndex)]="activeTab" class="custom-tabs">
+
+      <!-- =============== ACTIVADOS ================= -->
+      <mat-tab [label]="activosLabel">
+        <div class="my-5" *ngIf="activeTab === 0">
+
+          <app-search (searchChange)="filtrar($event)" />
+
+          <app-table [columnas]="columnas" [datos]="datosFiltrados" [botonesConfig]="botonesConfig" />
+
+          <app-pagination [(page)]="pageActivos"
+            [totalPages]="MathActivo.ceil(moderadorListado.length / itemsPerPageActivo)"
+            (pageChange)="applyPaginationActivos()" />
+        </div>
+      </mat-tab>
+
+      <!-- =============== DESACTIVADOS ================= -->
+      <mat-tab [label]="desactivadosLabel">
+        <div class="my-5" *ngIf="activeTab === 1">
+
+          <app-search (searchChange)="filtrar($event)" />
+
+          <app-table [columnas]="columnas" [datos]="datosFiltradosInactivo" [botonesConfig]="botonesConfig" />
+
+          <app-pagination [(page)]="pageInactivos"
+            [totalPages]="MathInactivo.ceil(moderadorListadoInactivo.length / itemsPerPageDesactivo)"
+            (pageChange)="applyPaginationInactivos()" />
+        </div>
+      </mat-tab>
+
+    </mat-tab-group>
+  </header>
+</div>

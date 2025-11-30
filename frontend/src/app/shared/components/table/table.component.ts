@@ -22,7 +22,7 @@ export class TableComponent {
 
   paginaActual: number = 1;
   itemsPorPagina: number = 10;
-
+  datos_vacio: string = '  No hay datos para mostrar.';
   // 🔥 Variables para ordenar
   columnaOrden: string = '';
   direccionOrden: 'asc' | 'desc' = 'asc';
