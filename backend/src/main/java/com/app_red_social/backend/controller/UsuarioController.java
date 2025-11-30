@@ -55,17 +55,17 @@ public class UsuarioController {
 
     @GetMapping("/listar/usuarios/normal/{username}/{estado}")
     public ResponseEntity<List<UsuarioListaResponse>> listarUsuariosNormal(@PathVariable String username, @PathVariable String estado) {
-        return ResponseEntity.ok(usuarioService.listarUsuarios(1, username, estado));
+        return ResponseEntity.ok(usuarioService.listarUsuarios(2, username, estado));
     }
 
     @GetMapping("/listar/usuarios/administradores/{username}/{estado}")
     public ResponseEntity<List<UsuarioListaResponse>> listarUsuariosAdmin(@PathVariable String username, @PathVariable String estado) {
-        return ResponseEntity.ok(usuarioService.listarUsuarios(2, username, estado));
+        return ResponseEntity.ok(usuarioService.listarUsuarios(1, username, estado));
     }
 
     @GetMapping("/listar/usuarios/moderador/{username}/{estado}")
     public ResponseEntity<List<UsuarioListaResponse>> listarUsuariosModerador(@PathVariable String username, @PathVariable String estado) {
-        return ResponseEntity.ok(usuarioService.listarUsuarios(3, username, estado));
+        return ResponseEntity.ok(usuarioService.listarUsuarios(2, username, estado));
     }
 
     @GetMapping("/listar/usuario/actual/{codigo}")

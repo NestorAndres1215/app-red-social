@@ -107,11 +107,11 @@ public class UsuarioService {
     }
 
     public List<UsuarioListaResponse> listarUsuarios(Integer option, String username, String estado) {
-
-        usuarioRepository.findByLogin_Username(username)
-                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO));
+        System.out.println(option+" "+ username+" "+ estado);
+        loginService.listarUsername(username);
 
         List<Object[]> result = usuarioRepository.listarUsuarios(option, username, estado);
+        System.out.println("lista :"+result);
         return usuarioMapper.toDtoList(result);
     }
 

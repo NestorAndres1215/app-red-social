@@ -11,33 +11,25 @@ public class UsuarioMapper {
         if (row == null) return null;
 
         return UsuarioListaResponse.builder()
-                .codigo(toStr(row[0]))
-                .nombre(toStr(row[1]))
-                .apellido(toStr(row[2]))
-                .edad(toStr(row[3]))
-                .fechaNacimiento(toStr(row[4]))
-                .genero(toStr(row[5]))
-                .nacionalidad(toStr(row[6]))
-                .perfil(toStrOrNull(row, 7))
-                .ciudad(toStrOrNull(row, 8))
-                .pais(toStrOrNull(row, 9))
-                .banner(toStrOrNull(row, 10))
-                .foto(toStrOrNull(row, 11))
-                .presentacion(toStrOrNull(row, 12))
-                .cuentaPrivada(toStrOrNull(row, 13))
-                .publicaciones(toStrOrNull(row, 14))
-                .seguidores(toStrOrNull(row, 15))
-                .seguidos(toStrOrNull(row, 16))
-                .verificado(toStrOrNull(row, 17))
-                .username(toStrOrNull(row, 18))
-                .correo(toStrOrNull(row, 19))
-                .telefono(toStrOrNull(row, 20))
-                .rol(toStrOrNull(row, 21))
-                .fechaRegistro(toStrOrNull(row, 22))
-                .ultimoLogin(toStrOrNull(row, 23))
-                .estado(toStrOrNull(row, 24))
+                .codigo(toStr(row[0]))             // a.ad_codigo
+                .nombre(toStr(row[1]))             // a.ad_nombre
+                .apellido(toStr(row[2]))           // a.ad_apellido
+                .edad(toStr(row[3]))               // a.ad_edad
+                .fechaNacimiento(toStr(row[4]))    // a.ad_fecha_nacimiento
+                .genero(toStr(row[5]))             // a.ad_genero
+                .nacionalidad(toStr(row[6]))       // a.ad_nacionalidad
+                .perfil(toStr(row[7]))             // a.ad_perfil
+
+                .username(toStr(row[8]))           // l.lg_username
+                .correo(toStr(row[9]))             // l.lg_correo
+                .telefono(toStr(row[10]))          // l.lg_telefono
+
+                .fechaRegistro(toStr(row[11]))     // l.lg_fecha_registro
+                .ultimoLogin(toStr(row[12]))       // l.lg_ultimo_login
+                .estado(toStr(row[13]))            // e.st_nombre
                 .build();
     }
+
 
     public List<UsuarioListaResponse> toDtoList(List<Object[]> rows) {
         return rows.stream()
@@ -49,7 +41,5 @@ public class UsuarioMapper {
         return value != null ? value.toString() : null;
     }
 
-    private String toStrOrNull(Object[] row, int index) {
-        return index < row.length ? toStr(row[index]) : null;
-    }
+
 }

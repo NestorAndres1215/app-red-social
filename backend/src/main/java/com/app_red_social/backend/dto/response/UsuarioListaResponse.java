@@ -6,7 +6,7 @@ import lombok.*;
 @Builder
 public class UsuarioListaResponse {
 
-    // Campos comunes a todos
+    // Datos del administrador
     private String codigo;
     private String nombre;
     private String apellido;
@@ -16,26 +16,13 @@ public class UsuarioListaResponse {
     private String nacionalidad;
     private String perfil;
 
-    // Campos específicos solo para Usuario
-    private String ciudad;
-    private String pais;
-    private String banner;
-    private String foto;
-    private String presentacion;
-    private String cuentaPrivada;
-    private String publicaciones;
-    private String seguidores;
-    private String seguidos;
-    private String verificado;
-
-    // Campos de Login (todos)
+    // Datos de login
     private String username;
     private String correo;
     private String telefono;
-    private String rol;
     private String fechaRegistro;
     private String ultimoLogin;
 
-    // Estado
+    // Estado del usuario
     private String estado;
 }

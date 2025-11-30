@@ -28,6 +28,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
             @Param("estado") String estado
     );
 
+
+
+
     @Query(value = "CALL Sp_UsuarioActual(:opcion, :codigo)", nativeQuery = true)
     List<Object[]> obtenerUsuarioActual(@Param("opcion") Integer opcion, @Param("codigo") String codigo);
 
