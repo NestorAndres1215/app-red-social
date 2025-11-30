@@ -1,26 +1,25 @@
-<div class="content-area">
-    <div class="card-header">
+<div class="container content-area p-3 p-md-4">
+    <!-- HEADER -->
+    <div class="card-header text-center">
         <h2>{{titulo}}</h2>
     </div>
+
+    <!-- BODY -->
     <div class="card-body">
-        <p [innerHTML]="getHTML()"></p>
-        <mat-form-field *ngIf="razon != undefined && razon.trim() != ''">
-            <div>
-                <input #input [placeholder]="razon" />
-            </div>
-        </mat-form-field>
-        <div class="row justify-content-center mt-4 button-group">
-            <div class="col-12 col-md-auto text-center mb-2 mb-md-0">
-                <button type="button" class="btn confirm w-100 w-md-auto" (click)="close('CONFIRMAR')">
-                    <i class="fas fa-check"></i> Confirmar
-                </button>
-            </div>
-            <div class="col-12 col-md-auto text-center">
-                <button type="button" class="btn cancel w-100 w-md-auto" (click)="close('CANCELAR')">
-                    <i class="fas fa-times"></i> Cancelar
-                </button>
-            </div>
+        <p class="text-center mb-4" [innerHTML]="getHTML()"></p>
+
+        <!-- Input -->
+        <div *ngIf="razon && razon.trim() !== ''" class="mb-4">
+            <input #input class="form-control" [placeholder]="razon" />
         </div>
 
+        <!-- BOTONES -->
+        <div class="d-flex justify-content-center flex-wrap gap-3">
+            <app-button label="Confirmar" icon="fas fa-check-circle" color="confirmar"
+                (click)="close('CONFIRMAR')"></app-button>
+
+            <app-button label="Cancelar" icon="fas fa-times-circle" color="cancelar"
+                (click)="close('CANCELAR')"></app-button>
+        </div>
     </div>
 </div>

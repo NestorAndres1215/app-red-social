@@ -7,7 +7,9 @@ import { UsuarioService } from '../../../../core/services/usuario.service';
 import { Estados } from '../../../../core/constants/estados.contants';
 import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
 import { SearchComponent } from "../../../../shared/components/search/search.component";
-
+import { ModalEliminacionComponent } from '../../../../shared/components/modal/modal-eliminacion/modal-eliminacion.component';
+import { MatDialog } from '@angular/material/dialog';
+import { BreakpointObserver } from '@angular/cdk/layout';
 @Component({
   selector: 'app-admin-user',
   imports: [
@@ -19,7 +21,7 @@ import { SearchComponent } from "../../../../shared/components/search/search.com
 })
 export class AdminUserComponent {
 
-  constructor(private usuarioService: UsuarioService) {
+  constructor(private usuarioService: UsuarioService, private breakpointObserver: BreakpointObserver, private dialog: MatDialog) {
     this.listarAdminActivos();
     this.listarAdminDesactivos();
   }
@@ -59,9 +61,15 @@ export class AdminUserComponent {
   botonesConfig = {
     ver: false,
     actualizar: false,
-    eliminar: true,
-    imprimir: false
+    desactivar: true,
+    activar: false,       // opcional, mostrar según necesidad
+    suspender: false,
+    inhabilitar: false,
+    bloquear: false,
+    imprimir: false,
+    cancelar: false
   };
+
 
   listarAdminActivos() {
     const username = localStorage.getItem('username') || '';
@@ -129,4 +137,24 @@ export class AdminUserComponent {
   }
   get MathInactivo() { return Math; }
   get MathActivo() { return Math; }
+
+
+ desactivar(fila: any): void {
+  const nombreUsuario = fila.Nombre || 'Desconocido';
+
+  const isMobile = this.breakpointObserver.isMatched('(max-width: 576px)');
+
+  const dialogEliminar = this.dialog.open(ModalEliminacionComponent, {
+    disableClose: true,
+    width: isMobile ? '90vw' : '600px',
+    height: isMobile ? 'auto' : '290px',
+    maxWidth: '95vw',
+    maxHeight: '90vh',
+    data: {
+      fila,
+      titulo: 'Desactivar Usuario',
+      subtitulo: `¿Deseas desactivar el usuario ${nombreUsuario}?`
+    },
+  });
+}
 }

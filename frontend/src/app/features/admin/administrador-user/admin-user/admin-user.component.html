@@ -10,7 +10,7 @@
 
           <app-search (searchChange)="filtrar($event)" />
 
-          <app-table [columnas]="columnas" [datos]="datosFiltrados" [botonesConfig]="botonesConfig" />
+          <app-table [columnas]="columnas" [datos]="datosFiltrados" [botonesConfig]="botonesConfig"  [onDesactivar]="desactivar.bind(this)" />
 
           <app-pagination [(page)]="pageActivos"
             [totalPages]="MathActivo.ceil(adminListado.length / itemsPerPageActivo)"
@@ -24,7 +24,7 @@
 
           <app-search (searchChange)="filtrar($event)" />
 
-          <app-table [columnas]="columnas" [datos]="datosFiltradosInactivo" [botonesConfig]="botonesConfig" />
+          <app-table [columnas]="columnas" [datos]="datosFiltradosInactivo" [botonesConfig]="botonesConfig" [onDesactivar]="desactivar.bind(this)" />
 
           <app-pagination [(page)]="pageInactivos"
             [totalPages]="MathInactivo.ceil(adminListadoInactivo.length / itemsPerPageDesactivo)"

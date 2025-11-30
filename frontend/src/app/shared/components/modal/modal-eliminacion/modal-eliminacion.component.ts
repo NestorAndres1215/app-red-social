@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { RespuestaModel } from '../../../../core/models/respuesta.model';
+import { ButtonComponent } from "../../button/button.component";
 
 
 
@@ -13,11 +14,12 @@ import { RespuestaModel } from '../../../../core/models/respuesta.model';
   selector: 'app-modal-eliminacion',
 
   imports: [
-     CommonModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-  ],
+    ButtonComponent
+],
   templateUrl: './modal-eliminacion.component.html',
   styleUrl: './modal-eliminacion.component.css',
 })
