@@ -7,8 +7,10 @@ import com.app_red_social.backend.dto.response.HistorialResponse;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.mapper.HistorialMapper;
 import com.app_red_social.backend.model.HistorialUsuario;
+import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.Usuario;
 import com.app_red_social.backend.repository.HistorialUsuarioRepository;
+import com.app_red_social.backend.repository.LoginRepository;
 import com.app_red_social.backend.repository.UsuarioRepository;
 import com.app_red_social.backend.util.Secuencia;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,7 @@ import java.util.List;
 public class HistorialUsuarioService {
 
     private final HistorialUsuarioRepository historialUsuarioRepository;
-    private final UsuarioRepository usuarioRepository;
+    private final LoginRepository loginRepository;
     private final HistorialMapper historialMapper;
 
     public String ultimoCodigo() {
@@ -32,13 +34,13 @@ public class HistorialUsuarioService {
 
         final String nuevoCodigo = Secuencia.generarSiguienteCodigo(ultimoCodigo());
 
-        Usuario usuario = usuarioRepository.findByLogin_Username(historialUsuarioRequest.getUsuario())
+        Login login = loginRepository.findByUsername(historialUsuarioRequest.getUsuario())
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO));
 
         HistorialUsuario historialUsuario = HistorialUsuario.builder()
                 .codigo(nuevoCodigo)
                 .estado(Estados.ACTIVO)
-                .usuario(usuario)
+                .login(login)
                 .fechaRegistro(LocalDateTime.now())
                 .detalle(historialUsuarioRequest.getDetalle())
                 .build();
@@ -56,9 +58,9 @@ public class HistorialUsuarioService {
     }
 
 
-    public List<HistorialResponse> listarHistorial(Integer option, String username, String estado) {
+    public List<HistorialResponse> listarHistorial( String username, String estado) {
 
-        List<Object[]> result = historialUsuarioRepository.obtenerHistorial(option, username, estado);
+        List<Object[]> result = historialUsuarioRepository.obtenerHistorial( username, estado);
 
         return historialMapper.toDtoList(result);
     }

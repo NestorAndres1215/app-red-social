@@ -31,7 +31,7 @@ public class HistorialUsuarioController {
 
     @GetMapping("/listar/historial/{username}/{estado}")
     public List<HistorialResponse> listarHistorial(@PathVariable String username, @PathVariable String estado) {
-        return historialUsuarioService.listarHistorial(1, username, estado);
+        return historialUsuarioService.listarHistorial( username, estado);
     }
 
     @PostMapping("/registrar")

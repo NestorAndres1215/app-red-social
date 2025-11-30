@@ -12,9 +12,8 @@ public interface HistorialUsuarioRepository extends JpaRepository<HistorialUsuar
     @Query(value = "SELECT MAX(hu_codigo) FROM historial_usuario", nativeQuery = true)
     String obtenerUltimoCodigo();
 
-    @Query(value = "CALL sp_historial_usuario(:option, :username, :estado)", nativeQuery = true)
+    @Query(value = "CALL sp_historial_usuario(:username, :estado)", nativeQuery = true)
     List<Object[]> obtenerHistorial(
-            @Param("option") Integer option,
             @Param("username") String username,
             @Param("estado") String estado
     );

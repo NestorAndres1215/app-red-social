@@ -8,10 +8,9 @@ import java.util.Objects;
 
 @Component
 public class HistorialMapper {
-
     public HistorialResponse toDto(Object[] row) {
 
-        if (row == null || row.length < 6) return null;
+        if (row == null || row.length < 8) return null;
 
         return HistorialResponse.builder()
                 .codigoHistorial(safe(row[0]))
@@ -19,7 +18,9 @@ public class HistorialMapper {
                 .horaHistorial(safe(row[2]))
                 .usuarioHistorial(safe(row[3]))
                 .estadoHistorial(safe(row[4]))
-                .detalleHistorial(safe(row[5]))
+                .tituloHistorial(safe(row[5]))   // NUEVO
+                .moduloHistorial(safe(row[6]))   // NUEVO
+                .detalleHistorial(safe(row[7]))
                 .build();
     }
 

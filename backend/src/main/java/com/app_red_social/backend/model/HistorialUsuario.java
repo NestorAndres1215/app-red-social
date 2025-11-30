@@ -22,8 +22,14 @@ public class HistorialUsuario {
     private LocalDateTime fechaRegistro;
 
     @ManyToOne
-    @JoinColumn(name = "hu_usuario", referencedColumnName = "us_codigo")
-    private Usuario usuario;
+    @JoinColumn(name = "hu_login", referencedColumnName = "lg_codigo")
+    private Login login;
+
+    @Column(name = "hu_modulo", length = 100)
+    private String modulo;
+
+    @Column(name = "hu_titulo", columnDefinition = "TEXT")
+    private String titulo;
 
     @Column(name = "hu_detalle", columnDefinition = "TEXT")
     private String detalle;

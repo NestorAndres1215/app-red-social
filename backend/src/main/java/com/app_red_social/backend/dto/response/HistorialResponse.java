@@ -7,10 +7,20 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HistorialResponse {
+
     private String codigoHistorial;
-    private String fechaHistorial;  // si quieres LocalDate lo cambiamos
-    private String horaHistorial;   // si quieres LocalTime lo cambiamos
+
+    private String fechaHistorial;   // Puedes usar LocalDate si deseas
+
+    private String horaHistorial;    // Puedes usar LocalTime si deseas
+
     private String usuarioHistorial;
+
     private String estadoHistorial;
+
+    private String tituloHistorial;  // Nuevo
+
+    private String moduloHistorial;  // Nuevo
+
     private String detalleHistorial;
 }

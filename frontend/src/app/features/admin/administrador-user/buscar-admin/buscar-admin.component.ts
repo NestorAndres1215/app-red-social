@@ -34,8 +34,6 @@ export class BuscarAdminComponent {
       .subscribe(data => {
         this.adminListadoOriginal = data;
         this.adminListado = [...data];
-
-        // 👉 MOSTRAR TODOS LOS USUARIOS
         this.usuariosSeleccionados = [...this.adminListado];
       });
   }
