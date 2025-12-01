@@ -139,6 +139,68 @@ public class LoginService {
         return loginRepository.save(login);
     }
 
+    public Login inactivar(String codigo) {
 
+        Login login = loginRepository.findById(codigo)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
 
+        EstadoUsuario estadoInactivo = estadoUsuarioRepository.findByNombre(Estados.INACTIVO)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.ESTADO_USUARIO_NO_ENCONTRADO));
+
+        login.setEstadoUsuario(estadoInactivo);
+        return loginRepository.save(login);
+
+    }
+
+    public Login suspender(String codigo) {
+
+        Login login = loginRepository.findById(codigo)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
+
+        EstadoUsuario estadoSuspendido = estadoUsuarioRepository.findByNombre(Estados.SUSPENDIDO)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.ESTADO_USUARIO_NO_ENCONTRADO));
+
+        login.setEstadoUsuario(estadoSuspendido);
+        return loginRepository.save(login);
+
+    }
+
+    public Login activar(String codigo) {
+
+        Login login = loginRepository.findById(codigo)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
+
+        EstadoUsuario estadoActivo = estadoUsuarioRepository.findByNombre(Estados.ACTIVO)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.ESTADO_USUARIO_NO_ENCONTRADO));
+
+        login.setEstadoUsuario(estadoActivo);
+        return loginRepository.save(login);
+
+    }
+
+    public Login bloquear(String codigo) {
+
+        Login login = loginRepository.findById(codigo)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
+
+        EstadoUsuario estadoBloqueado = estadoUsuarioRepository.findByNombre(Estados.BLOQUEADO)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.ESTADO_USUARIO_NO_ENCONTRADO));
+
+        login.setEstadoUsuario(estadoBloqueado);
+        return loginRepository.save(login);
+
+    }
+
+    public Login Eliminado(String codigo) {
+
+        Login login = loginRepository.findById(codigo)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
+
+        EstadoUsuario estadoEliminado = estadoUsuarioRepository.findByNombre(Estados.ELIMINADO)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.ESTADO_USUARIO_NO_ENCONTRADO));
+
+        login.setEstadoUsuario(estadoEliminado);
+        return loginRepository.save(login);
+
+    }
 }

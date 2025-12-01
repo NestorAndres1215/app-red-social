@@ -11,5 +11,19 @@ export const MOD_ADMIN_ROUTES: Routes = [
         loadComponent: () => import('../moderador-user/reg-moderador-user/reg-moderador-user.component')
             .then(m => m.RegModeradorUserComponent)
     },
-
+    {
+        path: 'rol-permisos-moderador',
+        loadComponent: () => import('../moderador-user/roles-permisos/roles-permisos.component')
+            .then(m => m.RolesPermisosComponent)
+    },
+    {
+        path: 'auditoria-moderado',
+        loadComponent: () => import('../moderador-user/auditoria-moderador-admin/auditoria-moderador-admin.component')
+            .then(m => m.AuditoriaModeradorAdminComponent)
+    },
+    {
+        path: 'actividad-moderador',
+        loadComponent: () => import('../moderador-user/actividad-moderador-admin/actividad-moderador-admin.component')
+            .then(m => m.ActividadModeradorAdminComponent)
+    },
 ];

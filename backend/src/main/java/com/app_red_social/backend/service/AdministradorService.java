@@ -97,4 +97,55 @@ public class AdministradorService {
 
         return AdministradorActualMapper.toDto(result.get(0));
     }
+
+
+    public Login activar(String codigoAdmin) {
+
+        Administrador admin = administradorRepository.findById(codigoAdmin)
+                .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
+
+        String codigoLogin = admin.getLogin().getCodigo();
+
+        return loginService.activar(codigoLogin);
+    }
+
+    public Login inactivar(String codigoAdmin) {
+
+        Administrador admin = administradorRepository.findById(codigoAdmin)
+                .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
+
+        String codigoLogin = admin.getLogin().getCodigo();
+
+        return loginService.inactivar(codigoLogin);
+    }
+
+    public Login suspender(String codigoAdmin) {
+
+        Administrador admin = administradorRepository.findById(codigoAdmin)
+                .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
+
+        String codigoLogin = admin.getLogin().getCodigo();
+
+        return loginService.suspender(codigoLogin);
+    }
+
+    public Login bloquear(String codigoAdmin) {
+
+        Administrador admin = administradorRepository.findById(codigoAdmin)
+                .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
+
+        String codigoLogin = admin.getLogin().getCodigo();
+
+        return loginService.bloquear(codigoLogin);
+    }
+
+    public Login eliminar(String codigoAdmin) {
+
+        Administrador admin = administradorRepository.findById(codigoAdmin)
+                .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
+
+        String codigoLogin = admin.getLogin().getCodigo();
+
+        return loginService.Eliminado(codigoLogin);
+    }
 }

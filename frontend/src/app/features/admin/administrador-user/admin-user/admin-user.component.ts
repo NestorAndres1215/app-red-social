@@ -10,6 +10,9 @@ import { SearchComponent } from "../../../../shared/components/search/search.com
 import { ModalEliminacionComponent } from '../../../../shared/components/modal/modal-eliminacion/modal-eliminacion.component';
 import { MatDialog } from '@angular/material/dialog';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { RespuestaModel } from '../../../../core/models/respuesta.model';
+import { AdministradorService } from '../../../../core/services/administrador.service';
+import { AlertService } from '../../../../core/services/alert.service';
 @Component({
   selector: 'app-admin-user',
   imports: [
@@ -21,7 +24,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 })
 export class AdminUserComponent {
 
-  constructor(private usuarioService: UsuarioService, private breakpointObserver: BreakpointObserver, private dialog: MatDialog) {
+  constructor(private usuarioService: UsuarioService, private alertService: AlertService, private administradorService: AdministradorService, private breakpointObserver: BreakpointObserver, private dialog: MatDialog) {
     this.listarAdminActivos();
     this.listarAdminDesactivos();
   }
@@ -63,14 +66,24 @@ export class AdminUserComponent {
     actualizar: false,
     desactivar: true,
     activar: false,       // opcional, mostrar según necesidad
-    suspender: false,
+    suspender: true,
     inhabilitar: false,
     bloquear: false,
     imprimir: false,
     cancelar: false
   };
 
-
+  botonesConfig2 = {
+    ver: false,
+    actualizar: false,
+    desactivar: false,
+    activar: true,       // opcional, mostrar según necesidad
+    suspender: false,
+    inhabilitar: false,
+    bloquear: false,
+    imprimir: false,
+    cancelar: false
+  };
   listarAdminActivos() {
     const username = localStorage.getItem('username') || '';
 
@@ -139,22 +152,97 @@ export class AdminUserComponent {
   get MathActivo() { return Math; }
 
 
- desactivar(fila: any): void {
-  const nombreUsuario = fila.Nombre || 'Desconocido';
+  desactivar(fila: any): void {
+    console.log(fila);
+    const username = fila.username || 'Desconocido';
 
-  const isMobile = this.breakpointObserver.isMatched('(max-width: 576px)');
+    const isMobile = this.breakpointObserver.isMatched('(max-width: 576px)');
 
-  const dialogEliminar = this.dialog.open(ModalEliminacionComponent, {
-    disableClose: true,
-    width: isMobile ? '90vw' : '600px',
-    height: isMobile ? 'auto' : '290px',
-    maxWidth: '95vw',
-    maxHeight: '90vh',
-    data: {
-      fila,
-      titulo: 'Desactivar Usuario',
-      subtitulo: `¿Deseas desactivar el usuario ${nombreUsuario}?`
-    },
-  });
-}
+    const dialogEliminar = this.dialog.open(ModalEliminacionComponent, {
+      disableClose: true,
+      width: isMobile ? '90vw' : '600px',
+      height: isMobile ? 'auto' : '290px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      data: {
+        fila,
+        titulo: 'Desactivar Usuario',
+        subtitulo: `¿Deseas desactivar el usuario ${username}?`
+      },
+
+    });
+    console.log(fila.codigo)
+    dialogEliminar.afterClosed().subscribe((respuesta: RespuestaModel) => {
+
+      if (respuesta?.boton != 'CONFIRMAR') return;
+      this.administradorService.inactivar(fila.codigo).subscribe(result => {
+
+        this.alertService.aceptacion("Se desactivó correctamente el usuario");
+        this.listarAdminActivos();
+        this.listarAdminDesactivos();
+      });
+    })
+  }
+  suspender(fila: any): void {
+    console.log(fila);
+    const username = fila.username || 'Desconocido';
+
+    const isMobile = this.breakpointObserver.isMatched('(max-width: 576px)');
+
+    const dialogEliminar = this.dialog.open(ModalEliminacionComponent, {
+      disableClose: true,
+      width: isMobile ? '90vw' : '600px',
+      height: isMobile ? 'auto' : '290px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      data: {
+        fila,
+        titulo: 'Suspender Usuario',
+        subtitulo: `¿Deseas suspender el usuario ${username}?`
+      },
+
+    });
+    console.log(fila.codigo)
+    dialogEliminar.afterClosed().subscribe((respuesta: RespuestaModel) => {
+
+      if (respuesta?.boton != 'CONFIRMAR') return;
+      this.administradorService.suspender(fila.codigo).subscribe(result => {
+
+        this.alertService.aceptacion("Se suspendio correctamente el usuario");
+        this.listarAdminActivos();
+        this.listarAdminDesactivos();
+      });
+    })
+  }
+  activar(fila: any): void {
+    console.log(fila);
+    const username = fila.username || 'Desconocido';
+
+    const isMobile = this.breakpointObserver.isMatched('(max-width: 576px)');
+
+    const dialogEliminar = this.dialog.open(ModalEliminacionComponent, {
+      disableClose: true,
+      width: isMobile ? '90vw' : '600px',
+      height: isMobile ? 'auto' : '290px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      data: {
+        fila,
+        titulo: 'Activar Usuario',
+        subtitulo: `¿Deseas activar el usuario ${username}?`
+      },
+
+    });
+    console.log(fila.codigo)
+    dialogEliminar.afterClosed().subscribe((respuesta: RespuestaModel) => {
+
+      if (respuesta?.boton != 'CONFIRMAR') return;
+      this.administradorService.activar(fila.codigo).subscribe(result => {
+
+        this.alertService.aceptacion("Se activo correctamente el usuario");
+        this.listarAdminActivos();
+        this.listarAdminDesactivos();
+      });
+    })
+  }
 }

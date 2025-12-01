@@ -44,4 +44,24 @@ export class AdministradorService {
   registrar(request: RegisterUser): Observable<any> {
     return this.http.post<any>(`${this.backendUrl}/administrador/registrar`, request);
   }
+
+  activar(codigoAdmin: string): Observable<any> {
+    return this.http.put(`${this.backendUrl}/administrador/activar/${codigoAdmin}`, {});
+  }
+
+  inactivar(codigoAdmin: string): Observable<any> {
+    return this.http.put(`${this.backendUrl}/administrador/inactivar/${codigoAdmin}`, {});
+  }
+
+  suspender(codigoAdmin: string): Observable<any> {
+    return this.http.put(`${this.backendUrl}/administrador/suspender/${codigoAdmin}`, {});
+  }
+
+  bloquear(codigoAdmin: string): Observable<any> {
+    return this.http.put(`${this.backendUrl}/administrador/bloquear/${codigoAdmin}`, {});
+  }
+
+  eliminar(codigoAdmin: string): Observable<any> {
+    return this.http.put(`${this.backendUrl}/administrador/eliminar/${codigoAdmin}`, {});
+  }
 }
