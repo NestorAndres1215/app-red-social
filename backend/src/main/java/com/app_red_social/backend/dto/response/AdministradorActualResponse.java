@@ -16,7 +16,7 @@ public class AdministradorActualResponse {
     private String nombreCompleto;
 
     private Integer edad;
-    private LocalDate fechaNacimiento;
+    private String fechaNacimiento;
     private String fechaNacimientoFormateada;
     private Integer edadCalculada;
 
@@ -30,6 +30,6 @@ public class AdministradorActualResponse {
     private String username;
     private String rol;
     private String estadoUsuario;
-    private LocalDateTime ultimoLogin;
-    private LocalDateTime fechaRegistro;
+    private String ultimoLogin;
+    private String fechaRegistro;
 }

@@ -1,6 +1,7 @@
 package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.dto.request.RegisterRequest;
+import com.app_red_social.backend.dto.response.AdministradorActualResponse;
 import com.app_red_social.backend.model.Administrador;
 import com.app_red_social.backend.service.AdministradorService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -8,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -48,4 +50,8 @@ public class AdministradorController {
         return ResponseEntity.ok(administradorService.registrar(request));
     }
 
+    @GetMapping("/lista/actual/{loginCodigo}")
+    public ResponseEntity<AdministradorActualResponse> obtenerAdministradorPorLogin(@PathVariable String loginCodigo) {
+        return ResponseEntity.ok(administradorService.obtenerPorLogin(loginCodigo));
+    }
 }

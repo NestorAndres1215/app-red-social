@@ -3,7 +3,10 @@ package com.app_red_social.backend.service;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.dto.request.RegisterRequest;
+
+import com.app_red_social.backend.dto.response.AdministradorActualResponse;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
+import com.app_red_social.backend.mapper.AdministradorActualMapper;
 import com.app_red_social.backend.model.Administrador;
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.repository.AdministradorRepository;
@@ -81,5 +84,17 @@ public class AdministradorService {
 
     public String ultimoCodigo() {
         return administradorRepository.obtenerCodigo();
+    }
+
+
+    public AdministradorActualResponse obtenerPorLogin(String loginCodigo) {
+
+        List<Object[]> result = administradorRepository.obtenerAdministradorPorLogin(loginCodigo);
+
+        if (result.isEmpty()) {
+            throw new RuntimeException("Administrador no encontrado con login: " + loginCodigo);
+        }
+
+        return AdministradorActualMapper.toDto(result.get(0));
     }
 }

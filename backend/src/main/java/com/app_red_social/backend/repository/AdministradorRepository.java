@@ -3,6 +3,10 @@ package com.app_red_social.backend.repository;
 import com.app_red_social.backend.model.Administrador;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 import java.util.Optional;
 
 public interface AdministradorRepository extends JpaRepository<Administrador, String> {
@@ -17,4 +21,7 @@ public interface AdministradorRepository extends JpaRepository<Administrador, St
 
     @Query(value = "SELECT MAX(ad_codigo) FROM Administrador", nativeQuery = true)
     String obtenerCodigo();
+
+    @Query(value = "CALL sp_actualAdministrador(:loginCodigo)", nativeQuery = true)
+    List<Object[]> obtenerAdministradorPorLogin(@Param("loginCodigo") String loginCodigo);
 }

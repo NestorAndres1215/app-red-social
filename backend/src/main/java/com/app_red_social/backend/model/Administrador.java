@@ -38,7 +38,7 @@ public class Administrador {
     private String genero;
 
     @Column(name = "ad_nacionalidad")
-    private LocalDate nacionalidad;
+    private String nacionalidad;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "us_login", referencedColumnName = "lg_codigo")
