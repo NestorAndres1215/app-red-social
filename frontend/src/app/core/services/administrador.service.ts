@@ -36,6 +36,9 @@ export class AdministradorService {
   obtenerPorTelefono(telefono: string): Observable<any> {
     return this.http.get<any>(`${this.backendUrl}/administrador/listar/telefono/${telefono}`);
   }
+  listarActual(codigo: string): Observable<any> {
+    return this.http.get<any>(`${this.backendUrl}/administrador/lista/actual/${codigo}`);
+  }
 
 
   registrar(request: RegisterUser): Observable<any> {

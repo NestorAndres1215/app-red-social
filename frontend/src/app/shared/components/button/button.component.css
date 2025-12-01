@@ -1,7 +1,8 @@
 .btn {
     display: flex;
     align-items: center;
-    justify-content: center; /* centramos contenido */
+    justify-content: center;
+    /* centramos contenido */
     gap: 10px;
     padding: 12px 22px;
     border: none;
@@ -14,23 +15,60 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: #ffffff;
 
-    min-width: 150px; /* ancho mínimo fijo */
+    min-width: 150px;
+    /* ancho mínimo fijo */
     text-align: center;
-    white-space: nowrap; /* evita que el texto haga wrap */
+    white-space: nowrap;
+    /* evita que el texto haga wrap */
 }
 
 /* Mantén tus colores como ya los definiste */
-.eliminar { background: linear-gradient(135deg, #8b0000, #ff4d4d); }
-.detalle { background: linear-gradient(135deg, #0f734d, #34d399); }
-.registrar { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
-.suspender { background: linear-gradient(135deg, #b45309, #f59e0b); }
-.bloquear { background: linear-gradient(135deg, #5b21b6, #8f63f5); }
-.inhabilitado { background: linear-gradient(135deg, #2aa9a1, #6fd3cb); }
-.imprimir { background: linear-gradient(135deg, #c58a00, #fbbf24); }
-.desactivar { background: linear-gradient(135deg, #0e7490, #38bdf8); }
-.actualizar { background: linear-gradient(135deg, #0f766e, #14b8a6); }
-.activar { background: linear-gradient(135deg, #7a9b00, #bef453); }
+.eliminar {
+    background: linear-gradient(135deg, #8b0000, #ff4d4d);
+}
+
+.detalle {
+    background: linear-gradient(135deg, #0f734d, #34d399);
+}
+
+.registrar {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+}
+
+.suspender {
+    background: linear-gradient(135deg, #b45309, #f59e0b);
+}
+
+.bloquear {
+    background: linear-gradient(135deg, #5b21b6, #8f63f5);
+}
+
+.inhabilitado {
+    background: linear-gradient(135deg, #2aa9a1, #6fd3cb);
+}
+
+.imprimir {
+    background: linear-gradient(135deg, #c58a00, #fbbf24);
+}
+
+.desactivar {
+    background: linear-gradient(135deg, #0e7490, #38bdf8);
+}
+
+.actualizar {
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+}
+
+.activar {
+    background: linear-gradient(135deg, #7a9b00, #bef453);
+}
+
 .logout,
 .eliminar,
-.cancelar { background: linear-gradient(135deg, #8a341e, #f6513b); }
-.confirmar { background: linear-gradient(135deg, #1aa36a, #41d48d); }
+.cancelar {
+    background: linear-gradient(135deg, #8a341e, #f6513b);
+}
+
+.confirmar {
+    background: linear-gradient(135deg, #1aa36a, #41d48d);
+}

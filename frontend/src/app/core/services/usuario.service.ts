@@ -21,6 +21,9 @@ export class UsuarioService {
     return this.http.get<any>(`${this.backendUrl}/usuario/listar/codigo/${codigo}`);
   }
 
+  listarActual(codigo: string): Observable<any> {
+    return this.http.get<any>(`${this.backendUrl}/usuario/listar/usuario/actual/${codigo}`);
+  }
   listarUsername(username: string): Observable<any> {
     return this.http.get<any>(`${this.backendUrl}/usuario/listar/username/${username}`);
   }

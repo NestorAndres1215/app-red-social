@@ -1,7 +1,5 @@
 <div class="card historial-item mb-3 shadow-sm rounded-4 border p-3 p-md-4">
     <div class="row g-3 align-items-center">
-
-        <!-- Columna Información -->
         <div class="col-12 col-md-10">
             <h5 class="card-title fw-bold">{{ item.tituloHistorial }}</h5>
 
@@ -11,13 +9,10 @@
                 <i class="fas fa-clock ms-3 me-1"></i>{{ item.horaHistorial }}
             </div>
         </div>
-
-        <!-- Columna Botón -->
         <div class="col-12 col-md-2 d-flex justify-content-md-end justify-content-start">
             <button type="button" class="btn btn-eliminar" (click)="onDelete()">
                 <i class="fas fa-trash-alt me-1"></i>Eliminar
             </button>
         </div>
-
     </div>
 </div>

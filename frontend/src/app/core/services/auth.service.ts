@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   loginWithGoogle(): void {
-      window.location.href = 'http://localhost:8090/red-social-app/auth-service/api/v1/oauth2/authorization/google';
+    window.location.href = 'http://localhost:8090/red-social-app/auth-service/api/v1/oauth2/authorization/google';
   }
 
 
