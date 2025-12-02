@@ -6,7 +6,6 @@ export function obtenerMaxFechaNacimiento(mayorDeEdad: number = 18): string {
   return `${anio}-${mes}-${dia}`;
 }
 
-/** Filtra un string y devuelve solo los números */
 export function filtrarSoloNumeros(valor: string): string {
   return valor.replace(/[^0-9]/g, '');
 }

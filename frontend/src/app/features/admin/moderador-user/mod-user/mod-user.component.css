@@ -1,16 +1,14 @@
-/* ====== TEXTO DE TABS INACTIVOS ====== */
+
 ::ng-deep .mat-mdc-tab .mdc-tab__text-label {
   color: black !important;
   font-weight: normal !important;
 }
 
-/* ====== TEXTO DEL TAB ACTIVO ====== */
 ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
-   color: #1e3a8a !important; /* azul */
+   color: #1e3a8a !important;
   font-weight: bold !important;
 }
 
-/* ====== COLOR DE LA LÍNEA (indicator) ====== */
 ::ng-deep .mat-mdc-tab .mdc-tab-indicator__content--underline {
   border-color: #1e3a8a !important; 
 }

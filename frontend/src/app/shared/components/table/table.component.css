@@ -6,29 +6,6 @@
     border: 1px solid #e0e0e0;
 }
 
-.btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-
-
-.btn-add {
-       background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    color: white;
-}
-
-
 .custom-table {
     width: 100%;
     background-color: #ffffff;
@@ -46,7 +23,6 @@
 .table-container {
     overflow-x: auto;
     padding: 30px 0px 0px 0px;
-
 }
 
 .custom-table th {
@@ -89,43 +65,6 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
-}
-
-.btn-view {
-   color: #1e3a8a; /* Verde */
-}
-
-.btn-view:hover {
-    color: #1e3a8a; /* Verde */
-  transform: scale(1.1);
-}
-
-.btn-edit {
-    color: #1e3a8a; /* Verde */
-}
-
-.btn-edit:hover {
-   color: #1e3a8a; /* Verde */
-  transform: scale(1.1);
-}
-
-.btn-delete {
-  color: #1e3a8a; /* Verde */
-}
-
-.btn-delete:hover {
-  color: #1e3a8a; /* Verde */
-  transform: scale(1.1);
-}
-
-
-.btn-print {
-  color: #1e3a8a; /* Verde */
-}
-
-.btn-print:hover {
-  color: #1e3a8a; 
-  transform: scale(1.1);
 }
 .sortable {
   cursor: pointer;

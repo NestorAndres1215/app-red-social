@@ -42,6 +42,11 @@ export const ADMIN_ROUTES: Routes = [
     loadComponent: () => import('../administrador-user/admin-suspendidos/admin-suspendidos.component')
       .then(m => m.AdminSuspendidosComponent)
   },
+  {
+    path: 'profile/:codigo/:userParam',
+    loadComponent: () => import('../administrador-user/detalle-perfiles-administradores/detalle-perfiles-administradores.component')
+      .then(m => m.DetallePerfilesAdministradoresComponent)
+  }
 ];
 
 

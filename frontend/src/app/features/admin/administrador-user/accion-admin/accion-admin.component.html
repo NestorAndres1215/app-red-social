@@ -1,4 +1,28 @@
-<app-tittle [title]="titulo" [icon]="icono" />
+<app-tittle [title]="titulo" [icon]="icono"></app-tittle>
+
+<div class="container my-4 pb-2">
+  <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
+
+    <ul class="list-group shadow-sm rounded-4">
+
+      <li 
+        class="list-group-item d-flex justify-content-between align-items-center py-3 action-item" 
+        *ngFor="let item of acciones">
+
+        <div>
+          <strong>{{ item.titulo }}</strong>
+          <p class="m-0 text-muted small">{{ item.descripcion }}</p>
+        </div>
+
+      </li>
+
+    </ul>
+
+  </header>
+</div>
+
+
+<!---
 <app-button label="Eliminar" icon="fas fa-trash" color="eliminar"></app-button>
 
 <app-button label="Detalle" icon="fas fa-info-circle" color="detalle"></app-button>
@@ -15,4 +39,4 @@
 <app-button label="Imprimir" icon="fas fa-print" color="imprimir"></app-button>
 <app-button label="Actualizar" icon="fas fa-sync-alt" color="actualizar"></app-button>
 <app-button label="Cerrar Sesión" icon="fas fa-sign-out-alt" color="logout"></app-button>
-<app-button label="Cancelar" icon="fas fa-times-circle" color="cancelar"></app-button>
+<app-button label="Cancelar" icon="fas fa-times-circle" color="cancelar"></app-button>---->

@@ -8,12 +8,12 @@
 .info-title {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #6b7280; /* gris bonito */
+  color: #6b7280;
 }
 
 .info-value {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #1f2937; /* gris oscuro */
+  color: #1f2937;
   margin-top: 4px;
 }

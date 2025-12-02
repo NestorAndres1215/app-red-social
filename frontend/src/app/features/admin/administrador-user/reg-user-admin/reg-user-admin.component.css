@@ -1,8 +1,8 @@
 .form-label {
-    color: #1e40af; /* Azul fuerte */
+    color: #1e40af;
 }
 
-/* Inputs y selects */
+
 .form-control,
 .form-select {
     border: 1.5px solid #cbd5e1;
@@ -17,7 +17,6 @@
     box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
 }
 
-/* Password icon */
 .password-wrapper .password-toggle {
     position: absolute;
     right: 12px;
@@ -32,7 +31,6 @@
     color: #1e3a8a;
 }
 
-/* Botón */
 .btn-login {
     background: #1e3a8a;
     color: #fff;

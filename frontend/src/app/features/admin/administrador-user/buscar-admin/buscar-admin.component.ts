@@ -4,6 +4,7 @@ import { SearchComponent } from "../../../../shared/components/search/search.com
 import { DetalleSearchComponent } from "../../../../shared/components/item/detalle-search/detalle-search.component";
 import { UsuarioService } from '../../../../core/services/usuario.service';
 import { Estados } from '../../../../core/constants/estados.contants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-buscar-admin',
@@ -20,10 +21,9 @@ export class BuscarAdminComponent {
   adminListadoOriginal: any[] = [];
   adminListado: any[] = [];
 
-  // LISTA COMPLETA para mostrar varios
   usuariosSeleccionados: any[] = [];
 
-  constructor(private usuarioService: UsuarioService) {
+  constructor(private usuarioService: UsuarioService, private router: Router) {
     this.listarAdminActivos();
   }
 
@@ -38,7 +38,6 @@ export class BuscarAdminComponent {
       });
   }
 
-  // FILTRO
   filtrar(text: string) {
     const value = text.toLowerCase().trim();
 
@@ -48,13 +47,12 @@ export class BuscarAdminComponent {
       (d.telefono && d.telefono.toLowerCase().includes(value))
     );
 
-    // 👉 MOSTRAR TODOS LOS USUARIOS FILTRADOS
     this.usuariosSeleccionados = [...this.adminListado];
   }
 
-  // Evento desde el hijo
   verDetalleUsuario(usuario: any) {
-    console.log("Detalle del usuario:", usuario);
+    this.router.navigate(['/admin/profile', usuario.codigo, usuario.username]);
   }
+
 
 }
