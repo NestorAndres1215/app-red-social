@@ -26,9 +26,9 @@ public class AdministradorController {
         return ResponseEntity.ok(administradorService.listar());
     }
 
-    @GetMapping("/listar/usuario/codigo/{usuarioCodigo}")
-    public ResponseEntity<Administrador> listarUsuarioCodigo(@PathVariable String usuarioCodigo) {
-        return ResponseEntity.ok(administradorService.listarAdministradorCodigoUser(usuarioCodigo));
+    @GetMapping("/listar/usuario/codigo/{codigo}")
+    public ResponseEntity<Administrador> listarCodigo(@PathVariable String codigo) {
+        return ResponseEntity.ok(administradorService.listarAdministradorCodigo(codigo));
     }
 
     @GetMapping("/listar/username/{username}")

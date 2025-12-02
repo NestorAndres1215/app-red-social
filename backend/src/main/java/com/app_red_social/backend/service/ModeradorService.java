@@ -1,15 +1,14 @@
 package com.app_red_social.backend.service;
 
-import com.app_red_social.backend.constants.messages.NotFoundMessages;
-import com.app_red_social.backend.constants.Roles;
-import com.app_red_social.backend.dto.request.RegisterRequest;
 
-import com.app_red_social.backend.dto.response.AdministradorActualResponse;
+import com.app_red_social.backend.constants.Roles;
+import com.app_red_social.backend.constants.messages.NotFoundMessages;
+import com.app_red_social.backend.dto.request.RegisterRequest;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
-import com.app_red_social.backend.mapper.AdministradorActualMapper;
 import com.app_red_social.backend.model.Administrador;
 import com.app_red_social.backend.model.Login;
-import com.app_red_social.backend.repository.AdministradorRepository;
+import com.app_red_social.backend.model.Moderador;
+import com.app_red_social.backend.repository.ModeradorRepository;
 import com.app_red_social.backend.util.Secuencia;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,40 +17,37 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AdministradorService {
+public class ModeradorService {
 
-    private final AdministradorRepository administradorRepository;
+    private final ModeradorRepository moderadorRepository;
     private final LoginService loginService;
 
 
-    public Administrador listarAdministradorCodigoUser(String usuarioCodigo) {
-        return administradorRepository.findByLogin_Codigo(usuarioCodigo)
+    public Moderador listarModeradorCodigo(String codigo) {
+        return moderadorRepository.findById(codigo)
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
     }
-    public Administrador listarAdministradorCodigo(String codigo) {
-        return administradorRepository.findById(codigo)
-                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
-    }
-    public Administrador listarUsername(String username) {
-        return administradorRepository.findByLogin_Username(username)
+
+    public Moderador listarUsername(String username) {
+        return moderadorRepository.findByLogin_Username(username)
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO));
     }
 
-    public Administrador listarEmail(String email) {
-        return administradorRepository.findByLogin_Email(email)
+    public Moderador listarEmail(String email) {
+        return moderadorRepository.findByLogin_Email(email)
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.EMAIL_NO_ENCONTRADO));
     }
 
-    public Administrador listarTelefono(String telefono) {
-        return administradorRepository.findByLogin_Telefono(telefono)
+    public Moderador listarTelefono(String telefono) {
+        return moderadorRepository.findByLogin_Telefono(telefono)
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.TELEFONO_NO_ENCONTRADO));
     }
 
-    public List<Administrador> listar() {
-        return administradorRepository.findAll();
+    public List<Moderador> listar() {
+        return moderadorRepository.findAll();
     }
 
-    public Administrador registrar(RegisterRequest registerRequest) {
+    public Moderador registrar(RegisterRequest registerRequest) {
 
         final String nuevoCodigoLogin = Secuencia.generarSiguienteCodigo(loginService.ultimoCodigo());
 
@@ -67,7 +63,7 @@ public class AdministradorService {
         Login login = loginService.listarCodigo(nuevoCodigoLogin);
         final String nuevoCodigoAdmin = Secuencia.generarSiguienteCodigo(ultimoCodigo());
 
-        Administrador admin = Administrador.builder()
+        Moderador moderador = Moderador.builder()
                 .codigo(nuevoCodigoAdmin)
                 .nombre(registerRequest.getNombre())
                 .apellido(registerRequest.getApellido())
@@ -78,73 +74,62 @@ public class AdministradorService {
                 .login(login)
                 .build();
 
-        return administradorRepository.save(admin);
+        return moderadorRepository.save(moderador);
     }
 
     public String ultimoCodigo() {
-        return administradorRepository.obtenerCodigo();
+        return moderadorRepository.obtenerCodigo();
     }
-
-
-    public AdministradorActualResponse obtenerPorLogin(String loginCodigo) {
-
-        List<Object[]> result = administradorRepository.obtenerAdministradorPorLogin(loginCodigo);
-
-        if (result.isEmpty()) {
-            throw new RuntimeException("Administrador no encontrado con login: " + loginCodigo);
-        }
-
-        return AdministradorActualMapper.toDto(result.get(0));
-    }
-
 
     public Login activar(String codigoAdmin) {
 
-        Administrador admin = administradorRepository.findById(codigoAdmin)
+        Moderador moderador = moderadorRepository.findById(codigoAdmin)
                 .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
 
-        String codigoLogin = admin.getLogin().getCodigo();
+        String codigoLogin = moderador.getLogin().getCodigo();
 
         return loginService.activar(codigoLogin);
     }
 
     public Login inactivar(String codigoAdmin) {
 
-        Administrador admin = administradorRepository.findById(codigoAdmin)
+        Moderador moderador = moderadorRepository.findById(codigoAdmin)
                 .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
 
-        String codigoLogin = admin.getLogin().getCodigo();
+        String codigoLogin = moderador.getLogin().getCodigo();
 
         return loginService.inactivar(codigoLogin);
     }
 
     public Login suspender(String codigoAdmin) {
 
-        Administrador admin = administradorRepository.findById(codigoAdmin)
+        Moderador moderador = moderadorRepository.findById(codigoAdmin)
                 .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
 
-        String codigoLogin = admin.getLogin().getCodigo();
+        String codigoLogin = moderador.getLogin().getCodigo();
 
         return loginService.suspender(codigoLogin);
     }
 
     public Login bloquear(String codigoAdmin) {
 
-        Administrador admin = administradorRepository.findById(codigoAdmin)
+        Moderador moderador = moderadorRepository.findById(codigoAdmin)
                 .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
 
-        String codigoLogin = admin.getLogin().getCodigo();
+        String codigoLogin = moderador.getLogin().getCodigo();
 
         return loginService.bloquear(codigoLogin);
     }
 
     public Login eliminar(String codigoAdmin) {
 
-        Administrador admin = administradorRepository.findById(codigoAdmin)
+        Moderador moderador = moderadorRepository.findById(codigoAdmin)
                 .orElseThrow(() -> new ResourceNotFoundException("Administrador no encontrado"));
 
-        String codigoLogin = admin.getLogin().getCodigo();
+        String codigoLogin = moderador.getLogin().getCodigo();
 
         return loginService.Eliminado(codigoLogin);
     }
+
+
 }

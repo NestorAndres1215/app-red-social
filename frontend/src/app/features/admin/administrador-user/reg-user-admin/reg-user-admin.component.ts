@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { TittleComponent } from '../../../../shared/components/tittle/tittle.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertService } from '../../../../core/services/alert.service';
-import { UsuarioService } from '../../../../core/services/usuario.service';
 import { Router } from '@angular/router';
 import { edadConvertir, filtrarSoloNumeros, obtenerMaxFechaNacimiento } from '../../../../core/utils/validators.utils';
 import { CommonModule } from '@angular/common';

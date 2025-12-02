@@ -32,7 +32,7 @@ public class Moderador {
     private LocalDate fechaNacimiento;
 
     @Column(name = "mod_nacionalidad")
-    private LocalDate nacionalidad;
+    private String nacionalidad;
 
     @Lob
     @Column(name = "mod_perfil", columnDefinition = "LONGBLOB")
