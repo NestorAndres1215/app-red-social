@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TittleComponent } from "../../../../shared/components/tittle/tittle.component";
 import { SearchComponent } from "../../../../shared/components/search/search.component";
 import { DetalleSearchComponent } from "../../../../shared/components/item/detalle-search/detalle-search.component";
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './buscar-admin.component.html',
   styleUrl: './buscar-admin.component.css',
 })
-export class BuscarAdminComponent {
+export class BuscarAdminComponent implements OnInit {
 
   titulo = 'Busqueda de Administradores';
   icono = 'fa-solid fa-magnifying-glass';
@@ -24,7 +24,10 @@ export class BuscarAdminComponent {
   usuariosSeleccionados: any[] = [];
 
   constructor(private usuarioService: UsuarioService, private router: Router) {
-    this.listarAdminActivos();
+   
+  }
+  ngOnInit(): void {
+  this.listarAdminActivos();
   }
 
   listarAdminActivos() {

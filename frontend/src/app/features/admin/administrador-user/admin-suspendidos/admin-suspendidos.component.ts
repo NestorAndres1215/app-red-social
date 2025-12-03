@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TittleComponent } from "../../../../shared/components/tittle/tittle.component";
 import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
 import { TableComponent } from "../../../../shared/components/table/table.component";
@@ -10,11 +10,11 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-suspendidos',
-  imports: [CommonModule,TittleComponent, PaginationComponent, TableComponent, SearchComponent, MatTabsModule],
+  imports: [CommonModule, TittleComponent, PaginationComponent, TableComponent, SearchComponent, MatTabsModule],
   templateUrl: './admin-suspendidos.component.html',
   styleUrl: './admin-suspendidos.component.css',
 })
-export class AdminSuspendidosComponent {
+export class AdminSuspendidosComponent implements OnInit {
 
   titulo = 'Administradores Suspendidos - Inhabilitados';
   icono = 'fa-solid fa-user-slash';
@@ -32,6 +32,9 @@ export class AdminSuspendidosComponent {
   ];
 
   constructor(private usuarioService: UsuarioService) {
+
+  }
+  ngOnInit(): void {
     this.listarAdminActivos();
     this.listarAdminDesactivos();
   }

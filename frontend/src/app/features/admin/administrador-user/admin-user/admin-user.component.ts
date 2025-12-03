@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TittleComponent } from '../../../../shared/components/tittle/tittle.component';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -22,9 +22,12 @@ import { AlertService } from '../../../../core/services/alert.service';
   templateUrl: './admin-user.component.html',
   styleUrls: ['./admin-user.component.css'],
 })
-export class AdminUserComponent {
+export class AdminUserComponent implements OnInit {
 
   constructor(private usuarioService: UsuarioService, private alertService: AlertService, private administradorService: AdministradorService, private breakpointObserver: BreakpointObserver, private dialog: MatDialog) {
+
+  }
+  ngOnInit(): void {
     this.listarAdminActivos();
     this.listarAdminDesactivos();
   }
@@ -43,17 +46,11 @@ export class AdminUserComponent {
     { etiqueta: 'Teléfono', clave: 'telefono' },
   ];
 
-  // ====================
-  // ACTIVOS
-  // ====================
   adminListadoOriginal: any[] = [];
   adminListado: any[] = [];
   datosFiltrados: any[] = [];
   pageActivos = 1;
 
-  // ====================
-  // INACTIVOS
-  // ====================
   adminListadoInactivoOriginal: any[] = [];
   adminListadoInactivo: any[] = [];
   datosFiltradosInactivo: any[] = [];
@@ -61,29 +58,15 @@ export class AdminUserComponent {
 
   itemsPerPageActivo = 5;
   itemsPerPageDesactivo = 5;
+  
   botonesConfig = {
-    ver: false,
-    actualizar: false,
     desactivar: true,
-    activar: false,       // opcional, mostrar según necesidad
     suspender: true,
-    inhabilitar: false,
-    bloquear: false,
-    imprimir: false,
-    cancelar: false
   };
 
   botonesConfig2 = {
-    ver: false,
-    actualizar: false,
-    desactivar: false,
-    activar: true,       // opcional, mostrar según necesidad
-    suspender: false,
-    inhabilitar: false,
-    bloquear: false,
-    imprimir: false,
-    cancelar: false
-  };
+    activar: true,
+  }
   listarAdminActivos() {
     const username = localStorage.getItem('username') || '';
 
@@ -106,9 +89,6 @@ export class AdminUserComponent {
       });
   }
 
-  // ==========================
-  // FILTRO
-  // ==========================
   filtrar(text: string) {
     const value = text.toLowerCase().trim();
 
@@ -133,17 +113,11 @@ export class AdminUserComponent {
     }
   }
 
-  // ==========================
-  // PAGINACIÓN ACTIVOS
-  // ==========================
   applyPaginationActivos() {
     const start = (this.pageActivos - 1) * this.itemsPerPageActivo;
     this.datosFiltrados = this.adminListado.slice(start, start + this.itemsPerPageActivo);
   }
 
-  // ==========================
-  // PAGINACIÓN INACTIVOS
-  // ==========================
   applyPaginationInactivos() {
     const start = (this.pageInactivos - 1) * this.itemsPerPageDesactivo;
     this.datosFiltradosInactivo = this.adminListadoInactivo.slice(start, start + this.itemsPerPageDesactivo);

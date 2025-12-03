@@ -19,7 +19,7 @@ import { ButtonComponent } from "../../button/button.component";
     ReactiveFormsModule,
     MatFormFieldModule,
     ButtonComponent
-],
+  ],
   templateUrl: './modal-eliminacion.component.html',
   styleUrl: './modal-eliminacion.component.css',
 })

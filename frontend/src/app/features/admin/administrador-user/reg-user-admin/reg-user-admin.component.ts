@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TittleComponent } from '../../../../shared/components/tittle/tittle.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertService } from '../../../../core/services/alert.service';
@@ -11,27 +11,30 @@ import { AdministradorService } from '../../../../core/services/administrador.se
 
 @Component({
   selector: 'app-reg-user-admin',
-  imports: [TittleComponent, ReactiveFormsModule,CommonModule],
+  imports: [TittleComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './reg-user-admin.component.html',
   styleUrls: ['./reg-user-admin.component.css'],
 })
-export class RegUserAdminComponent {
+export class RegUserAdminComponent implements OnInit {
 
   titulo = 'Registro de Administradores';
   icono = 'fas fa-user-plus';
 
   constructor(
     private alertService: AlertService,
-    private administradorService:   AdministradorService,
+    private administradorService: AdministradorService,
     private router: Router,
     private fb: FormBuilder
   ) {
 
+
+  }
+  ngOnInit(): void {
     this.maxFechaNacimiento = obtenerMaxFechaNacimiento(18);
     this.initForm();
   }
 
- soloNumerosInput(event: any) {
+  soloNumerosInput(event: any) {
     event.target.value = filtrarSoloNumeros(event.target.value);
   }
 

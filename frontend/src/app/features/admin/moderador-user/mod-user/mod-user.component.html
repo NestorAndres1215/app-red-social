@@ -24,7 +24,7 @@
 
           <app-search (searchChange)="filtrar($event)" />
 
-          <app-table [columnas]="columnas" [datos]="datosFiltradosInactivo" [botonesConfig]="botonesConfig" />
+          <app-table [columnas]="columnas" [datos]="datosFiltradosInactivo" [botonesConfig]="botonesConfig2" [onActivar]="activar.bind(this)" />
 
           <app-pagination [(page)]="pageInactivos"
             [totalPages]="MathInactivo.ceil(moderadorListadoInactivo.length / itemsPerPageDesactivo)"

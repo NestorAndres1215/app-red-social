@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -49,6 +49,7 @@ export class HistorialUserAdminComponent {
 
     this.cargarHistorial();
   }
+
 
   cargarHistorial() {
     const username = localStorage.getItem('username') || '';

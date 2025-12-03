@@ -26,10 +26,13 @@ export class RegModeradorUserComponent {
     private router: Router,
     private fb: FormBuilder
   ) {
+  }
 
+    ngOnInit(): void {
     this.maxFechaNacimiento = obtenerMaxFechaNacimiento(18);
     this.initForm();
   }
+
   soloNumerosInput(event: any) {
     event.target.value = filtrarSoloNumeros(event.target.value);
   }
