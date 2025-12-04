@@ -19,7 +19,10 @@ public class ModeradorController {
 
     private final ModeradorService moderadorService;
 
-
+    @GetMapping("/listar/codigo/{codigo}")
+    public ResponseEntity<Moderador> obtenerPorCodigo(@PathVariable String codigo) {
+        return ResponseEntity.ok(moderadorService.listarModeradorCodigo(codigo));
+    }
 
     @GetMapping("/listar/username/{username}")
     public ResponseEntity<Moderador> obtenerPorUsername(@PathVariable String username) {

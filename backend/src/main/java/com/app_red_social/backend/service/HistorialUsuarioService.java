@@ -15,6 +15,7 @@ import com.app_red_social.backend.repository.UsuarioRepository;
 import com.app_red_social.backend.util.Secuencia;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -58,9 +59,9 @@ public class HistorialUsuarioService {
     }
 
 
-    public List<HistorialResponse> listarHistorial( String username, String estado) {
+    public List<HistorialResponse> listarHistorial(Integer opcion, String username, String estado) {
 
-        List<Object[]> result = historialUsuarioRepository.obtenerHistorial( username, estado);
+        List<Object[]> result = historialUsuarioRepository.obtenerHistorial(opcion, username, estado);
 
         return historialMapper.toDtoList(result);
     }
