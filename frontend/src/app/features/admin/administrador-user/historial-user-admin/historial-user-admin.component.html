@@ -12,8 +12,7 @@
       </div>
       <div class="col-12 mt-3">
         <ng-container *ngIf="historial.length > 0; else noHistorial">
-          <app-historial-item *ngFor="let item of historial" [item]="item" (viewDetail)="onViewDetail($event)"
-            (update)="onUpdate($event)" (delete)="onDelete($event)" />
+          <app-historial-item *ngFor="let item of historial" [item]="item"/>
         </ng-container>
 
         <ng-template #noHistorial>

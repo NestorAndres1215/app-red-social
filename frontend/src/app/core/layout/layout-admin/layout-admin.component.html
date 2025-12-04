@@ -1,34 +1,24 @@
 <div class="example-container">
-  <!-- Toolbar -->
   <mat-toolbar class="example-toolbar">
-    <!-- Toggle Sidenav -->
     <button mat-icon-button (click)="sidenav.toggle()" class="sidenav-icon">
       <i class="fas fa-bars fa-lg" *ngIf="!sidenav.opened" style="font-size: 26px;"></i>
       <i class="fas fa-times fa-lg" *ngIf="sidenav.opened" style="font-size: 26px;"></i>
     </button>
-
     <span class="example-spacer"></span>
-
-    <!-- Usuario y Rol -->
     <div class="d-flex justify-content-center align-items-center my-2">
       <h4 class="mb-0">{{ username }}</h4>
       <h4 class="mb-0 ms-2">- Administrador</h4>
     </div>
-
   </mat-toolbar>
-
-  <!-- Sidenav -->
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav mode="push" [opened]="false">
       <mat-divider></mat-divider>
       <mat-list>
         <ng-container *ngFor="let menuItem of datosmenuPrimero">
-          <!-- Ítem principal -->
           <mat-list-item (click)="handleClick(menuItem)" style="cursor: pointer;">
             <mat-icon>{{ menuItem.icono }}</mat-icon>
             <span>{{ menuItem.nombre }}</span>
           </mat-list-item>
-          <!-- Submenús -->
           <ng-container *ngIf="menuItem.mostrarSubMenu && menu2FiltradoPorCategoria[menuItem.categoria]?.length">
             <mat-list-item *ngFor="let subMenuItem of menu2FiltradoPorCategoria[menuItem.categoria]"
               (click)="irARuta(subMenuItem.menuRuta)" style="padding-left: 50px; cursor: pointer;">

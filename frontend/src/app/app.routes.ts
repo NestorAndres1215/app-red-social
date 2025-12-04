@@ -34,10 +34,6 @@ export const routes: Routes = [
     canActivate: [NoAuthGuard]
   },
 
-  // ==========================
-  // 🔥 CORRECCIÓN AQUÍ
-  // ==========================
-
   {
     path: '',
     component: HomeUserComponent,
@@ -46,7 +42,7 @@ export const routes: Routes = [
       import('./features/user/routes/user.routes')
         .then(m => m.USER_ROUTES)
   },
-
+  
   {
     path: '',
     component: HomeAdminComponent,

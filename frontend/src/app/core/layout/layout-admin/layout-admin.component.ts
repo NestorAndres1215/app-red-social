@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav, MatSidenavModule} from '@angular/material/sidenav';
-import {  MatMenuTrigger } from '@angular/material/menu';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AuthService } from '../../services/auth.service';
@@ -12,23 +12,13 @@ import { MatListModule } from '@angular/material/list';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-
-
-
 @Component({
   selector: 'app-layout-admin',
   templateUrl: './layout-admin.component.html',
   styleUrls: ['./layout-admin.component.css'],
   standalone: true,
-  imports: [
-    CommonModule,
-    MatSidenavModule,
-    FormsModule,
-    MatDividerModule,
-    MatListModule,
-    MatIconModule,
-    MatToolbarModule,
-    RouterModule
+  imports: [CommonModule, MatSidenavModule, FormsModule, MatDividerModule,
+    MatListModule, MatIconModule, MatToolbarModule, RouterModule
   ]
 })
 export class LayoutAdminComponent implements OnInit {

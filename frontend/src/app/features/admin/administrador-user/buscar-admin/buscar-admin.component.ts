@@ -20,19 +20,16 @@ export class BuscarAdminComponent implements OnInit {
 
   adminListadoOriginal: any[] = [];
   adminListado: any[] = [];
-
   usuariosSeleccionados: any[] = [];
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {
-   
-  }
+  constructor(private usuarioService: UsuarioService, private router: Router) {}
+
   ngOnInit(): void {
-  this.listarAdminActivos();
+    this.listarAdminActivos();
   }
 
   listarAdminActivos() {
     const username = localStorage.getItem('username') || '';
-
     this.usuarioService.listarUsuariosAdmin(username, Estados.ACTIVO)
       .subscribe(data => {
         this.adminListadoOriginal = data;
@@ -40,6 +37,8 @@ export class BuscarAdminComponent implements OnInit {
         this.usuariosSeleccionados = [...this.adminListado];
       });
   }
+
+
 
   filtrar(text: string) {
     const value = text.toLowerCase().trim();

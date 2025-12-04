@@ -28,15 +28,11 @@ export class PerfilUserAdminComponent implements OnInit {
   listar() {
     this.authService.getCurrentUser().subscribe({
       next: user => {
-        console.log(user)
-        this.usuarioService.listarActual(user.codigo).subscribe({
-          next: data => {
+        this.usuarioService.listarActual(user.codigo).subscribe(
+          data => {
             this.usuario = data;
           },
-          error: err => {
-            console.error("Error en listarActual:", err);
-          }
-        });
+        );
       },
       error: err => {
         console.error("Error getCurrentUser:", err);

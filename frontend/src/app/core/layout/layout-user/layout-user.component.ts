@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-layout-user',
-    imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './layout-user.component.html',
   styleUrls: ['./layout-user.component.css']
 })
@@ -26,19 +26,14 @@ export class LayoutUserComponent implements OnInit {
   }
 
   loadUsername(): void {
-    this.authService.getCurrentUser().subscribe({
-      next: (user) => {
+    this.authService.getCurrentUser().subscribe(
+      user => {
         this.usuario = user;
         this.displayName = this.usuario.username.trim() || this.usuario.email;
       },
-      error: (err) => {
-        console.error('Error al obtener usuario', err);
-      }
-    });
+    );
   }
-    logout(): void {
-    // Aquí implementa tu lógica de cerrar sesión
-    console.log('Usuario ha cerrado sesión');
+  logout(): void {
     this.isLoggedIn = false;
     this.usuario = null;
     this.displayName = '';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutUserComponent } from "../layout-user/layout-user.component";
-import { RouterModule, RouterOutlet } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-sidebar-user',
   templateUrl: './sidebar-user.component.html',
   styleUrls: ['./sidebar-user.component.css'],
-  imports: [LayoutUserComponent,  RouterModule, CommonModule]
+  imports: [LayoutUserComponent, RouterModule, CommonModule]
 })
 export class SidebarUserComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class SidebarUserComponent implements OnInit {
   displayName: string = '';
   nombre: String = '';
 
-  constructor(private authService: AuthService) { } // nombre consistente
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadUsername();
@@ -29,7 +29,6 @@ export class SidebarUserComponent implements OnInit {
   }
 
   logout(): void {
-    // Aquí implementa tu lógica de cerrar sesión
     console.log('Usuario ha cerrado sesión');
     this.isLoggedIn = false;
     this.usuario = null;
@@ -37,19 +36,11 @@ export class SidebarUserComponent implements OnInit {
   }
 
   loadUsername(): void {
-    this.authService.getCurrentUser().subscribe({
-      next: (user) => {
+    this.authService.getCurrentUser().subscribe(
+      user => {
         this.usuario = user;
-  
-        // Si username está vacío, usar email
         this.displayName = this.usuario.username?.trim() || this.usuario.email;
-        console.log(this.displayName)
-
-      },
-      error: (err) => {
-        console.error('Error al obtener usuario', err);
-      }
-    });
+      });
   }
 
 }

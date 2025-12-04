@@ -17,7 +17,7 @@ export class DetallePerfilesModeradorComponent {
   icono = 'fas fa-user-lock';
 
   usuario: any;
-  userData: any[] = []; // 👉 Array para el card
+  userData: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -30,32 +30,29 @@ export class DetallePerfilesModeradorComponent {
   }
 
   listarActual(codigo: string) {
-    this.administradorService.listarUsuarioCodigo(codigo).subscribe({
-      next: (data) => {
-
+    this.administradorService.listarUsuarioCodigo(codigo).subscribe(
+      data => {
         this.usuario = data;
-
-        // 👉 Título principal
         this.titulo = `${data.nombre} ${data.apellido}`;
-
-        // 👉 Llenamos el array dinámico del card
-        this.userData = [
-          { label: 'Nombre', value: data.nombre },
-          { label: 'Apellido', value: data.apellido },
-          { label: 'Correo', value: data.login.email },
-          { label: 'Username', value: data.login.username },
-          { label: 'Teléfono', value: data.login.telefono },
-          { label: 'Edad', value: data.edad },
-          { label: 'Fecha de nacimiento', value: data.fechaNacimiento },
-          { label: 'Género', value: data.genero },
-          { label: 'Nacionalidad', value: data.nacionalidad }
-        ];
-
-        console.log("Título:", this.titulo);
+        this.userData = this.buildUserData(data);
       },
-      error: (error) => {
-        console.log('Error al obtener usuario:', error);
-      }
-    });
+
+    );
   }
+
+  buildUserData(data: any) {
+    return [
+      { label: 'Nombre', value: data.nombre },
+      { label: 'Apellido', value: data.apellido },
+      { label: 'Correo', value: data.login.email },
+      { label: 'Username', value: data.login.username },
+      { label: 'Teléfono', value: data.login.telefono },
+      { label: 'Edad', value: data.edad },
+      { label: 'Fecha de nacimiento', value: data.fechaNacimiento },
+      { label: 'Género', value: data.genero },
+      { label: 'Nacionalidad', value: data.nacionalidad }
+    ];
+  }
+
+
 }

@@ -22,9 +22,8 @@ export class BuscarModeradorAdminComponent {
 
   usuariosSeleccionados: any[] = [];
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {
-
-  }
+  constructor(private usuarioService: UsuarioService, private router: Router) {}
+  
   ngOnInit(): void {
     this.listarAdminActivos();
   }

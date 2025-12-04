@@ -5,8 +5,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-accion-admin',
-  imports: [    CommonModule,        // 👈 AGREGA ESTO
-    TittleComponent],
+  imports: [CommonModule, TittleComponent],
   templateUrl: './accion-admin.component.html',
   styleUrl: './accion-admin.component.css',
 })
