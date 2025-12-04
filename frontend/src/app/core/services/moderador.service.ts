@@ -17,7 +17,7 @@ export class ModeradorService {
     return this.http.post<any>(`${this.backendUrl}/moderador/registrar`, request);
   }
 
-   activar(codigoAdmin: string): Observable<any> {
+  activar(codigoAdmin: string): Observable<any> {
     return this.http.put(`${this.backendUrl}/moderador/activar/${codigoAdmin}`, {});
   }
 
@@ -36,4 +36,9 @@ export class ModeradorService {
   eliminar(codigoAdmin: string): Observable<any> {
     return this.http.put(`${this.backendUrl}/moderador/eliminar/${codigoAdmin}`, {});
   }
+
+  listarUsuarioCodigo(usuarioCodigo: string): Observable<any> {
+    return this.http.get<any>(`${this.backendUrl}/moderador/listar/codigo/${usuarioCodigo}`);
+  }
+
 }

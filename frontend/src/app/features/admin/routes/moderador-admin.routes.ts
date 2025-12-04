@@ -17,7 +17,12 @@ export const MOD_ADMIN_ROUTES: Routes = [
             .then(m => m.RolesPermisosComponent)
     },
     {
-        path: 'auditoria-moderado',
+        path: 'buscar-moderador',
+        loadComponent: () => import('../moderador-user/buscar-moderador-admin/buscar-moderador-admin.component')
+            .then(m => m.BuscarModeradorAdminComponent)
+    },
+    {
+        path: 'auditoria-moderador',
         loadComponent: () => import('../moderador-user/auditoria-moderador-admin/auditoria-moderador-admin.component')
             .then(m => m.AuditoriaModeradorAdminComponent)
     },
@@ -26,4 +31,10 @@ export const MOD_ADMIN_ROUTES: Routes = [
         loadComponent: () => import('../moderador-user/actividad-moderador-admin/actividad-moderador-admin.component')
             .then(m => m.ActividadModeradorAdminComponent)
     },
+
+    {
+        path: 'profile/:codigo/:userParam',
+        loadComponent: () => import('../moderador-user/detalle-perfiles-moderador/detalle-perfiles-moderador.component')
+            .then(m => m.DetallePerfilesModeradorComponent)
+    }
 ];

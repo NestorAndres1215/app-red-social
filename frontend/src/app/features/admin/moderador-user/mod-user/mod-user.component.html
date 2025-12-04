@@ -10,7 +10,8 @@
 
           <app-search (searchChange)="filtrar($event)" />
 
-          <app-table [columnas]="columnas" [datos]="datosFiltrados" [botonesConfig]="botonesConfig" />
+          <app-table [columnas]="columnas" [datos]="datosFiltrados" [botonesConfig]="botonesConfig" 
+            [onDesactivar]="desactivar.bind(this)" [onSuspender]="suspender.bind(this)"/>
 
           <app-pagination [(page)]="pageActivos"
             [totalPages]="MathActivo.ceil(moderadorListado.length / itemsPerPageActivo)"
