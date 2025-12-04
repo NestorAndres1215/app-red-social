@@ -25,6 +25,10 @@ export class HistorialUsuarioService {
     return this.http.get<any>(`${this.backendUrl}/historial-usuario/listar/historial/${username}/${estado}`);
   }
 
+  listarHistorialModerador(): Observable<any> {
+    return this.http.get<any>(`${this.backendUrl}/historial-usuario/listar/historial/moderador`);
+  }
+
   registrar(body: HistorialUsuarioModel): Observable<any> {
     return this.http.post<any>(`${this.backendUrl}/historial-usuario/registrar`, body);
   }

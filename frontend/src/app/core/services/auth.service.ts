@@ -76,4 +76,9 @@ export class AuthService {
   isAuthenticated(): boolean {
     return this.token !== null;
   }
+
+listarModeradoresLofin(){
+   return this.http.get<any>(`${this.backendUrl}/auth/listar/moderador`);
+}
+
 }
