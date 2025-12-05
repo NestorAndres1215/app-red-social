@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MENSAJES } from '../../../../core/constants/mensajes.constants';
 import { RegisterUser } from '../../../../core/models/register-user.model';
 import { AdministradorService } from '../../../../core/services/administrador.service';
+import { ButtonComponent } from "../../../../shared/components/button/button.component";
 
 @Component({
   selector: 'app-reg-user-admin',

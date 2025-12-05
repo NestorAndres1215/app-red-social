@@ -2,7 +2,7 @@
 <div class="container my-4 pb-2">
     <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
         <div class="row g-3 justify-content-center justify-content-md-between align-items-start">
-         <div class="col-12 col-sm-6 col-md-4">
+            <div class="col-12 col-sm-6 col-md-4">
                 <app-filter-select label="Filtrar por Username" [options]="username" [value]="selectedUsername"
                     (valueChange)="onUsernameChange($event)" />
             </div>
@@ -10,7 +10,7 @@
                 <app-filter-select label="Filtrar por Módulo" [options]="modulo" [value]="selectedModulo"
                     (valueChange)="onModuloChange($event)" />
             </div>
-             <div class="col-12 col-sm-6 col-md-4">
+            <div class="col-12 col-sm-6 col-md-4">
                 <app-filter-select label="Filtrar por Año" [options]="years" [value]="selectedYear"
                     (valueChange)="onYearChange($event)" />
             </div>
