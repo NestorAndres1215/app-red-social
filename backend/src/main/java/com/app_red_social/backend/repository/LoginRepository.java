@@ -27,6 +27,6 @@ public interface LoginRepository extends JpaRepository<Login, String> {
 
     boolean existsByTelefono(String telefono);
 
-
+    List<Login> findByRolNombre(String nombreRol);
 
 }

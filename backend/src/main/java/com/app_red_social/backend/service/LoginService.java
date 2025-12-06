@@ -8,6 +8,7 @@ import com.app_red_social.backend.exception.ResourceAlreadyExistsException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.mapper.RoleUserStatsMapper;
 import com.app_red_social.backend.model.EstadoUsuario;
+import com.app_red_social.backend.model.HistorialUsuario;
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.repository.EstadoUsuarioRepository;
@@ -32,6 +33,8 @@ public class LoginService {
     public String ultimoCodigo() {
         return loginRepository.obtenerCodigo();
     }
+
+
 
     public Login listarCodigo(String codigo) {
         return loginRepository.findById(codigo)

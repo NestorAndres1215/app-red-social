@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -28,6 +29,11 @@ public class AuthController {
     @GetMapping("/actual-usuario")
     public ResponseEntity<Login> obtenerUsuarioActual(Principal principal) {
         return ResponseEntity.ok(authService.actualUsuario(principal));
+    }
+
+    @GetMapping("/listar/moderador")
+    public ResponseEntity<List<Login>> listar() {
+        return ResponseEntity.ok(authService.listarModeradores());
     }
 }
 

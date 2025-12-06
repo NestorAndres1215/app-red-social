@@ -1,5 +1,7 @@
 package com.app_red_social.backend.service;
 
+import com.app_red_social.backend.constants.Estados;
+import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.dto.request.LoginRequest;
 import com.app_red_social.backend.dto.response.TokenResponse;
@@ -14,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -46,6 +49,11 @@ public class AuthService {
         String token = jwtUtils.generateToken(usuario);
         tokenService.createToken(token);
         return new TokenResponse(token);
+    }
+
+
+    public List<Login> listarModeradores() {
+        return loginRepository.findByRolNombre(Roles.ROLE_MODERADOR);
     }
 
 }
