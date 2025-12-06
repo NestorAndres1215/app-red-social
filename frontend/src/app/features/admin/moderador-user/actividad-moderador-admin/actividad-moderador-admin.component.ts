@@ -6,11 +6,12 @@ import { HistorialUsuarioService } from '../../../../core/services/historial-usu
 import { BarChartComponent } from "../../../../shared/components/chart/bar-chart/bar-chart.component";
 import { CommonModule } from '@angular/common';
 import { PieChartComponent } from "../../../../shared/components/chart/pie-chart/pie-chart.component";
+import { CardItemComponent } from "../../../../shared/components/card/card-item/card-item.component";
 
 @Component({
   selector: 'app-actividad-moderador-admin',
   standalone: true,
-  imports: [TittleComponent, BarChartComponent, CommonModule, PieChartComponent],
+  imports: [TittleComponent, BarChartComponent, CommonModule, PieChartComponent, CardItemComponent],
   templateUrl: './actividad-moderador-admin.component.html',
   styleUrl: './actividad-moderador-admin.component.css',
 })
@@ -18,6 +19,9 @@ export class ActividadModeradorAdminComponent implements OnInit {
 
   titulo = 'Actividad de Moderador';
   icono = 'fas fa-user-cog';
+
+  tituloBarChart = 'Porcentaje de Actividad por Módulo'
+  tituloPieChart = 'Porcentaje por Módulo'
 
   historialOriginal: any[] = [];
   historial: any[] = [];

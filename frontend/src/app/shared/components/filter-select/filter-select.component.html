@@ -2,7 +2,6 @@
   <div class="select-wrapper">
     <select class="modern-select" [(ngModel)]="value" (ngModelChange)="onSelectChange($event)">
       <option [ngValue]="null" disabled selected>Seleccionar filtro</option>
-
       <option *ngFor="let op of options" [value]="op">{{ op }}</option>
     </select>
     <div class="select-arrow">

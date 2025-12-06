@@ -8,7 +8,7 @@ import { Chart, registerables } from 'chart.js';
 })
 export class PieChartComponent implements AfterViewInit, OnChanges {
 
- @Input() titulo: string = '';
+ @Input() titulo: string = 'Grafico de Porcentaje';
   @Input() labels: string[] = [];
   @Input() data: number[] = [];
 
