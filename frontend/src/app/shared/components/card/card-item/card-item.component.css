@@ -1,16 +1,35 @@
-i {
-    font-size: 50px;
-    margin-bottom: 25px;
-    display: block;
-    transition: all 0.3s ease;
+.icon-bounce {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
     background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-    background-clip: text;
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.icon-bounce i {
+    font-size: 42px;
+    background: linear-gradient(45deg, #fff, #e0e7ff);
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.number {
-    font-size: 36px;
-    font-weight: 800;
+.title-gradient {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800 !important;
+    font-size: 1.4rem !important;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.number-counter {
+
     background: linear-gradient(135deg, #1e3a8a, #3b82f6);
     background-clip: text;
     -webkit-text-fill-color: transparent;
