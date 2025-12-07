@@ -19,7 +19,7 @@ public class EstadisticasModeradorMapper {
     public TotalCantidadResponse totalHistorial(Object[] row) {
 
         return TotalCantidadResponse.builder()
-                .total(row[1] != null ? (row[1].toString()) : null)
+                .total(row[0] != null ? (row[0].toString()) : null)
                 .build();
     }
 

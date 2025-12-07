@@ -2,6 +2,7 @@ package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.dto.response.EstadisticasResponse;
 
+import com.app_red_social.backend.dto.response.TotalCantidadResponse;
 import com.app_red_social.backend.service.EstadisticasService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,8 @@ public class EstadisticasController {
     }
 
     @GetMapping("/moderador/total-moderador")
-    public List<EstadisticasResponse> listarModeradorTotal() {
-        return estadisticasService.estadisticaModerador(2);
+    public List<TotalCantidadResponse> listarModeradorTotal() {
+        return estadisticasService.totalModerador(2);
     }
 
     @GetMapping("/moderador/genero")
