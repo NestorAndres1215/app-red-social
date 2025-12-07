@@ -1,6 +1,7 @@
 package com.app_red_social.backend.service;
 
 import com.app_red_social.backend.dto.response.EstadisticasResponse;
+import com.app_red_social.backend.dto.response.TotalCantidadResponse;
 import com.app_red_social.backend.mapper.EstadisticasModeradorMapper;
 import com.app_red_social.backend.repository.ModeradorRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,4 +25,15 @@ public class EstadisticasService {
                 .map(estadisticasModerador::porcentajeHistorial)
                 .toList();
     }
+
+    public List<TotalCantidadResponse> totalModerador(Integer opcion) {
+
+        List<Object[]> rows = moderadorRepository.estadisticasModerador(opcion);
+
+        return rows.stream()
+                .map(estadisticasModerador::totalHistorial)
+                .toList();
+    }
+
+
 }

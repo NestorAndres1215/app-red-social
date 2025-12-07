@@ -24,6 +24,11 @@ public class EstadisticasController {
         return estadisticasService.estadisticaModerador(1);
     }
 
+    @GetMapping("/moderador/total-moderador")
+    public List<EstadisticasResponse> listarModeradorTotal() {
+        return estadisticasService.estadisticaModerador(2);
+    }
+
     @GetMapping("/moderador/genero")
     public List<EstadisticasResponse> listarModeradorGenero() {
         return estadisticasService.estadisticaModerador(3);
