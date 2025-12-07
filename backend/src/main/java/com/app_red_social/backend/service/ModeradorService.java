@@ -4,8 +4,10 @@ package com.app_red_social.backend.service;
 import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.dto.request.RegisterRequest;
+
 import com.app_red_social.backend.exception.ResourceNotFoundException;
-import com.app_red_social.backend.model.Administrador;
+import com.app_red_social.backend.mapper.EstadisticasModeradorMapper;
+
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.Moderador;
 import com.app_red_social.backend.repository.ModeradorRepository;
@@ -130,6 +132,8 @@ public class ModeradorService {
 
         return loginService.Eliminado(codigoLogin);
     }
+
+
 
 
 }

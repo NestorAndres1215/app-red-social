@@ -9,10 +9,6 @@ import java.util.stream.Collectors;
 public class RoleUserStatsMapper {
 
     public static RoleUserStatsResponse map(Object[] record) {
-        if (record == null || record.length < 3) {
-            return null;
-        }
-
         int cantidad = 0;
         double porcentaje = 0.0;
         String periodo = "";
@@ -35,11 +31,9 @@ public class RoleUserStatsMapper {
             }
 
         } catch (NumberFormatException e) {
-            // En caso de error, dejar cantidad y porcentaje en 0
             cantidad = 0;
             porcentaje = 0.0;
         }
-
         return RoleUserStatsResponse.builder()
                 .cantidad(cantidad)
                 .porcentaje(porcentaje)

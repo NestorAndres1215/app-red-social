@@ -8,21 +8,6 @@ import java.util.Objects;
 
 @Component
 public class HistorialMapper {
-    public HistorialResponse toDto(Object[] row) {
-
-        if (row == null || row.length < 8) return null;
-
-        return HistorialResponse.builder()
-                .codigoHistorial(safe(row[0]))
-                .fechaHistorial(safe(row[1]))
-                .horaHistorial(safe(row[2]))
-                .usuarioHistorial(safe(row[3]))
-                .estadoHistorial(safe(row[4]))
-                .tituloHistorial(safe(row[5]))   // NUEVO
-                .moduloHistorial(safe(row[6]))   // NUEVO
-                .detalleHistorial(safe(row[7]))
-                .build();
-    }
 
     public List<HistorialResponse> toDtoList(List<Object[]> rows) {
         return rows.stream()
@@ -31,8 +16,17 @@ public class HistorialMapper {
                 .toList();
     }
 
-    private String safe(Object value) {
-        return value != null ? value.toString() : null;
+    public HistorialResponse toDto(Object[] row) {
+        return HistorialResponse.builder()
+                .codigoHistorial(row[0] != null ? row[0].toString() : null)
+                .fechaHistorial(row[1] != null ? row[1].toString() : null)
+                .horaHistorial(row[2] != null ? row[2].toString() : null)
+                .usuarioHistorial(row[3] != null ? row[3].toString() : null)
+                .estadoHistorial(row[4] != null ? row[4].toString() : null)
+                .tituloHistorial(row[5] != null ? row[5].toString() : null)
+                .moduloHistorial(row[6] != null ? row[6].toString() : null)
+                .detalleHistorial(row[7] != null ? row[7].toString() : null)
+                .build();
     }
 
 }

@@ -11,22 +11,20 @@ public class UsuarioMapper {
         if (row == null) return null;
 
         return UsuarioListaResponse.builder()
-                .codigo(toStr(row[0]))             // a.ad_codigo
-                .nombre(toStr(row[1]))             // a.ad_nombre
-                .apellido(toStr(row[2]))           // a.ad_apellido
-                .edad(toStr(row[3]))               // a.ad_edad
-                .fechaNacimiento(toStr(row[4]))    // a.ad_fecha_nacimiento
-                .genero(toStr(row[5]))             // a.ad_genero
-                .nacionalidad(toStr(row[6]))       // a.ad_nacionalidad
-                .perfil(toStr(row[7]))             // a.ad_perfil
-
-                .username(toStr(row[8]))           // l.lg_username
-                .correo(toStr(row[9]))             // l.lg_correo
-                .telefono(toStr(row[10]))          // l.lg_telefono
-
-                .fechaRegistro(toStr(row[11]))     // l.lg_fecha_registro
-                .ultimoLogin(toStr(row[12]))       // l.lg_ultimo_login
-                .estado(toStr(row[13]))            // e.st_nombre
+                .codigo(toStr(row[0]))
+                .nombre(toStr(row[1]))
+                .apellido(toStr(row[2]))
+                .edad(toStr(row[3]))
+                .fechaNacimiento(toStr(row[4]))
+                .genero(toStr(row[5]))
+                .nacionalidad(toStr(row[6]))
+                .perfil(toStr(row[7]))
+                .username(toStr(row[8]))
+                .correo(toStr(row[9]))
+                .telefono(toStr(row[10]))
+                .fechaRegistro(toStr(row[11]))
+                .ultimoLogin(toStr(row[12]))
+                .estado(toStr(row[13]))
                 .build();
     }
 

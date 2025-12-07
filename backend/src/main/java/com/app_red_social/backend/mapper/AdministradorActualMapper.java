@@ -22,10 +22,7 @@ public class AdministradorActualMapper {
                 .apellido((String) row[2])
                 .nombreCompleto((String) row[3])
                 .edad(row[4] != null ? ((Number) row[4]).intValue() : null)
-
-                // ⬇ fechaNacimiento como String
                 .fechaNacimiento(row[5] != null ? DATE_FORMAT.format((Date) row[5]) : null)
-
                 .fechaNacimientoFormateada(row[6] != null ? row[6].toString() : null)
                 .edadCalculada(row[7] != null ? ((Number) row[7]).intValue() : null)
                 .genero((String) row[8])
@@ -37,8 +34,6 @@ public class AdministradorActualMapper {
                 .username((String) row[14])
                 .rol((String) row[15])
                 .estadoUsuario((String) row[16])
-
-                // ⬇ ultimoLogin y fechaRegistro como String
                 .ultimoLogin(row[17] != null ? DATETIME_FORMAT.format((Timestamp) row[17]) : null)
                 .fechaRegistro(row[18] != null ? DATETIME_FORMAT.format((Timestamp) row[18]) : null)
                 .build();

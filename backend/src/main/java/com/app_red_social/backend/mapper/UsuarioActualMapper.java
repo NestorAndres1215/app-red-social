@@ -8,6 +8,10 @@ import java.util.List;
 @Component
 public class UsuarioActualMapper {
 
+    public List<UsuarioActualResponse> toList(List<Object[]> rows) {
+        return rows.stream().map(this::toDTO).toList();
+    }
+
     public UsuarioActualResponse toDTO(Object[] row) {
         return UsuarioActualResponse.builder()
                 .codigoUsuario((String) row[0])
@@ -34,7 +38,5 @@ public class UsuarioActualMapper {
     }
 
 
-    public List<UsuarioActualResponse> toList(List<Object[]> rows) {
-        return rows.stream().map(this::toDTO).toList();
-    }
+
 }
