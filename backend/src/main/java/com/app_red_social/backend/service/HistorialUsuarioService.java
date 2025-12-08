@@ -42,6 +42,8 @@ public class HistorialUsuarioService {
                 .codigo(nuevoCodigo)
                 .estado(Estados.ACTIVO)
                 .login(login)
+                .titulo(historialUsuarioRequest.getTitulo())
+                .modulo(historialUsuarioRequest.getModulo())
                 .fechaRegistro(LocalDateTime.now())
                 .detalle(historialUsuarioRequest.getDetalle())
                 .build();

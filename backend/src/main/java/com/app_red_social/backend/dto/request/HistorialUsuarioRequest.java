@@ -10,17 +10,19 @@ import java.time.LocalDate;
 @Data
 public class HistorialUsuarioRequest {
 
-    private String codigo;
-
-    @NotNull(message = "LA FECHA DEL HISTORIAL ES OBLIGATORIA.")
-    @PastOrPresent(message = "LA FECHA DEL HISTORIAL NO PUEDE SER FUTURA.")
-    private LocalDate fecha;
+    private String codigo; // opcional, backend puede ignorarlo
 
     @NotBlank(message = "EL USUARIO DEL HISTORIAL ES OBLIGATORIO.")
     private String usuario;
 
     @NotBlank(message = "EL ESTADO DEL HISTORIAL ES OBLIGATORIO.")
     private String estado;
+
+    @NotBlank(message = "EL TÍTULO DEL HISTORIAL ES OBLIGATORIO.")
+    private String titulo;
+
+    @NotBlank(message = "EL MÓDULO DEL HISTORIAL ES OBLIGATORIO.")
+    private String modulo;
 
     @NotBlank(message = "EL DETALLE DEL HISTORIAL ES OBLIGATORIO.")
     @Size(max = 500, message = "EL DETALLE NO PUEDE EXCEDER LOS 500 CARACTERES.")
