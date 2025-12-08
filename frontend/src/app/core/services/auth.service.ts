@@ -31,6 +31,11 @@ export class AuthService {
     return this.http.post(`${this.backendUrl}/auth/generate-token`, loginData);
   }
 
+  registrarLogueo(username: string) {
+    return this.http.post(`${this.backendUrl}/auth/ultimo-login/${username}`, {});
+  }
+
+
   isLoggedIn() {
     let tokenStr = localStorage.getItem('jwt');
     if (tokenStr == undefined || tokenStr == '' || tokenStr == null) {
@@ -77,8 +82,8 @@ export class AuthService {
     return this.token !== null;
   }
 
-listarModeradoresLofin(){
-   return this.http.get<any>(`${this.backendUrl}/auth/listar/moderador`);
-}
+  listarModeradoresLofin() {
+    return this.http.get<any>(`${this.backendUrl}/auth/listar/moderador`);
+  }
 
 }

@@ -42,7 +42,7 @@ export class LoginComponent {
   }
 
   loginWithGoogle(): void {
-    this.authService.loginWithGoogle(); 
+    this.authService.loginWithGoogle();
   }
 
   registro() {
@@ -79,6 +79,8 @@ export class LoginComponent {
 
             localStorage.setItem('username', user.username);
 
+            this.registrarLogueo(user.username)
+
             switch (rol) {
               case ROLES.ROLE_ADMIN:
                 this.router.navigate(['/admin']);
@@ -103,5 +105,13 @@ export class LoginComponent {
       }
     });
   }
+
+  registrarLogueo(usuario: string) {
+    console.log(usuario)
+    this.authService.registrarLogueo(usuario).subscribe(() => {
+      console.log("Último login registrado correctamente");
+    });
+  }
+
 
 }
