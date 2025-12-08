@@ -3,6 +3,7 @@ package com.app_red_social.backend.controller;
 import com.app_red_social.backend.dto.request.LoginRequest;
 import com.app_red_social.backend.dto.response.TokenResponse;
 import com.app_red_social.backend.model.Login;
+import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.service.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -35,6 +36,12 @@ public class AuthController {
     public ResponseEntity<List<Login>> listar() {
         return ResponseEntity.ok(authService.listarModeradores());
     }
+
+    @PostMapping("/ultimo-login/{username}")
+    public ResponseEntity<Login> registrar(@PathVariable String username) {
+        return ResponseEntity.ok(authService.ultimoLogueo(username));
+    }
+
 }
 
 

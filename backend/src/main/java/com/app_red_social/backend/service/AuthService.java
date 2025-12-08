@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -56,4 +57,13 @@ public class AuthService {
         return loginRepository.findByRolNombre(Roles.ROLE_MODERADOR);
     }
 
+
+    public Login ultimoLogueo(String username){
+
+        Login login = loginRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO));
+
+        login.setUltimoLogin(LocalDateTime.now());
+        return loginRepository.save(login);
+    }
 }

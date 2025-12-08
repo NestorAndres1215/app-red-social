@@ -38,10 +38,5 @@ public class AdministradorActualMapper {
                 .fechaRegistro(row[18] != null ? DATETIME_FORMAT.format((Timestamp) row[18]) : null)
                 .build();
     }
-    public List<AdministradorActualResponse> toList(List<Object[]> rows) {
-        return rows.stream()
-                .map(AdministradorActualMapper::toDto)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-    }
+
 }

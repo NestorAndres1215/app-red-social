@@ -36,7 +36,4 @@ public class UsuarioActualMapper {
                 .estadoDescripcion((String) row[19])
                 .build();
     }
-
-
-
 }

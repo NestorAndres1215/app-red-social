@@ -9,14 +9,7 @@ import java.util.Objects;
 @Component
 public class HistorialMapper {
 
-    public List<HistorialResponse> toDtoList(List<Object[]> rows) {
-        return rows.stream()
-                .map(this::toDto)
-                .filter(Objects::nonNull)
-                .toList();
-    }
-
-    public HistorialResponse toDto(Object[] row) {
+    public HistorialResponse listarHistorial(Object[] row) {
         return HistorialResponse.builder()
                 .codigoHistorial(row[0] != null ? row[0].toString() : null)
                 .fechaHistorial(row[1] != null ? row[1].toString() : null)

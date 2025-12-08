@@ -63,7 +63,9 @@ public class HistorialUsuarioService {
 
         List<Object[]> result = historialUsuarioRepository.obtenerHistorial(opcion, username, estado);
 
-        return historialMapper.toDtoList(result);
+        return result.stream()
+                .map(historialMapper::listarHistorial)
+                .toList();
     }
 
     public HistorialUsuario inactivar(String codigo) {
