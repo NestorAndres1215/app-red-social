@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { LoginAuth } from '../../../core/models/login-auth.model';
 import { ROLES } from '../../../core/constants/roles.contants';
 import { MENSAJES } from '../../../core/constants/mensajes.constants';
+import { HistorialUsuarioService } from '../../../core/services/historial-usuario.service';
+import { HistorialUsuarioModel } from '../../../core/models/historial-usuario-model';
+import { Estados } from '../../../core/constants/estados.contants';
 
 @Component({
   selector: 'app-login.component',
@@ -20,6 +23,7 @@ export class LoginComponent {
   showPassword = false;
 
   constructor(
+    private historial: HistorialUsuarioService,
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
@@ -107,10 +111,25 @@ export class LoginComponent {
   }
 
   registrarLogueo(usuario: string) {
-    console.log(usuario)
+
     this.authService.registrarLogueo(usuario).subscribe(() => {
-      console.log("Último login registrado correctamente");
+      this.registroHistorial(usuario)
     });
+  }
+
+
+  registroHistorial(usuario: string) {
+    const historial: HistorialUsuarioModel = {
+      estado: Estados.ACTIVO,
+      detalle: 'Inicio de sesion de esta cuenta',
+      titulo: 'INICIO DE SESION',
+      modulo: 'LOGIN',
+      usuario: usuario
+    }
+    this.historial.registrar(historial).subscribe(() => {
+
+    })
+
   }
 
 

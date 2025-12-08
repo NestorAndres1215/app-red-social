@@ -1,9 +1,11 @@
 export interface HistorialUsuarioModel {
   codigo?: string;
-  fecha: string;
+  fecha?: string;
   estado: string;
   detalle: string;
-
+  titulo: string;
+  modulo: string;
+  usuario: String;
 }
 
 export interface HistorialListModel {
