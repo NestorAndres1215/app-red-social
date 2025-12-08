@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { TittleComponent } from "../../../../shared/components/tittle/tittle.component";
-import { FilterSelectComponent } from "../../../../shared/components/filter-select/filter-select.component";
-import { AuthService } from '../../../../core/services/auth.service';
 import { HistorialUsuarioService } from '../../../../core/services/historial-usuario.service';
 import { BarChartComponent } from "../../../../shared/components/chart/bar-chart/bar-chart.component";
 import { CommonModule } from '@angular/common';
 import { PieChartComponent } from "../../../../shared/components/chart/pie-chart/pie-chart.component";
 import { CardItemComponent } from "../../../../shared/components/card/card-item/card-item.component";
+import { EstadisticasService } from '../../../../core/services/estadisticas.service';
 
 @Component({
   selector: 'app-actividad-moderador-admin',
   standalone: true,
-  imports: [TittleComponent, BarChartComponent, CommonModule, PieChartComponent, CardItemComponent],
+  imports: [TittleComponent, CommonModule, PieChartComponent, CardItemComponent, BarChartComponent],
   templateUrl: './actividad-moderador-admin.component.html',
   styleUrl: './actividad-moderador-admin.component.css',
 })
@@ -30,39 +29,73 @@ export class ActividadModeradorAdminComponent implements OnInit {
   dataPorcentaje: number[] = [];
 
   constructor(
+    private estadisticasService: EstadisticasService,
     private historiaService: HistorialUsuarioService,
-    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.cargarHistorial();
+
+    this.cargarTotalModerador();
+    this.cargarTotalModeradorActivos();
+    this.cargaPorcentajeHistorial();
   }
 
-  cargarHistorial() {
-    this.historiaService.listarHistorialModerador().subscribe(data => {
-      this.historialOriginal = data;
-      this.calcularPorcentajePorModulo();
+  totalModerador = "";
+  tituloTotalModerador = "Total de Usuarios Moderadores";
+
+  tituloTotalModeradorActivos = "Total de Usuarios Activos";
+  totalActivos = "";
+  porcentajeActivos: number = 0;
+  atributoActivos: string = '';
+
+  tituloTotalModeradorInactivos = "Total de Usuarios Inactivos";
+  totalInactivos = "";
+  porcentajeInactivos: number = 0;
+  atributoInactivos: string = '';
+
+  cargarTotalModerador() {
+    this.estadisticasService.listarTotalCantidadModerador().subscribe(data => {
+      this.totalModerador = data[0]?.total ?? 0;
+    });
+  }
+
+  cargarTotalModeradorActivos() {
+    this.estadisticasService.listarPorcentajeEstadoModerador().subscribe(data => {
+      const itemActivo = data.find((x: any) => x.atributo === 'ACTIVO') ?? null;
+      this.totalActivos = itemActivo ? (itemActivo.total) : "";
+      this.porcentajeActivos = itemActivo ? Number(itemActivo.porcentaje) : 0;
+      this.atributoActivos = itemActivo ? itemActivo.atributo : 'SIN DATOS';
+
+      const itemInactivo = data.find((x: any) => x.atributo === 'INACTIVO') ?? null;
+      this.totalInactivos = itemInactivo ? itemInactivo.total : 0;
+      this.porcentajeInactivos = itemInactivo ? itemInactivo.porcentaje : 0;
+      this.atributoInactivos = itemInactivo ? itemInactivo.atributo : '';
+    });
+  }
+  listaHistorial: any[] = [];
+  labelsHistorial: string[] = [];
+  dataHistorial: number[] = [];
+
+  cargaPorcentajeHistorial() {
+    this.estadisticasService.listarPorcentajeModulosModerador().subscribe((data: any[]) => {
+
+      this.listaHistorial = data;
+      this.labelsHistorial = data.map(item => item.atributo);
+      this.dataHistorial = data.map(item =>
+        Number(item.porcentaje.replace('%', '').trim())
+      );
+      console.log(this.dataHistorial)
     });
   }
 
 
 
-  calcularPorcentajePorModulo() {
 
-    if (!this.historialOriginal.length) return;
 
-    const total = this.historialOriginal.length;
-    const conteoPorModulo: { [key: string]: number } = {};
 
-    this.historialOriginal.forEach(item => {
-      const modulo = item.moduloHistorial;
-      conteoPorModulo[modulo] = (conteoPorModulo[modulo] || 0) + 1;
-    });
 
-    this.labelsModulo = Object.keys(conteoPorModulo);
-    this.dataPorcentaje = this.labelsModulo.map(modulo =>
-      Number(((conteoPorModulo[modulo] / total) * 100).toFixed(2))
-    );
 
-  }
+
 }
+
+

@@ -10,13 +10,15 @@ Chart.register(...registerables);
   styleUrl: './bar-chart.component.css',
 })
 export class BarChartComponent {
- @Input() labels: string[] = [];
+  @Input() labels: string[] = [];
   @Input() data: number[] = [];
-@Input() titulo: string = 'Gráfico de Barras';
+  @Input() titulo: string = 'Gráfico de Barras';
   @ViewChild('barCanvas') barCanvas!: ElementRef<HTMLCanvasElement>;
   barChart!: Chart;
 
   ngAfterViewInit(): void {
+    console.log("hola")
+    console.log(this.data)
     if (this.labels.length > 0 && this.data.length > 0) {
       this.renderChart();
     }
@@ -32,6 +34,7 @@ export class BarChartComponent {
   }
 
   renderChart() {
+    console.log(this.labels)
     this.barChart = new Chart(this.barCanvas.nativeElement, {
       type: 'bar',
       data: {

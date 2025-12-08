@@ -8,7 +8,7 @@ import { Chart, registerables } from 'chart.js';
 })
 export class PieChartComponent implements AfterViewInit, OnChanges {
 
- @Input() titulo: string = 'Grafico de Porcentaje';
+  @Input() titulo: string = 'Grafico de Porcentaje';
   @Input() labels: string[] = [];
   @Input() data: number[] = [];
 
@@ -28,6 +28,7 @@ export class PieChartComponent implements AfterViewInit, OnChanges {
   }
 
   renderChart() {
+
     if (!this.pieCanvas) return;
 
     this.chart = new Chart(this.pieCanvas.nativeElement, {
@@ -36,14 +37,26 @@ export class PieChartComponent implements AfterViewInit, OnChanges {
         labels: this.labels,
         datasets: [
           {
-            data: this.data
+            data: this.data, // ← NÚMEROS
           }
         ]
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: (context: any) => {
+                const label = context.label || '';
+                const value = context.raw; // número
+                return ` ${value}%`; // ← aquí agregas el %
+              }
+            }
+          }
+        }
       }
     });
   }
+
 }
