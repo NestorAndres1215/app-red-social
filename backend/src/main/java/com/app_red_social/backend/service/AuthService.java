@@ -2,9 +2,12 @@ package com.app_red_social.backend.service;
 
 import com.app_red_social.backend.constants.Estados;
 import com.app_red_social.backend.constants.Roles;
+import com.app_red_social.backend.constants.messages.GlobalErrorMessages;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
+import com.app_red_social.backend.dto.request.ContrasenaRequest;
 import com.app_red_social.backend.dto.request.LoginRequest;
 import com.app_red_social.backend.dto.response.TokenResponse;
+import com.app_red_social.backend.exception.BadRequestException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.repository.LoginRepository;
@@ -13,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -27,6 +31,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
     private final JwtUtil jwtUtils;
+    private final PasswordEncoder passwordEncoder;
 
     public Login actualUsuario(Principal principal) {
         Login login = loginRepository.findByUsername(principal.getName())
@@ -58,7 +63,7 @@ public class AuthService {
     }
 
 
-    public Login ultimoLogueo(String username){
+    public Login ultimoLogueo(String username) {
 
         Login login = loginRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO));
@@ -66,4 +71,25 @@ public class AuthService {
         login.setUltimoLogin(LocalDateTime.now());
         return loginRepository.save(login);
     }
+
+    public Login cambiarContrasena(ContrasenaRequest contrasenaRequest) {
+
+        if (!contrasenaRequest.getNuevaContrasena()
+                .equals(contrasenaRequest.getConfirmarContrasena())) {
+            throw new BadRequestException(GlobalErrorMessages.PASSWORD_NO_COINCIDE);
+        }
+
+        Login login = loginRepository.findByUsername(contrasenaRequest.getUsuario())
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.USERNAME_NO_ENCONTRADO));
+
+        if (passwordEncoder.matches(contrasenaRequest.getNuevaContrasena(), login.getPassword())) {
+            throw new BadRequestException(GlobalErrorMessages.PASSWORD_IGUAL_ANTERIOR);
+        }
+
+        String passwordEncriptada = passwordEncoder.encode(contrasenaRequest.getNuevaContrasena());
+        login.setPassword(passwordEncriptada);
+
+        return loginRepository.save(login);
+    }
+
 }

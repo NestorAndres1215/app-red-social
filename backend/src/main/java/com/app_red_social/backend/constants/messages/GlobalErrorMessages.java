@@ -17,5 +17,7 @@ public class GlobalErrorMessages {
     public static final String TOKEN_NO_VALIDO_PARA_USUARIO = "TOKEN_NO_VALIDO_PARA_USUARIO";
     public static final String ERROR_VALIDANDO_TOKEN = "ERROR_VALIDANDO_TOKEN";
     public static final String TOKEN_NO_ENCONTRADO = "TOKEN_NO_ENCONTRADO";
+    public static final String PASSWORD_NO_COINCIDE = "LAS CONTRASEÑAS NO COINCIDEN";
+    public static final String PASSWORD_IGUAL_ANTERIOR = "LA NUEVA CONTRASEÑA NO PUEDE SER IGUAL A LA ACTUAL";
 
 }

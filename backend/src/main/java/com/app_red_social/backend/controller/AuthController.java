@@ -1,5 +1,6 @@
 package com.app_red_social.backend.controller;
 
+import com.app_red_social.backend.dto.request.ContrasenaRequest;
 import com.app_red_social.backend.dto.request.LoginRequest;
 import com.app_red_social.backend.dto.response.TokenResponse;
 import com.app_red_social.backend.model.Login;
@@ -40,6 +41,11 @@ public class AuthController {
     @PostMapping("/ultimo-login/{username}")
     public ResponseEntity<Login> registrar(@PathVariable String username) {
         return ResponseEntity.ok(authService.ultimoLogueo(username));
+    }
+
+    @PutMapping("/actualizar/contrasenia")
+    public ResponseEntity<Login> actualizarContrasenia(@Valid @RequestBody ContrasenaRequest contrasenaRequest) {
+        return ResponseEntity.ok(authService.cambiarContrasena(contrasenaRequest));
     }
 
 }
