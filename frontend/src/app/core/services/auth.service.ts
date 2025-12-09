@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
+import { ContrasenaAuht } from '../models/login-auth.model';
 
 @Injectable({
   providedIn: 'root',
@@ -84,6 +85,10 @@ export class AuthService {
 
   listarModeradoresLofin() {
     return this.http.get<any>(`${this.backendUrl}/auth/listar/moderador`);
+  }
+
+  actualizarCambioContrasenia(request: ContrasenaAuht): Observable<any> {
+    return this.http.put<any>(`${this.backendUrl}/auth/actualizar/contrasenia`, request);
   }
 
 }
