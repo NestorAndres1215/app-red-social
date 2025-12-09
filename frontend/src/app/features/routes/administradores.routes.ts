@@ -12,5 +12,11 @@ export const ADMINISTRADOR_ROUTES: Routes = [
         loadChildren: () =>
             import('../admin/routes/moderador-admin.routes')
                 .then(m => m.MOD_ADMIN_ROUTES)
+    },
+    {
+        path: 'configuracion-admin',
+        loadChildren: () =>
+            import('../admin/routes/configuracion-admin.routes')
+                .then(m => m.CONFIG_ADMIN_ROUTES)
     }
 ];

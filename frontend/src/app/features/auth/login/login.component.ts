@@ -111,7 +111,6 @@ export class LoginComponent {
   }
 
   registrarLogueo(usuario: string) {
-
     this.authService.registrarLogueo(usuario).subscribe(() => {
       this.registroHistorial(usuario)
     });
