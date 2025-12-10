@@ -4,7 +4,6 @@ import com.app_red_social.backend.dto.request.ContrasenaRequest;
 import com.app_red_social.backend.dto.request.LoginRequest;
 import com.app_red_social.backend.dto.response.TokenResponse;
 import com.app_red_social.backend.model.Login;
-import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.service.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -47,6 +46,7 @@ public class AuthController {
     public ResponseEntity<Login> actualizarContrasenia(@Valid @RequestBody ContrasenaRequest contrasenaRequest) {
         return ResponseEntity.ok(authService.cambiarContrasena(contrasenaRequest));
     }
+
 
 }
 
