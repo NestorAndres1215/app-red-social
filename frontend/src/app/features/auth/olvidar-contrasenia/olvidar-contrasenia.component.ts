@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CodigoVerificacionService } from '../../../core/services/codigo-verificacion.service';
 import { AlertService } from '../../../core/services/alert.service';
 import { MENSAJES } from '../../../core/constants/mensajes.constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-olvidar-contrasenia',
@@ -14,7 +15,7 @@ import { MENSAJES } from '../../../core/constants/mensajes.constants';
 export class OlvidarContraseniaComponent implements OnInit {
   formulario!: FormGroup;
 
-  constructor(private fb: FormBuilder,private alertService:AlertService, private codigoVerficacion: CodigoVerificacionService) { }
+  constructor(private fb: FormBuilder,private router:Router,private alertService:AlertService, private codigoVerficacion: CodigoVerificacionService) { }
 
   ngOnInit(): void {
     this.initForm()
@@ -34,7 +35,7 @@ export class OlvidarContraseniaComponent implements OnInit {
 
     this.codigoVerficacion.verificarCorreo(nombre).subscribe({
       next: (data) => {
-        console.log("Respuesta:", data);
+        this.router.navigate(['/auth/codigo-verificacion']);
       },
       error: (error) => {
         this.alertService.error(MENSAJES.ERROR_TITULO, error.error.message);
