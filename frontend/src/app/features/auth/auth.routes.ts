@@ -20,5 +20,10 @@ export const AUTH_ROUTES: Routes = [
         loadComponent: () => import('./registro/registro.component')
             .then(m => m.RegistroComponent)
     },
+        {
+        path: 'olvidar-contrasena',
+        loadComponent: () => import('./olvidar-contrasenia/olvidar-contrasenia.component')
+            .then(m => m.OlvidarContraseniaComponent)
+    },
 
 ];

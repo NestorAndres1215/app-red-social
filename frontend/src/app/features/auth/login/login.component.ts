@@ -54,7 +54,7 @@ export class LoginComponent {
   }
 
   olvidarContrasena() {
-    //   this.router.navigate(['/auth/olvidar-contrasena'])
+    this.router.navigate(['/auth/olvidar-contrasena'])
   }
 
   operar() {
