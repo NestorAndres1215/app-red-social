@@ -18,7 +18,7 @@ public class CorreoService {
 
         final String destinatario = verificacion.getCorreo();
         final String asunto = "Código de verificación en dos pasos";
-        final String codigo = verificacion.getCodigo_verificacion();
+        final String codigo = verificacion.getCodigoVerificacion();
         final String usuario = verificacion.getUsuario();
         String contenidoHtml = """
                     <html>

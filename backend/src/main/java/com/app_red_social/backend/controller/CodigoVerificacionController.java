@@ -27,4 +27,10 @@ public class CodigoVerificacionController {
     public ResponseEntity<CodigoVerificacion> verificarCorreo(@PathVariable String username) {
         return ResponseEntity.ok(codigoVerificacionService.verificacionRecuperacionContrasena(username));
     }
+
+    @PostMapping("/verificar/codigo/{codigo}")
+    public ResponseEntity<CodigoVerificacion> verificacionCodigo(@PathVariable String codigo) {
+        return ResponseEntity.ok(codigoVerificacionService.verificacionCodigo(codigo));
+    }
+
 }

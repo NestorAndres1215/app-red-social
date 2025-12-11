@@ -32,6 +32,11 @@ public class AuthController {
         return ResponseEntity.ok(authService.actualUsuario(principal));
     }
 
+    @GetMapping("/listar-login")
+    public ResponseEntity<List<Login>> obtenerLogin() {
+        return ResponseEntity.ok(authService.listarLogin());
+    }
+
     @GetMapping("/listar/moderador")
     public ResponseEntity<List<Login>> listar() {
         return ResponseEntity.ok(authService.listarModeradores());

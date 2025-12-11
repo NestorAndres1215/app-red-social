@@ -29,13 +29,13 @@ public class CodigoVerificacion {
     private String usuario;
 
     @Column(name = "cv_tipo_verificado")
-    private String tipo_verificacion;
+    private String tipoVerificacion;
 
     @Column(name = "cv_codigo_verificado")
-    private String codigo_verificacion;
+    private String codigoVerificacion;
 
     @Column(name = "cv_fecha_generacion")
-    private LocalDateTime fecha_generacion;
+    private LocalDateTime fechaGeneracion;
 
 
 }

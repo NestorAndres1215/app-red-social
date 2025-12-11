@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface CodigoVerificacionRepository extends JpaRepository<CodigoVerificacion, String> {
 
     Optional<CodigoVerificacion> findByCorreo(String correo);
+    Optional<CodigoVerificacion> findByCodigoVerificacion(String codigo_verificacion);
 
     @Query(value = "SELECT MAX(cv_codigo) FROM Codigo_Verificacion", nativeQuery = true)
     String obtenerUltimoCodigo();

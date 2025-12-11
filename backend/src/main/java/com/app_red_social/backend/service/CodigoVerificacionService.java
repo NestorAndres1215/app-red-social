@@ -1,5 +1,7 @@
 package com.app_red_social.backend.service;
 
+import com.app_red_social.backend.constants.messages.NotFoundMessages;
+import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.model.CodigoVerificacion;
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.repository.CodigoVerificacionRepository;
@@ -37,16 +39,14 @@ public class CodigoVerificacionService {
         return codigoVerificacionRepository.findByCorreo(login.getEmail())
                 .map(registroExistente -> {
 
-                    registroExistente.setCodigo_verificacion(codigoGenerado);
-                    registroExistente.setFecha_generacion(LocalDateTime.now());
-
+                    registroExistente.setCodigoVerificacion(codigoGenerado);
+                    registroExistente.setFechaGeneracion(LocalDateTime.now());
 
                     try {
                         correoService.codigoVerificacionCorreo(registroExistente);
                     } catch (MessagingException e) {
                         throw new RuntimeException(e);
                     }
-
 
                     return registrar(registroExistente);
                 })
@@ -55,9 +55,9 @@ public class CodigoVerificacionService {
                             .codigo(nuevoCodigo)
                             .correo(login.getEmail())
                             .usuario(login.getUsername())
-                            .tipo_verificacion("RECUPERACION_CONTRASENA")
-                            .codigo_verificacion(codigoGenerado)
-                            .fecha_generacion(LocalDateTime.now())
+                            .tipoVerificacion("RECUPERACION_CONTRASENA")
+                            .codigoVerificacion(codigoGenerado)
+                            .fechaGeneracion(LocalDateTime.now())
                             .build();
 
                     try {
@@ -74,5 +74,23 @@ public class CodigoVerificacionService {
         return codigoVerificacionRepository.save(codigoVerificacion);
     }
 
+
+    public CodigoVerificacion verificacionCodigo(String codigo){
+
+        CodigoVerificacion verificacion = listarCodigo(codigo);
+
+        // Marcar como usado
+        verificacion.setCodigoVerificacion(null);
+        verificacion.setFechaGeneracion(LocalDateTime.now());
+
+        return registrar(verificacion);
+    }
+
+
+    public CodigoVerificacion listarCodigo(String codigo) {
+        return codigoVerificacionRepository.findByCodigoVerificacion(codigo)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(NotFoundMessages.CODIGO_VERIFICACION_NO_ENCONTRADO));
+    }
 
 }

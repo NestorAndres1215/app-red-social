@@ -61,6 +61,10 @@ public class AuthService {
     public List<Login> listarModeradores() {
         return loginRepository.findByRolNombre(Roles.ROLE_MODERADOR);
     }
+    public List<Login> listarLogin() {
+        return loginRepository.findAll();
+    }
+
 
 
     public Login ultimoLogueo(String username) {
