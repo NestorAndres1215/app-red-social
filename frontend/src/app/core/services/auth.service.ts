@@ -86,6 +86,9 @@ export class AuthService {
   listarModeradoresLofin() {
     return this.http.get<any>(`${this.backendUrl}/auth/listar/moderador`);
   }
+  listarLogin(){
+      return this.http.get<any>(`${this.backendUrl}/auth/listar-login`);
+  }
 
   actualizarCambioContrasenia(request: ContrasenaAuht): Observable<any> {
     return this.http.put<any>(`${this.backendUrl}/auth/actualizar/contrasenia`, request);

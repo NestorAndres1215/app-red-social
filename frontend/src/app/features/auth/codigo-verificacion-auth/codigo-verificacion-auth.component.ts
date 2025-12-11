@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AlertService } from '../../../core/services/alert.service';
 import { CodigoVerificacionService } from '../../../core/services/codigo-verificacion.service';
 import { ButtonComponent } from "../../../shared/components/button/button.component";
+import { MENSAJES } from '../../../core/constants/mensajes.constants';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-codigo-verificacion-auth',
@@ -12,14 +14,20 @@ import { ButtonComponent } from "../../../shared/components/button/button.compon
   styleUrl: './codigo-verificacion-auth.component.css',
 })
 export class CodigoVerificacionAuthComponent {
-enviar() {
-throw new Error('Method not implemented.');
-}
+  async enviar() {
+    this.correo = localStorage.getItem('correoRecuperacion') ?? '';
+    console.log("Correo recibido:", this.correo);
+    await firstValueFrom(this.verificacionService.verificarCorreo(this.correo));
+
+  }
+  correo: string = '';
 
   constructor(
-    private loginService: AuthService, private router: Router, private mensaje: AlertService,
-    private verificacionService: CodigoVerificacionService
+    private router: Router, private mensaje: AlertService,
+    private verificacionService: CodigoVerificacionService,
   ) { }
+
+
   autoFocusNext(event: any, nextInput: HTMLInputElement) {
     if (event.target.value.length === 1 && nextInput) {
       nextInput.focus();
@@ -29,6 +37,15 @@ throw new Error('Method not implemented.');
     console.log(n1 + n2 + n3 + n4 + n5 + n6)
     const codigo = n1 + n2 + n3 + n4 + n5 + n6
 
+    this.verificacionService.verificarCodigo(codigo).subscribe({
+      next: () => {
+        console.log("entro aqui")
+        this.router.navigate(['/auth/cambiar-contrasenia']);
+      },
+      error: (error) => {
+        this.mensaje.error(MENSAJES.ERROR_TITULO, error.error.message);
+      }
+    });
 
 
   }

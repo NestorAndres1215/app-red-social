@@ -27,8 +27,14 @@ export const AUTH_ROUTES: Routes = [
     },
     {
         path: 'codigo-verificacion',
-        loadComponent: () => import('./codigo-verificacion-auth.component/codigo-verificacion-auth.component')
+        loadComponent: () => import('./codigo-verificacion-auth/codigo-verificacion-auth.component')
             .then(m => m.CodigoVerificacionAuthComponent)
     },
+    {
+        path: 'cambiar-contrasenia',
+        loadComponent: () => import('./cambiar-contrasenia/cambiar-contrasenia.component')
+            .then(m => m.CambiarContraseniaComponent)
+    },
+
 
 ];

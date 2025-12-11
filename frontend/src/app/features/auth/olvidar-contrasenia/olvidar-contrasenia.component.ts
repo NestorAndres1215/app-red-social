@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class OlvidarContraseniaComponent implements OnInit {
   formulario!: FormGroup;
 
-  constructor(private fb: FormBuilder,private router:Router,private alertService:AlertService, private codigoVerficacion: CodigoVerificacionService) { }
+  constructor(private fb: FormBuilder, private router: Router, private alertService: AlertService, private codigoVerficacion: CodigoVerificacionService) { }
 
   ngOnInit(): void {
     this.initForm()
@@ -32,7 +32,8 @@ export class OlvidarContraseniaComponent implements OnInit {
   olvidarContrasenia() {
     console.log(this.formulario.value.correo)
     const nombre = this.formulario.value.correo;
-
+    localStorage.setItem('correoRecuperacion', nombre);
+    this.codigoVerficacion.correoRecuperacion = nombre;
     this.codigoVerficacion.verificarCorreo(nombre).subscribe({
       next: (data) => {
         this.router.navigate(['/auth/codigo-verificacion']);
