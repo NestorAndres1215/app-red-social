@@ -22,7 +22,6 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
-
     @GetMapping("/listar")
     public ResponseEntity<List<Usuario>> listar() {
         return ResponseEntity.ok(usuarioService.listar());
