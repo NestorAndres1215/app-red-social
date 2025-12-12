@@ -85,4 +85,15 @@ public class UsuarioGrupoController {
     public ResponseEntity<List<UsuarioGrupo>> listarInactivoPrivado() {
         return ResponseEntity.ok(usuarioGrupoService.listarPorPrivacidadYEstado(Estados.PRIVADO, Estados.INACTIVO));
     }
+
+    @GetMapping("/listar/codigo/{codigo}")
+    public ResponseEntity<UsuarioGrupo> obtenerGrupo(@PathVariable String codigo) {
+        return ResponseEntity.ok(usuarioGrupoService.obtenerGrupo(codigo));
+    }
+
+    @PutMapping("/actualizar/{codigo}")
+    public ResponseEntity<UsuarioGrupo> actualizar(@PathVariable String codigo, @RequestBody UsuarioGrupoRequest request) {
+        return ResponseEntity.ok(usuarioGrupoService.actualizar(codigo, request));
+    }
+
 }

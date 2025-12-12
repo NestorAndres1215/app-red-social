@@ -61,10 +61,14 @@ public class UsuarioGrupoService {
                 .orElseThrow(() -> new RuntimeException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
     }
 
-    public UsuarioGrupo actualizar(String codigo, UsuarioGrupoRequest usuarioGrupoRequest) {
+    public UsuarioGrupo actualizar(String codigo, UsuarioGrupoRequest request) {
+
         UsuarioGrupo usuarioGrupo = obtenerGrupo(codigo);
-        usuarioGrupo.setNombre(usuarioGrupoRequest.getNombre());
-        usuarioGrupo.setDescripcion(usuarioGrupoRequest.getDescripcion());
+
+        usuarioGrupo.setNombre(request.getNombre());
+        usuarioGrupo.setDescripcion(request.getDescripcion());
+        usuarioGrupo.setPrivacidad(request.getPrivacidad());
+        usuarioGrupo.setEstado(request.getEstado());
         usuarioGrupo.setFechaActualizacion(LocalDateTime.now());
 
         return usuarioGrupoRepository.save(usuarioGrupo);
