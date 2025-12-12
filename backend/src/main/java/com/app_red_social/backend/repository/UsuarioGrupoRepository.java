@@ -11,4 +11,6 @@ public interface UsuarioGrupoRepository  extends JpaRepository<UsuarioGrupo,Stri
     String obtenerCodigo();
 
     List<UsuarioGrupo> findByEstado(String estado);
+    List<UsuarioGrupo> findByPrivacidadAndEstado(String privacidad, String estado);
+
 }

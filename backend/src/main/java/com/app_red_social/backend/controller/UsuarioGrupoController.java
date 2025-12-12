@@ -65,4 +65,24 @@ public class UsuarioGrupoController {
     public ResponseEntity<List<UsuarioGrupo>> listarPorEstadoInactivo() {
         return ResponseEntity.ok(usuarioGrupoService.listarPorEstado(Estados.INACTIVO));
     }
+
+    @GetMapping("/listar/privacidad-publico/estado-activo")
+    public ResponseEntity<List<UsuarioGrupo>> listarActivoPublico() {
+        return ResponseEntity.ok(usuarioGrupoService.listarPorPrivacidadYEstado(Estados.PUBLICO, Estados.ACTIVO));
+    }
+
+    @GetMapping("/listar/privacidad-publico/estado-inactivo")
+    public ResponseEntity<List<UsuarioGrupo>> listarInactivoPublico() {
+        return ResponseEntity.ok(usuarioGrupoService.listarPorPrivacidadYEstado(Estados.PUBLICO, Estados.INACTIVO));
+    }
+
+    @GetMapping("/listar/privacidad-privado/estado-inactivo")
+    public ResponseEntity<List<UsuarioGrupo>> listarActivoPrivado() {
+        return ResponseEntity.ok(usuarioGrupoService.listarPorPrivacidadYEstado(Estados.PRIVADO, Estados.ACTIVO));
+    }
+
+    @GetMapping("/listar/privacidad-privado/estado-inactivo")
+    public ResponseEntity<List<UsuarioGrupo>> listarInactivoPrivado() {
+        return ResponseEntity.ok(usuarioGrupoService.listarPorPrivacidadYEstado(Estados.PRIVADO, Estados.INACTIVO));
+    }
 }

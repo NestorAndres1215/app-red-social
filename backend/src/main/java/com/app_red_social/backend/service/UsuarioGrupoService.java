@@ -142,4 +142,8 @@ public class UsuarioGrupoService {
         usuarioGrupo.setPrivacidad(Estados.PUBLICO);
         return usuarioGrupoRepository.save(usuarioGrupo);
     }
+
+    public List<UsuarioGrupo> listarPorPrivacidadYEstado(String privacidad, String estado) {
+        return usuarioGrupoRepository.findByPrivacidadAndEstado(privacidad, estado);
+    }
 }
