@@ -45,7 +45,7 @@ public class HistorialUsuarioController {
         return ResponseEntity.ok(historialUsuarioService.registrar(historialUsuarioRequest));
     }
 
-    @DeleteMapping("/inactivar/estado/{codigo}")
+    @PutMapping("/inactivar/estado/{codigo}")
     public ResponseEntity<HistorialUsuario> inactivar(@PathVariable String codigo) {
         return ResponseEntity.ok(historialUsuarioService.inactivar(codigo));
     }

@@ -1,7 +1,11 @@
 package com.app_red_social.backend.service;
 
+import com.app_red_social.backend.constants.Estados;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.dto.request.UsuarioGrupoRequest;
+import com.app_red_social.backend.exception.ResourceNotFoundException;
+import com.app_red_social.backend.model.EstadoUsuario;
+import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.model.UsuarioGrupo;
 import com.app_red_social.backend.repository.UsuarioGrupoRepository;
@@ -17,6 +21,8 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+
+import static com.app_red_social.backend.util.Validacion.normalizarNombre;
 
 @Service
 @RequiredArgsConstructor
@@ -105,18 +111,30 @@ public class UsuarioGrupoService {
     }
 
 
-    private String normalizarNombre(String nombre) {
-        if (nombre == null) return null;
+    public UsuarioGrupo inactivar(String codigo) {
 
-        String result = nombre.toUpperCase();
+        UsuarioGrupo usuarioGrupo = usuarioGrupoRepository.findById(codigo)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
 
-        result = result.replace("Ñ", "N");
-        result = java.text.Normalizer.normalize(result, java.text.Normalizer.Form.NFD);
-        result = result.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-        result = result.replaceAll("[^A-Z0-9]", "_");
-
-        return result;
+        usuarioGrupo.setEstado(Estados.INACTIVO);
+        return usuarioGrupoRepository.save(usuarioGrupo);
     }
 
+    public UsuarioGrupo privado(String codigo) {
 
+        UsuarioGrupo usuarioGrupo = usuarioGrupoRepository.findById(codigo)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
+
+        usuarioGrupo.setPrivacidad(Estados.PRIVADO);
+        return usuarioGrupoRepository.save(usuarioGrupo);
+    }
+
+    public UsuarioGrupo publico(String codigo) {
+
+        UsuarioGrupo usuarioGrupo = usuarioGrupoRepository.findById(codigo)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
+
+        usuarioGrupo.setPrivacidad(Estados.PUBLICO);
+        return usuarioGrupoRepository.save(usuarioGrupo);
+    }
 }

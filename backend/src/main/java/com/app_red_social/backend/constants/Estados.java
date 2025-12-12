@@ -14,5 +14,6 @@ public class Estados {
     public static final String RESTRINGIDO = "RESTRINGIDO";              // Con acceso limitado (temporal o parcial)
     public static final String BANEADO = "BANEADO";                      // Expulsado permanentemente
     public static final String ELIMINADO = "ELIMINADO";                  // Eliminado (soft delete)
-
+    public static final String PUBLICO = "PUBLICO";
+    public static final String PRIVADO = "PRIVADO";
 }

@@ -1,6 +1,7 @@
 package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.dto.request.UsuarioGrupoRequest;
+import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.UsuarioGrupo;
 import com.app_red_social.backend.service.UsuarioGrupoService;
 
@@ -28,4 +29,20 @@ public class UsuarioGrupoController {
     public ResponseEntity<UsuarioGrupo> registrar(@RequestBody UsuarioGrupoRequest dto) {
         return ResponseEntity.ok(usuarioGrupoService.registrar(dto));
     }
+
+    @DeleteMapping("/inactivar/{codigo}")
+    public ResponseEntity<UsuarioGrupo> eliminar(@PathVariable String codigo) {
+        return ResponseEntity.ok(usuarioGrupoService.inactivar(codigo));
+    }
+
+    @PutMapping("/privacidad/publico/{codigo}")
+    public ResponseEntity<UsuarioGrupo> publico(@PathVariable String codigo) {
+        return ResponseEntity.ok(usuarioGrupoService.publico(codigo));
+    }
+
+    @PutMapping("/privacidad/privado/{codigo}")
+    public ResponseEntity<UsuarioGrupo> privado(@PathVariable String codigo) {
+        return ResponseEntity.ok(usuarioGrupoService.publico(codigo));
+    }
+
 }
