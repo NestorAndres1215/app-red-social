@@ -76,7 +76,7 @@ public class UsuarioGrupoController {
         return ResponseEntity.ok(usuarioGrupoService.listarPorPrivacidadYEstado(Estados.PUBLICO, Estados.INACTIVO));
     }
 
-    @GetMapping("/listar/privacidad-privado/estado-inactivo")
+    @GetMapping("/listar/privacidad-privado/estado-activo")
     public ResponseEntity<List<UsuarioGrupo>> listarActivoPrivado() {
         return ResponseEntity.ok(usuarioGrupoService.listarPorPrivacidadYEstado(Estados.PRIVADO, Estados.ACTIVO));
     }

@@ -84,7 +84,7 @@ public class UsuarioGrupoService {
         try {
             if (usuarioGrupo.getFoto() != null && !usuarioGrupo.getFoto().isEmpty()) {
 
-                Path oldFile = Paths.get("uploads/grupos").resolve(usuarioGrupo.getFoto());
+                Path oldFile = Paths.get("uploads/grupos/perfiles").resolve(usuarioGrupo.getFoto());
 
                 if (Files.exists(oldFile)) {
                     Files.delete(oldFile);
