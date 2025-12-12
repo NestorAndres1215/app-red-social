@@ -67,14 +67,14 @@ export class CuentasBloqueadasAdminComponent {
   }
 
   listarAdminActivos() {
-      const username = localStorage.getItem('username') || '';
-  
-      this.usuarioService.listarUsuariosAdmin(username, Estados.BLOQUEADO)
-        .subscribe(data => {
-          this.adminListadoOriginal = data;
-          this.adminListado = [...data];
-          this.applyPaginationActivos();
-        });
-    }
+    const username = localStorage.getItem('username') || '';
+
+    this.usuarioService.listarUsuariosAdmin(username, Estados.BLOQUEADO)
+      .subscribe(data => {
+        this.adminListadoOriginal = data;
+        this.adminListado = [...data];
+        this.applyPaginationActivos();
+      });
+  }
 
 }
