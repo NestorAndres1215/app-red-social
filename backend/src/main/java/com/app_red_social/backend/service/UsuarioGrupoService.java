@@ -129,6 +129,11 @@ public class UsuarioGrupoService {
         return usuarioGrupoRepository.save(usuarioGrupo);
     }
 
+    public List<UsuarioGrupo> listarPorEstado(String estado) {
+        return usuarioGrupoRepository.findByEstado(estado);
+    }
+
+
     public UsuarioGrupo publico(String codigo) {
 
         UsuarioGrupo usuarioGrupo = usuarioGrupoRepository.findById(codigo)
