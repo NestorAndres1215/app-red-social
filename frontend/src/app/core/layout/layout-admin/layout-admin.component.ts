@@ -79,7 +79,13 @@ export class LayoutAdminComponent implements OnInit {
     });
   }
 
+
   handleClick(menuItem: any): void {
+    const codigoObjetivo = 'ME000196';
+
+    if (menuItem.codigo === codigoObjetivo) {
+      this.logout();
+    }
 
     if (this.menuSegundo?.some(i => i.categoria === menuItem.categoria)) {
       menuItem.mostrarSubMenu = !menuItem.mostrarSubMenu;
@@ -117,8 +123,9 @@ export class LayoutAdminComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
-    this.router.navigate(['/auth/login']);
+    console.log("SE CERRO SESION")
+    //this.authService.logout();
+    //this.router.navigate(['/auth/login']);
   }
 
   addToggle() {
