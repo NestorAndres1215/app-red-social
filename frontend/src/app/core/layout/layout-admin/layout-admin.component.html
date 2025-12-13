@@ -16,13 +16,13 @@
       <mat-list>
         <ng-container *ngFor="let menuItem of datosmenuPrimero">
           <mat-list-item (click)="handleClick(menuItem)" style="cursor: pointer;">
-            <mat-icon>{{ menuItem.icono }}</mat-icon>
-            <span>{{ menuItem.nombre }}</span>
+            <mat-icon class="mt-2">{{ menuItem.icono }}</mat-icon>
+            <span class="mt-2">{{ menuItem.nombre }}</span>
           </mat-list-item>
           <ng-container *ngIf="menuItem.mostrarSubMenu && menu2FiltradoPorCategoria[menuItem.categoria]?.length">
             <mat-list-item *ngFor="let subMenuItem of menu2FiltradoPorCategoria[menuItem.categoria]"
               (click)="irARuta(subMenuItem.menuRuta)" style="padding-left: 50px; cursor: pointer;">
-              <span>{{ subMenuItem.nombre }}</span>
+              <span class="mt-2">{{ subMenuItem.nombre }}</span>
             </mat-list-item>
           </ng-container>
         </ng-container>

@@ -14,6 +14,12 @@ export const ADMINISTRADOR_ROUTES: Routes = [
                 .then(m => m.MOD_ADMIN_ROUTES)
     },
     {
+        path: 'grupos-admin',
+        loadChildren: () =>
+            import('../admin/routes/grupos-admin.routes')
+                .then(m => m.GRUPOS_ADMIN_ROUTES)
+    },
+    {
         path: 'configuracion-admin',
         loadChildren: () =>
             import('../admin/routes/configuracion-admin.routes')
