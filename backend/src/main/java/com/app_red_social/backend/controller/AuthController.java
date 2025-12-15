@@ -51,7 +51,10 @@ public class AuthController {
     public ResponseEntity<Login> actualizarContrasenia(@Valid @RequestBody ContrasenaRequest contrasenaRequest) {
         return ResponseEntity.ok(authService.cambiarContrasena(contrasenaRequest));
     }
-
+    @PutMapping("/bloquear/{username}")
+    public ResponseEntity<Login> bloquear(@PathVariable String username) {
+        return ResponseEntity.ok(authService.bloquear(username));
+    }
 
 }
 

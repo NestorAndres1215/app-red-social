@@ -1,5 +1,6 @@
 package com.app_red_social.backend.service;
 
+
 import com.app_red_social.backend.constants.Estados;
 import com.app_red_social.backend.constants.Roles;
 import com.app_red_social.backend.constants.messages.GlobalErrorMessages;
@@ -9,7 +10,9 @@ import com.app_red_social.backend.dto.request.LoginRequest;
 import com.app_red_social.backend.dto.response.TokenResponse;
 import com.app_red_social.backend.exception.BadRequestException;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
+import com.app_red_social.backend.model.EstadoUsuario;
 import com.app_red_social.backend.model.Login;
+import com.app_red_social.backend.repository.EstadoUsuarioRepository;
 import com.app_red_social.backend.repository.LoginRepository;
 import com.app_red_social.backend.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +32,7 @@ public class AuthService {
 
     private final LoginRepository loginRepository;
     private final AuthenticationManager authenticationManager;
+    private final EstadoUsuarioRepository estadoUsuarioRepository;
     private final TokenService tokenService;
     private final JwtUtil jwtUtils;
     private final PasswordEncoder passwordEncoder;
@@ -94,6 +98,19 @@ public class AuthService {
         login.setPassword(passwordEncriptada);
 
         return loginRepository.save(login);
+    }
+
+    public Login bloquear(String username) {
+
+        Login login = loginRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
+
+        EstadoUsuario estadoBloqueado = estadoUsuarioRepository.findByNombre(Estados.BLOQUEADO)
+                .orElseThrow(() -> new ResourceNotFoundException(NotFoundMessages.ESTADO_USUARIO_NO_ENCONTRADO));
+
+        login.setEstadoUsuario(estadoBloqueado);
+        return loginRepository.save(login);
+
     }
 
 }

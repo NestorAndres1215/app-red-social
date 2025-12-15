@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class SesionService {
-
     private final SesionRepository sesionRepository;
     private final LoginService loginService;
 

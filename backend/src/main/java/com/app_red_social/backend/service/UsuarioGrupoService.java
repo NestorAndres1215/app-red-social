@@ -4,9 +4,6 @@ import com.app_red_social.backend.constants.Estados;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.dto.request.UsuarioGrupoRequest;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
-import com.app_red_social.backend.model.EstadoUsuario;
-import com.app_red_social.backend.model.Login;
-import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.model.UsuarioGrupo;
 import com.app_red_social.backend.repository.UsuarioGrupoRepository;
 import com.app_red_social.backend.util.Secuencia;
@@ -78,7 +75,7 @@ public class UsuarioGrupoService {
         UsuarioGrupo usuarioGrupo = obtenerGrupo(codigo);
 
         if (file.isEmpty()) {
-            throw new RuntimeException("El archivo está vacío");
+            throw new RuntimeException(NotFoundMessages.ARCHIVO_NO_ENCONTRADO);
         }
 
         try {
@@ -98,7 +95,7 @@ public class UsuarioGrupoService {
 
             String fileName = usuarioGrupo.getCodigo() + "_" + nombreNormalizado + extension;
 
-            Path uploadDir = Paths.get("uploads/grupos");
+            Path uploadDir = Paths.get("uploads/grupos/perfiles");
 
             Files.createDirectories(uploadDir);
 

@@ -3,11 +3,9 @@ package com.app_red_social.backend.service;
 import com.app_red_social.backend.constants.messages.NotFoundMessages;
 import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.model.Evento;
-import com.app_red_social.backend.model.HistorialUsuario;
 import com.app_red_social.backend.repository.EventoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;

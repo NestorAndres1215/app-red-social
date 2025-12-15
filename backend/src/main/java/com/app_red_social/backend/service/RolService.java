@@ -11,7 +11,6 @@ import com.app_red_social.backend.exception.ResourceNotFoundException;
 import com.app_red_social.backend.model.Rol;
 import com.app_red_social.backend.repository.RolRepository;
 import com.app_red_social.backend.util.Secuencia;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

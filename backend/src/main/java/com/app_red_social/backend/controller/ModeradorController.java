@@ -1,7 +1,6 @@
 package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.dto.request.RegisterRequest;
-import com.app_red_social.backend.model.Administrador;
 import com.app_red_social.backend.model.Login;
 import com.app_red_social.backend.model.Moderador;
 import com.app_red_social.backend.service.ModeradorService;

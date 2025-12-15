@@ -6,11 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface UsuarioGrupoRepository  extends JpaRepository<UsuarioGrupo,String> {
+public interface UsuarioGrupoRepository extends JpaRepository<UsuarioGrupo, String> {
+
     @Query(value = "SELECT MAX(ug_codigo) FROM Usuario_Grupo", nativeQuery = true)
     String obtenerCodigo();
 
     List<UsuarioGrupo> findByEstado(String estado);
+
     List<UsuarioGrupo> findByPrivacidadAndEstado(String privacidad, String estado);
 
 }
