@@ -4,9 +4,11 @@ import com.app_red_social.backend.model.UsuarioGrupoMiembro;
 import com.app_red_social.backend.service.UsuarioGrupoMiembroService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,10 +29,28 @@ public class UsuarioGrupoMiembroController {
         return ResponseEntity.ok(usuarioGrupoMiembroService.listarCodigo(codigo));
     }
 
+    @GetMapping("/listar/fecha")
+    public ResponseEntity<List<UsuarioGrupoMiembro>> listarPorFecha(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+            LocalDateTime fecha
+    ) {
+        return ResponseEntity.ok(usuarioGrupoMiembroService.listarPorFecha(fecha));
+    }
+
+    @PutMapping("/cambiar-estado/{codigo}")
+    public ResponseEntity<UsuarioGrupoMiembro> cambiarEstado(@PathVariable String codigo) {
+        return ResponseEntity.ok(usuarioGrupoMiembroService.cambiarEstado(codigo, "ADMIN"));
+    }
+
+    @GetMapping("/grupo/nombre/{nombre}")
+    public ResponseEntity<List<UsuarioGrupoMiembro>> listarPorNombreGrupo(@PathVariable String nombre) {
+        return ResponseEntity.ok(usuarioGrupoMiembroService.listarPorNombreGrupo(nombre));
+    }
+
     @DeleteMapping("/eliminar/{codigo}")
     public ResponseEntity<Void> eliminar(@PathVariable String codigo) {
         usuarioGrupoMiembroService.eliminar(codigo);
-        return ResponseEntity.noContent().build(); // HTTP 204
+        return ResponseEntity.noContent().build();
     }
 
 }
