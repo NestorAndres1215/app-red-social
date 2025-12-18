@@ -130,7 +130,7 @@ public class ModeradorService {
 
         String codigoLogin = moderador.getLogin().getCodigo();
 
-        return loginService.Eliminado(codigoLogin);
+        return loginService.eliminado(codigoLogin);
     }
 
 

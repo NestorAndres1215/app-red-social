@@ -58,6 +58,18 @@ public class UsuarioGrupoService {
                 .orElseThrow(() -> new RuntimeException(NotFoundMessages.CODIGO_NO_ENCONTRADO));
     }
 
+    public List<UsuarioGrupo> listarPorCreador(String creador) {
+        return usuarioGrupoRepository.findByCreador(creador);
+    }
+
+    public List<UsuarioGrupo> listarPorPrivacidad(String privacidad) {
+        return usuarioGrupoRepository.findByPrivacidad(privacidad);
+    }
+
+    public List<UsuarioGrupo> listarPorFechaRegistro(LocalDateTime fecha) {
+        return usuarioGrupoRepository.findByFechaRegistro(fecha);
+    }
+
     public UsuarioGrupo actualizar(String codigo, UsuarioGrupoRequest request) {
 
         UsuarioGrupo usuarioGrupo = obtenerGrupo(codigo);

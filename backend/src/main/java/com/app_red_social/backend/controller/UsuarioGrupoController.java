@@ -2,19 +2,18 @@ package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.constants.Estados;
 import com.app_red_social.backend.dto.request.UsuarioGrupoRequest;
-import com.app_red_social.backend.model.Login;
-import com.app_red_social.backend.model.Usuario;
 import com.app_red_social.backend.model.UsuarioGrupo;
 import com.app_red_social.backend.service.UsuarioGrupoService;
-
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -90,6 +89,22 @@ public class UsuarioGrupoController {
     public ResponseEntity<UsuarioGrupo> obtenerGrupo(@PathVariable String codigo) {
         return ResponseEntity.ok(usuarioGrupoService.obtenerGrupo(codigo));
     }
+
+    @GetMapping("/listar/creador/{creador}")
+    public ResponseEntity<List<UsuarioGrupo>> listarPorCreador(@PathVariable String creador) {
+        return ResponseEntity.ok(usuarioGrupoService.listarPorCreador(creador));
+    }
+
+    @GetMapping("/privacidad/{privacidad}")
+    public ResponseEntity<List<UsuarioGrupo>> listarPorPrivacidad(@PathVariable String privacidad) {
+        return ResponseEntity.ok(usuarioGrupoService.listarPorPrivacidad(privacidad));
+    }
+
+    @GetMapping("/listar/fecha")
+    public ResponseEntity<List<UsuarioGrupo>> listarPorFecha(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fecha) {
+        return ResponseEntity.ok(usuarioGrupoService.listarPorFechaRegistro(fecha));
+    }
+
 
     @PutMapping("/actualizar/{codigo}")
     public ResponseEntity<UsuarioGrupo> actualizar(@PathVariable String codigo, @RequestBody UsuarioGrupoRequest request) {

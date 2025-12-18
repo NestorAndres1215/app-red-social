@@ -11,6 +11,6 @@ public class NotFoundMessages {
     public static final String OPCION_NO_ENCONTRADA = "OPCIÓN INVÁLIDA. DEBE SER 1, 2, 3 O 4";
     public static final String CODIGO_VERIFICACION_NO_ENCONTRADO = "EL CÓDIGO  DE VERIFICACION NO FUE ENCONTRADO.";
     public static final String ARCHIVO_NO_ENCONTRADO = "EL ARCHIVO NO SE HA ENCONTRADO";
-
+    public static final String LISTAR_VACIO = "LISTA ESTA VACIA";
 
 }

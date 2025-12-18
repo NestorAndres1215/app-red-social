@@ -1,7 +1,6 @@
 package com.app_red_social.backend.controller;
 
 import com.app_red_social.backend.dto.response.EstadisticasResponse;
-
 import com.app_red_social.backend.dto.response.TotalCantidadResponse;
 import com.app_red_social.backend.service.EstadisticasService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RequiredArgsConstructor
