@@ -7,14 +7,11 @@ export const AUTH_ROUTES: Routes = [
         redirectTo: 'login',
         pathMatch: 'full'
     },
-
     {
         path: 'login',
-
         loadComponent: () => import('./login/login.component')
             .then(m => m.LoginComponent)
     },
-
     {
         path: 'registro',
         loadComponent: () => import('./registro/registro.component')
@@ -34,6 +31,11 @@ export const AUTH_ROUTES: Routes = [
         path: 'cambiar-contrasenia',
         loadComponent: () => import('./cambiar-contrasenia/cambiar-contrasenia.component')
             .then(m => m.CambiarContraseniaComponent)
+    },
+    {
+        path: 'cuenta-bloqueada',
+        loadComponent: () => import('./cuenta-bloqueada/cuenta-bloqueada.component')
+            .then(m => m.CuentaBloqueadaComponent)
     },
 
 

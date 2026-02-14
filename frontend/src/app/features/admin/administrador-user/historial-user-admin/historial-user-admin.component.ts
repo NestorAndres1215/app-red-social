@@ -36,7 +36,7 @@ export class HistorialUserAdminComponent implements OnInit {
   historial: any[] = [];
 
   selectedModulo: string = 'TODOS';
-selectedYear: number | 'TODOS' = 'TODOS';
+  selectedYear: number | 'TODOS' = 'TODOS';
 
 
   constructor(private historiaService: HistorialUsuarioService) { }

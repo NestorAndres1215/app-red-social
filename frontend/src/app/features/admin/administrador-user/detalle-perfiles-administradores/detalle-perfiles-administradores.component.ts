@@ -17,7 +17,7 @@ export class DetallePerfilesAdministradoresComponent implements OnInit {
   icono = 'fas fa-user-lock';
 
   usuario: any;
-  userData: any[] = []; // 👉 Array para el card
+  userData: any[] = []; 
 
   constructor(
     private route: ActivatedRoute,

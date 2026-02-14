@@ -14,7 +14,7 @@ export class PerfilUserAdminComponent implements OnInit {
 
   titulo = 'Perfil de Administradores';
   icono = 'fas fa-user-cog';
-
+  usuario: any = {};
   constructor(private usuarioService: AdministradorService, private authService: AuthService) {
 
   }
@@ -23,21 +23,18 @@ export class PerfilUserAdminComponent implements OnInit {
   }
 
 
-  usuario: any = {};
+
 
   listar() {
-    this.authService.getCurrentUser().subscribe({
-      next: user => {
+    this.authService.getCurrentUser().subscribe(
+      user => {
         this.usuarioService.listarActual(user.codigo).subscribe(
           data => {
             this.usuario = data;
           },
         );
       },
-      error: err => {
-        console.error("Error getCurrentUser:", err);
-      }
-    });
+    );
   }
 
 

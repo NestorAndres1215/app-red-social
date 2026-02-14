@@ -145,7 +145,6 @@ export class AdminUserComponent implements OnInit {
       },
 
     });
-    console.log(fila.codigo)
     dialogEliminar.afterClosed().subscribe((respuesta: RespuestaModel) => {
 
       if (respuesta?.boton != 'CONFIRMAR') return;

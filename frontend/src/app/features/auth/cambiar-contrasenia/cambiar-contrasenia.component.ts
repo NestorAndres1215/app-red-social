@@ -19,13 +19,15 @@ export class CambiarContraseniaComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService, private fb: FormBuilder, private alertService: AlertService) { }
 
   formulario!: FormGroup;
-
+  correo: string = '';
   showPassword = false;
   showPasswordNC = false;
+  usuario = '';
+
   ngOnInit(): void {
     this.cargarUsername()
   }
-  correo: string = '';
+
   initForm() {
     this.formulario = this.fb.group({
       usuario: [{ value: this.usuario, disabled: true }, Validators.required],
@@ -34,7 +36,6 @@ export class CambiarContraseniaComponent implements OnInit {
     });
   }
 
-  usuario = '';
   async cargarUsername() {
     this.correo = localStorage.getItem('correoRecuperacion') ?? '';
     const lista = await firstValueFrom(this.auth.listarLogin());
@@ -61,7 +62,7 @@ export class CambiarContraseniaComponent implements OnInit {
       };
 
       if (contrasena.nuevaContrasena !== contrasena.confirmarContrasena) {
-        this.alertService.advertencia("CONTRASEÑA NO COINCIDEN")
+        this.alertService.advertencia(MENSAJES.CONTRASENIA_NO_COINCIDE)
         return;
       }
       this.auth.actualizarCambioContrasenia(contrasena).subscribe({

@@ -10,6 +10,7 @@ import { MENSAJES } from '../../../core/constants/mensajes.constants';
 import { HistorialUsuarioService } from '../../../core/services/historial-usuario.service';
 import { HistorialUsuarioModel } from '../../../core/models/historial-usuario-model';
 import { Estados } from '../../../core/constants/estados.contants';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login.component',
@@ -57,54 +58,98 @@ export class LoginComponent {
     this.router.navigate(['/auth/olvidar-contrasena'])
   }
 
+  intentosFallidos: number = 0;
   operar() {
     if (this.formulario.invalid) {
       this.alertService.advertencia(MENSAJES.CAMPOS_INCOMPLETOS_TITULO, MENSAJES.CAMPOS_INCOMPLETOS_MENSAJE);
       this.formulario.markAllAsTouched();
       return;
     }
+    this.intentosFallidos++;
 
     const login: LoginAuth = {
-      login: this.formulario.get('login')?.value,
-      password: this.formulario.get('password')?.value,
+      login: this.formulario.value.login,
+      password: this.formulario.value.password,
     };
 
     this.authService.generateToken(login).subscribe({
-      next: (data: any) => {
+      next: async (data: any) => {
+        console.log(this.intentosFallidos)
+        console.log(data)
+        if (this.intentosFallidos >= 3) {
+          await firstValueFrom(this.authService.bloquear(this.formulario.value.login));
+          this.alertService.error("Cuenta bloqueada", "Has superado el número máximo de intentos fallidos. Tu cuenta ha sido bloqueada. Por favor, espera o contacta con el administrador.")
+          localStorage.setItem('Bloqueo', 'true');
+          return
+        }
         this.authService.setToken(data.token);
 
         this.authService.getCurrentUser().subscribe({
           next: (user) => {
-            const rol = user.rol?.nombre;
+            const rol = user.rol.nombre;
+            console.log()
 
+            const estado = user.estadoUsuario.nombre
             if (!rol) {
               return;
             }
 
             localStorage.setItem('username', user.username);
 
-            this.registrarLogueo(user.username)
-
-            switch (rol) {
-              case ROLES.ROLE_ADMIN:
-                this.router.navigate(['/admin']);
+            switch (estado) {
+              case Estados.BLOQUEADO:
+                console.log('ESTADO BLOQUEADO');
+                this.router.navigate(['auth/cuenta-bloqueada']);
                 break;
 
-              case ROLES.ROLE_MODERADOR:
-                this.router.navigate(['/moderador']);
+              case Estados.INACTIVO:
+                // lógica para inactivo
+                break;
+
+              case Estados.SUSPENDIDO:
+                // lógica para suspendido
+                break;
+
+              case Estados.PENDIENTE_VERIFICACION:
+                // lógica para pendiente
+                break;
+
+              case Estados.INHABILITADO:
+                // lógica para inhabilitado
+                break;
+
+              case Estados.ACTIVO:
+                this.registrarLogueo(user.username);
+
+                switch (rol) {
+                  case ROLES.ROLE_ADMIN:
+                    this.router.navigate(['/admin']);
+                    break;
+
+                  case ROLES.ROLE_MODERADOR:
+                    this.router.navigate(['/moderador']);
+                    break;
+
+                  default:
+                    this.router.navigate(['/inicio']);
+                    break;
+                }
                 break;
 
               default:
-                this.router.navigate(['/inicio']);
+                console.log('Estado no reconocido');
                 break;
             }
+
           },
           error: (error) => {
+            console.log(error.error.message)
             this.alertService.error(MENSAJES.ERROR_TITULO, error.error.message);
           }
         });
       },
       error: (error) => {
+         console.log(error.error.message)
         this.alertService.error(MENSAJES.ERROR_TITULO, error.error.message);
       }
     });
@@ -117,19 +162,16 @@ export class LoginComponent {
   }
 
 
-  registroHistorial(usuario: string) {
+  async registroHistorial(usuario: string) {
     const historial: HistorialUsuarioModel = {
       estado: Estados.ACTIVO,
-      detalle: 'Inicio de sesion de esta cuenta',
+      detalle: 'Inicio de sesión de esta cuenta',
       titulo: 'INICIO DE SESION',
       modulo: 'LOGIN',
       usuario: usuario
-    }
-    this.historial.registrar(historial).subscribe(() => {
+    };
 
-    })
-
+    await firstValueFrom(this.historial.registrar(historial));
   }
-
 
 }

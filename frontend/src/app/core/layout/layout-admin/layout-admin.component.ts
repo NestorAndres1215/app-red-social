@@ -124,8 +124,7 @@ export class LayoutAdminComponent implements OnInit {
 
   logout() {
     console.log("SE CERRO SESION")
-    //this.authService.logout();
-    //this.router.navigate(['/auth/login']);
+    this.authService.logout()
   }
 
   addToggle() {
