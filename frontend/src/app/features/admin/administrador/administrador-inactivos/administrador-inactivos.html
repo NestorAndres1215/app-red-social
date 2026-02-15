@@ -1,1 +1,9 @@
-<p>administrador-inactivos works!</p>
+
+          <app-search (searchChange)="filtrar($event)" />
+
+          <app-tabla [columnas]="columnas" [datos]="datosFiltradosInactivo" [botonesConfig]="botonesConfig"
+            [onActivar]="activar.bind(this)" />
+
+          <app-pagination [(page)]="pageInactivos"
+            [totalPages]="MathInactivo.ceil(adminListadoInactivo.length / itemsPerPageDesactivo)"
+            (pageChange)="applyPaginationInactivos()" />
