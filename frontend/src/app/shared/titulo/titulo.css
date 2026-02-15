@@ -1,0 +1,31 @@
+header {
+    background-color: #ffffff;
+    padding: 25px 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    border: 2px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+header h1 {
+  background: #1e3a8a;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 32px;
+    font-weight: 800;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.5px;
+    transition: all 0.3s ease;
+}
+header  i {
+    margin-right: 16px;
+    background: #1e3a8a;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 28px;
+}
