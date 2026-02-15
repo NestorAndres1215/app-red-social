@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const MOD_ADMIN_ROUTES: Routes = [
-    {
+  /*  {
         path: 'user-moderador',
         loadComponent: () => import('../moderador-user/mod-user/mod-user.component')
             .then(m => m.ModUserComponent)
@@ -36,5 +36,5 @@ export const MOD_ADMIN_ROUTES: Routes = [
         path: 'profile/:codigo/:userParam',
         loadComponent: () => import('../moderador-user/detalle-perfiles-moderador/detalle-perfiles-moderador.component')
             .then(m => m.DetallePerfilesModeradorComponent)
-    }
+    }*/
 ];

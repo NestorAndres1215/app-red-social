@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const CONFIG_ADMIN_ROUTES: Routes = [
-    {
+   /* {
         path: 'cambiar-contrasena',
         loadComponent: () => import('../configuracion-admin/cambiar-contrasena-admin/cambiar-contrasena-admin.component')
             .then(m => m.CambiarContrasenaAdminComponent)
@@ -20,5 +20,5 @@ export const CONFIG_ADMIN_ROUTES: Routes = [
         path: 'historial-login',
         loadComponent: () => import('../configuracion-admin/historial-logueo-admin/historial-logueo-admin.component')
             .then(m => m.HistorialLogueoAdminComponent)
-    },
+    },*/
 ];

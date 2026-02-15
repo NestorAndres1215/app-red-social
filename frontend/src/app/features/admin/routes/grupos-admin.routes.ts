@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const GRUPOS_ADMIN_ROUTES: Routes = [
-    {
+   /* {
         path: 'reg-grupos-admin',
         loadComponent: () => import('../grupo-admin/reg-grupos-admin/reg-grupos-admin.component')
             .then(m => m.RegGruposAdminComponent)
@@ -43,5 +43,5 @@ export const GRUPOS_ADMIN_ROUTES: Routes = [
         path: 'reportes-grupo-admin',
         loadComponent: () => import('../grupo-admin/reportes-grupo-admin/reportes-grupo-admin.component')
             .then(m => m.ReportesGrupoAdminComponent)
-    },
+    },*/
 ];

@@ -8,11 +8,10 @@ export const USER_ROUTES: Routes = [
         pathMatch: 'full'
     },
 
-    // Login → /auth/login
     {
         path: 'inicio',
-        loadComponent: () => import('../principal-user/principal-user.component')
-            .then(m => m.PrincipalUserComponent)
+        loadComponent: () => import('../principal-user/principal-user')
+            .then(m => m.PrincipalUser)
     },
 
 

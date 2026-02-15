@@ -4,10 +4,10 @@ export const ADMIN_ROUTES: Routes = [
 
   {
     path: '',
-    loadComponent: () => import('../principal-admin/principal-admin.component')
-      .then(m => m.PrincipalAdminComponent)
+    loadComponent: () => import('../principal-admin/principal-admin')
+      .then(m => m.PrincipalAdmin)
   },
-  {
+/*  {
     path: 'user-admin',
     loadComponent: () => import('../administrador-user/admin-user/admin-user.component')
       .then(m => m.AdminUserComponent)
@@ -46,7 +46,7 @@ export const ADMIN_ROUTES: Routes = [
     path: 'profile/:codigo/:userParam',
     loadComponent: () => import('../administrador-user/detalle-perfiles-administradores/detalle-perfiles-administradores.component')
       .then(m => m.DetallePerfilesAdministradoresComponent)
-  }
+  }*/
 ];
 
 

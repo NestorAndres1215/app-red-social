@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 
-import { ROLES } from '../constants/roles.contants';
+import { ROLES } from '../constants/roles';
 import { AuthService } from '../services/auth.service';
 
 
