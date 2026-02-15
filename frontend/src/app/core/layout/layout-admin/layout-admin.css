@@ -11,19 +11,19 @@
 }
 
 .example-toolbar {
-    background: linear-gradient(to right, #1e40af, #3b82f6);
+    background: #1e3a8a;
     color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidenav-icon {
-    background-color: #1e40af;
+    background-color:  #1e3a8a;
     border: none;
     color: white;
 }
 
 .btn-icon {
-    background-color: #3b82f6;
+    background-color:  #1e3a8a;
     border: none;
     color: white;
 }
@@ -54,19 +54,17 @@ mat-list-item span {
     display: inline-block;
 }
 
-
 mat-list-item:hover {
     background-color: #dbeafe;
 }
 
 mat-list-item mat-icon {
-    color: #1e40af;
+    color:  #1e3a8a;
     margin-right: 8px;
 }
 
 .sidenav-content {
     height: 92vh;
-
     background-color: #f0f7ff;
     display: flex;
     align-items: center;
