@@ -20,11 +20,16 @@ import { Search } from "../../../../shared/search/search";
 })
 export class AdministradorActivos {
 
+  itemsPerPageActivo = 5;
   adminListadoOriginal: any[] = [];
   adminListado: any[] = [];
   datosFiltrados: any[] = [];
   pageActivos = 1;
-  get MathActivo() { return Math; }
+
+  get MathActivo() {
+    return Math;
+  }
+
   columnas = [
     { etiqueta: 'Código', clave: 'codigo' },
     { etiqueta: 'Nombre', clave: 'nombre' },
@@ -37,22 +42,22 @@ export class AdministradorActivos {
     suspender: true,
   };
 
-  itemsPerPageActivo = 5;
+  constructor(
+    private usuarioService: UsuarioService,
+    private alertService: AlertService,
+    private administradorService: AdministradorService,
+    private breakpointObserver: BreakpointObserver,
+    private dialog: MatDialog) { }
 
-  constructor(private usuarioService: UsuarioService, private alertService: AlertService, private administradorService: AdministradorService, private breakpointObserver: BreakpointObserver, private dialog: MatDialog) {
-
-  }
   ngOnInit(): void {
     this.listarAdminActivos();
-
   }
+
   listarAdminActivos() {
     const username = localStorage.getItem('username') || '';
-
     this.usuarioService.listarUsuariosAdmin(username, Estados.ACTIVO)
       .subscribe(data => {
         this.adminListadoOriginal = data;
-        console.log(this.adminListadoOriginal)
         this.adminListado = [...data];
         this.applyPaginationActivos();
       });
@@ -62,7 +67,6 @@ export class AdministradorActivos {
     const start = (this.pageActivos - 1) * this.itemsPerPageActivo;
     this.datosFiltrados = this.adminListado.slice(start, start + this.itemsPerPageActivo);
   }
-
 
   desactivar(fila: any): void {
     console.log(fila);
@@ -84,7 +88,6 @@ export class AdministradorActivos {
 
     });
     dialogEliminar.afterClosed().subscribe((respuesta: RespuestaModel) => {
-
       if (respuesta?.boton != 'CONFIRMAR') return;
       this.administradorService.inactivar(fila.codigo).subscribe(result => {
         this.alertService.aceptacion("Se desactivó correctamente el usuario");
@@ -93,10 +96,10 @@ export class AdministradorActivos {
       });
     })
   }
+
   suspender(fila: any): void {
     console.log(fila);
     const username = fila.username || 'Desconocido';
-
     const isMobile = this.breakpointObserver.isMatched('(max-width: 576px)');
 
     const dialogEliminar = this.dialog.open(ModalEliminacion, {
@@ -112,15 +115,11 @@ export class AdministradorActivos {
       },
 
     });
-    console.log(fila.codigo)
     dialogEliminar.afterClosed().subscribe((respuesta: RespuestaModel) => {
-
       if (respuesta?.boton != 'CONFIRMAR') return;
       this.administradorService.suspender(fila.codigo).subscribe(result => {
-
         this.alertService.aceptacion("Se suspendio correctamente el usuario");
         this.listarAdminActivos();
-
       });
     })
   }
@@ -128,8 +127,6 @@ export class AdministradorActivos {
 
   filtrar(text: string) {
     const value = text.toLowerCase().trim();
-
-
     this.pageActivos = 1;
     this.adminListado = this.adminListadoOriginal.filter(d =>
       (d.username && d.username.toLowerCase().includes(value)) ||

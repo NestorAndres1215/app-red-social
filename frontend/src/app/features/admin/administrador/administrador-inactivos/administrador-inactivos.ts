@@ -19,11 +19,14 @@ import { Estados } from '../../../../core/constants/estados';
 })
 export class AdministradorInactivos {
 
-  constructor(private usuarioService: UsuarioService, private alertService: AlertService, private administradorService: AdministradorService, private breakpointObserver: BreakpointObserver, private dialog: MatDialog) {
+  constructor(
+    private usuarioService: UsuarioService, 
+    private alertService: AlertService, 
+    private administradorService: AdministradorService, 
+    private breakpointObserver: BreakpointObserver, 
+    private dialog: MatDialog) {}
 
-  }
   ngOnInit(): void {
-
     this.listarAdminDesactivos();
   }
 
@@ -38,7 +41,6 @@ export class AdministradorInactivos {
   adminListadoInactivo: any[] = [];
   datosFiltradosInactivo: any[] = [];
   pageInactivos = 1;
-
   itemsPerPageDesactivo = 5;
 
   botonesConfig = {
@@ -47,7 +49,6 @@ export class AdministradorInactivos {
 
   listarAdminDesactivos() {
     const username = localStorage.getItem('username') || '';
-
     this.usuarioService.listarUsuariosAdmin(username, Estados.INACTIVO)
       .subscribe(data => {
         this.adminListadoInactivoOriginal = data;
@@ -58,7 +59,6 @@ export class AdministradorInactivos {
 
   filtrar(text: string) {
     const value = text.toLowerCase().trim();
-
     this.pageInactivos = 1;
     this.adminListadoInactivo = this.adminListadoInactivoOriginal.filter(d =>
       (d.username && d.username.toLowerCase().includes(value)) ||
@@ -73,9 +73,9 @@ export class AdministradorInactivos {
     this.datosFiltradosInactivo = this.adminListadoInactivo.slice(start, start + this.itemsPerPageDesactivo);
   }
   
-  get MathInactivo() { return Math; }
-
-
+  get MathInactivo() { 
+    return Math; 
+  }
 
   activar(fila: any): void {
     console.log(fila);
@@ -96,7 +96,7 @@ export class AdministradorInactivos {
       },
 
     });
-    console.log(fila.codigo)
+   
     dialogEliminar.afterClosed().subscribe((respuesta: RespuestaModel) => {
 
       if (respuesta?.boton != 'CONFIRMAR') return;

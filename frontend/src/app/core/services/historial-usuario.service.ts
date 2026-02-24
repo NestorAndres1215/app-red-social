@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { HistorialUsuarioModel } from '../models/historial-usuario-model';
+import { HistorialUsuario } from '../models/historial-usuario';
+
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,7 @@ export class HistorialUsuarioService {
     return this.http.get<any>(`${this.backendUrl}/historial-usuario/listar/historial/moderador`);
   }
 
-  registrar(body: HistorialUsuarioModel): Observable<any> {
+  registrar(body: HistorialUsuario): Observable<any> {
     return this.http.post<any>(`${this.backendUrl}/historial-usuario/registrar`, body);
   }
 

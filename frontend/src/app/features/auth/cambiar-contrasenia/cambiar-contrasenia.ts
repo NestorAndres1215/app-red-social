@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { MENSAJES } from '../../../core/constants/mensajes';
-import { ContrasenaAuht } from '../../../core/models/login-auth.model';
+import { ContrasenaAuht } from '../../../core/models/login-auth';
 import { AlertService } from '../../../core/services/alert.service';
 import { AuthService } from '../../../core/services/auth.service';
 

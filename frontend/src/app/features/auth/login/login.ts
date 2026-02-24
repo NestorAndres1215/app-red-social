@@ -4,14 +4,16 @@ import { firstValueFrom } from 'rxjs';
 import { Estados } from '../../../core/constants/estados';
 import { MENSAJES } from '../../../core/constants/mensajes';
 import { ROLES } from '../../../core/constants/roles';
-import { HistorialUsuarioModel } from '../../../core/models/historial-usuario-model';
-import { LoginAuth } from '../../../core/models/login-auth.model';
+
+import { LoginAuth } from '../../../core/models/login-auth';
 import { AlertService } from '../../../core/services/alert.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { HistorialUsuarioService } from '../../../core/services/historial-usuario.service';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Button } from "../../../shared/button/button";
+import { HistorialUsuario } from '../../../core/models/historial-usuario';
+import { LoginService } from '../../../core/services/login.service';
 @Component({
   selector: 'app-login',
   imports: [CommonModule, ReactiveFormsModule, Button],
@@ -26,6 +28,7 @@ export class Login {
   constructor(
     private historial: HistorialUsuarioService,
     private fb: FormBuilder,
+    private loginService:LoginService,
     private router: Router,
     private authService: AuthService,
     private alertService: AlertService
@@ -74,10 +77,9 @@ export class Login {
 
     this.authService.generateToken(login).subscribe({
       next: async (data: any) => {
-        console.log(this.intentosFallidos)
-        console.log(data)
+       
         if (this.intentosFallidos >= 3) {
-          await firstValueFrom(this.authService.bloquear(this.formulario.value.login));
+          await firstValueFrom(this.loginService.bloquear(this.formulario.value.login));
           this.alertService.error("Cuenta bloqueada", "Has superado el número máximo de intentos fallidos. Tu cuenta ha sido bloqueada. Por favor, espera o contacta con el administrador.")
           localStorage.setItem('Bloqueo', 'true');
           return
@@ -156,14 +158,14 @@ export class Login {
   }
 
   registrarLogueo(usuario: string) {
-    this.authService.registrarLogueo(usuario).subscribe(() => {
+    this.loginService.registrarLogueo(usuario).subscribe(() => {
       this.registroHistorial(usuario)
     });
   }
 
 
   async registroHistorial(usuario: string) {
-    const historial: HistorialUsuarioModel = {
+    const historial: HistorialUsuario = {
       estado: Estados.ACTIVO,
       detalle: 'Inicio de sesión de esta cuenta',
       titulo: 'INICIO DE SESION',

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
-import { ContrasenaAuht } from '../models/login-auth.model';
+import { ContrasenaAuht } from '../models/login-auth';
 
 @Injectable({
   providedIn: 'root',
@@ -92,10 +92,6 @@ export class AuthService {
 
   actualizarCambioContrasenia(request: ContrasenaAuht): Observable<any> {
     return this.http.put<any>(`${this.backendUrl}/auth/actualizar/contrasenia`, request);
-  }
-
-  bloquear(username: string): Observable<any> {
-    return this.http.put<any>(`${this.backendUrl}/auth/bloquear/${username}`, {});
   }
 
 

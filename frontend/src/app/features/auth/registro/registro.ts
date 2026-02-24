@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MENSAJES } from '../../../core/constants/mensajes';
-import { RegisterUser } from '../../../core/models/register-user.model';
+import { RegisterUser } from '../../../core/models/register-user.';
 import { edadConvertir, filtrarSoloNumeros, obtenerMaxFechaNacimiento } from '../../../core/utils/validators.utils';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
