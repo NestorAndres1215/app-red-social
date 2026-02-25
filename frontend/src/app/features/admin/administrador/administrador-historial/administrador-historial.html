@@ -1,8 +1,8 @@
 <div class="container my-4 pb-5">
-    <app-titulo title="Historial de Administrador" icon="fas fa-history">
-    </app-titulo>
+  <app-titulo title="Historial de Administrador" icon="fas fa-history">
+  </app-titulo>
 
-     <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
+  <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
     <div class="row g-3 justify-content-center justify-content-md-between align-items-start">
       <div class="col-12 col-sm-6 col-md-5 mx-auto">
         <app-filter-select label="Filtrar por Módulo" [options]="modulo" [value]="selectedModulo"
@@ -18,7 +18,7 @@
         </ng-container>
 
         <ng-template #noHistorial>
-          <div class="card shadow-sm border-0 text-center p-4 p-md-5">
+          <div class="card border-0 text-center p-4 p-md-5">
             <div class="fs-1 text-secondary mb-3">
               <i class="fas fa-info-circle"></i>
             </div>

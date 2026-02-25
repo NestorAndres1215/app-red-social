@@ -1,0 +1,18 @@
+<div class="row g-3">
+
+  <div class="col-12 d-flex justify-content-end align-items-center mb-2">
+    <app-button label="Mensaje" icon="fas fa-comment" color="mensaje" />
+  </div>
+
+  <div class="col-12">
+    <hr class="mt-0" />
+  </div>
+
+  <div class="col-12 col-md-4" *ngFor="let item of data">
+    <div class="info-card p-3 text-center shadow-sm rounded">
+      <h5 class="info-title text-uppercase">{{ item.label }}</h5>
+      <p class="info-value">{{ item.value }}</p>
+    </div>
+  </div>
+
+</div>

@@ -27,34 +27,31 @@ export const ADMIN_ROUTES: Routes = [
     loadComponent: () => import('../administrador/administrador-historial/administrador-historial')
       .then(m => m.AdministradorHistorial)
   },
+  {
+    path: 'administrado-perfil',
+    loadComponent: () => import('../administrador/administrador-perfil/administrador-perfil')
+      .then(m => m.AdministradorPerfil)
+  },
+  {
+    path: 'busqueda-administrador',
+    loadComponent: () => import('../administrador/administrador-busqueda/administrador-busqueda')
+      .then(m => m.AdministradorBusqueda)
+  },
   /* 
     {
       path: 'reg-admin',
       loadComponent: () => import('../administrador-user/reg-user-admin/reg-user-admin.component')
         .then(m => m.RegUserAdminComponent)
     },
-    {
-      path: 'perfil-admin',
-      loadComponent: () => import('../administrador-user/perfil-user-admin/perfil-user-admin.component')
-        .then(m => m.PerfilUserAdminComponent)
-    },
+
+
   
-    {
-      path: 'buscar-admin',
-      loadComponent: () => import('../administrador-user/buscar-admin/buscar-admin.component')
-        .then(m => m.BuscarAdminComponent)
-    },
-    {
-      path: 'acciones-admin',
-      loadComponent: () => import('../administrador-user/accion-admin/accion-admin.component')
-        .then(m => m.AccionAdminComponent)
-    },
-  
-    {
-      path: 'profile/:codigo/:userParam',
-      loadComponent: () => import('../administrador-user/detalle-perfiles-administradores/detalle-perfiles-administradores.component')
-        .then(m => m.DetallePerfilesAdministradoresComponent)
-    }*/
+*/
+  {
+    path: 'profile/:codigo/:userParam',
+    loadComponent: () => import('../administrador/administrador-perfil-detalle/administrador-perfil-detalle')
+      .then(m => m.AdministradorPerfilDetalle)
+  }
 ];
 
 
