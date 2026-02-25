@@ -1,0 +1,25 @@
+<div class="container my-4 pb-5">
+    <app-titulo title="Mantenimiento de Administradores Desactivados" icon="fas fa-user-shield">
+    </app-titulo>
+    <div class=" my-4 pb-2">
+        <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
+            <mat-tab-group [(selectedIndex)]="activeTab" class="custom-tabs">
+                <mat-tab [label]="suspendidosLabel">
+                    <div class="my-5" *ngIf="activeTab === 0">
+                        <app-administrador-suspendidos></app-administrador-suspendidos>
+                    </div>
+                </mat-tab>
+                <mat-tab [label]="inhabilitadoLabel">
+                    <div class="my-5" *ngIf="activeTab === 1">
+                        <app-administrador-inhabilitados></app-administrador-inhabilitados>
+                    </div>
+                </mat-tab>
+                <mat-tab [label]="bloqueadoLabel">
+                    <div class="my-5" *ngIf="activeTab === 2">
+                        <app-administrador-bloqueados></app-administrador-bloqueados>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </header>
+    </div>
+</div>

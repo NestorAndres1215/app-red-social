@@ -12,6 +12,12 @@ export const ADMIN_ROUTES: Routes = [
     loadComponent: () => import('../administrador/administrador-user/administrador-user')
       .then(m => m.AdministradorUser)
   },
+
+    {
+    path: 'admin-suspendidos',
+    loadComponent: () => import('../administrador/administrador-user-suspendidos/administrador-user-suspendidos')
+      .then(m => m.AdministradorUserSuspendidos)
+  },
 /* 
   {
     path: 'reg-admin',
@@ -38,11 +44,7 @@ export const ADMIN_ROUTES: Routes = [
     loadComponent: () => import('../administrador-user/accion-admin/accion-admin.component')
       .then(m => m.AccionAdminComponent)
   },
-  {
-    path: 'admin-suspendidos',
-    loadComponent: () => import('../administrador-user/admin-suspendidos/admin-suspendidos.component')
-      .then(m => m.AdminSuspendidosComponent)
-  },
+
   {
     path: 'profile/:codigo/:userParam',
     loadComponent: () => import('../administrador-user/detalle-perfiles-administradores/detalle-perfiles-administradores.component')
