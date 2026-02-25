@@ -8,16 +8,22 @@ export const ADMIN_ROUTES: Routes = [
       .then(m => m.PrincipalAdmin)
   }, 
   {
-    path: 'user-admin',
+    path: 'mantenimiento-administrador',
     loadComponent: () => import('../administrador/administrador-user/administrador-user')
       .then(m => m.AdministradorUser)
   },
 
     {
-    path: 'admin-suspendidos',
+    path: 'administrador-suspendidos',
     loadComponent: () => import('../administrador/administrador-user-suspendidos/administrador-user-suspendidos')
       .then(m => m.AdministradorUserSuspendidos)
   },
+  {
+    path: 'administrador-acciones',
+    loadComponent: () => import('../administrador/administrador-accion/administrador-accion')
+      .then(m => m.AdministradorAccion)
+  },
+
 /* 
   {
     path: 'reg-admin',
