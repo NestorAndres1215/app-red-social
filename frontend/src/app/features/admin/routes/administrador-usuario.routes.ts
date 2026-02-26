@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-export const ADMIN_ROUTES: Routes = [
+export const ADMINISTRADOR_USUARIO_ROUTES: Routes = [
 
   {
     path: '',
@@ -37,16 +37,11 @@ export const ADMIN_ROUTES: Routes = [
     loadComponent: () => import('../administrador/administrador-busqueda/administrador-busqueda')
       .then(m => m.AdministradorBusqueda)
   },
-  /* 
-    {
-      path: 'reg-admin',
-      loadComponent: () => import('../administrador-user/reg-user-admin/reg-user-admin.component')
-        .then(m => m.RegUserAdminComponent)
-    },
-
-
-  
-*/
+  {
+    path: 'registro-administrador',
+    loadComponent: () => import('../administrador/administrador-registro/administrador-registro')
+      .then(m => m.AdministradorRegistro)
+  },
   {
     path: 'profile/:codigo/:userParam',
     loadComponent: () => import('../administrador/administrador-perfil-detalle/administrador-perfil-detalle')

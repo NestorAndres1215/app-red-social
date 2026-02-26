@@ -1,14 +1,14 @@
 import { Routes } from "@angular/router";
 
 export const ADMINISTRADOR_ROUTES: Routes = [
-    
-        {
+
+    {
         path: 'admin',
         loadChildren: () =>
-            import('../admin/routes/usuario-admin.routes')
-                .then(m => m.ADMIN_ROUTES)
+            import('../admin/routes/administrador-usuario.routes')
+                .then(m => m.ADMINISTRADOR_USUARIO_ROUTES)
     },
-    
+
     /*
 
     {

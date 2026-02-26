@@ -78,9 +78,7 @@ export class AdministradorBloqueados {
   }
 
   activar(fila: any): void {
-    console.log(fila);
     const username = fila.username || 'Desconocido';
-
     const isMobile = this.breakpointObserver.isMatched('(max-width: 576px)');
 
     const dialogEliminar = this.dialog.open(ModalEliminacion, {
@@ -98,10 +96,8 @@ export class AdministradorBloqueados {
     });
    
     dialogEliminar.afterClosed().subscribe((respuesta: RespuestaModel) => {
-
       if (respuesta?.boton != 'CONFIRMAR') return;
       this.administradorService.activar(fila.codigo).subscribe(result => {
-
         this.alertService.aceptacion("Se activo correctamente el usuario");
         this.listarAdminBloqueado();
       });

@@ -1,0 +1,105 @@
+<div class="container my-4 pb-5">
+    <app-titulo title="Registro de Administradores" icon="fas fa-user-plus">
+    </app-titulo>
+
+      <header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
+    <form [formGroup]="formulario" (ngSubmit)="operar()">
+      <div class="row g-3">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="username" class="form-label fw-semibold">
+              <i class="fas fa-user me-1"></i> Usuario
+            </label>
+            <input type="text" formControlName="usuario" name="username" class="form-control"
+              placeholder="Ingresa tu usuario" required />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="password" class="form-label fw-semibold">
+              <i class="fas fa-lock me-1"></i> Contraseña
+            </label>
+            <div class="password-wrapper position-relative">
+              <input [type]="showPassword ? 'text' : 'password'" formControlName="contrasena" name="password"
+                class="form-control" placeholder="Ingresa tu contraseña" required />
+              <i class="fas password-toggle position-absolute top-50 end-0 translate-middle-y me-3"
+                [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword" (click)="togglePassword()"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="nombre" class="form-label fw-semibold">
+              <i class="fas fa-user me-1"></i> Nombre
+            </label>
+            <input type="text" formControlName="nombre" name="nombre" class="form-control"
+              placeholder="Ingresa tu nombre" required />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="apellido" class="form-label fw-semibold">
+              <i class="fas fa-user me-1"></i> Apellido
+            </label>
+            <input type="text" formControlName="apellido" name="apellido" class="form-control"
+              placeholder="Ingresa tu apellido" required />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="email" class="form-label fw-semibold">
+              <i class="fas fa-envelope me-1"></i> Email
+            </label>
+            <input type="email" formControlName="correo" name="email" class="form-control"
+              placeholder="Ingresa tu email" required />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="telefono" class="form-label fw-semibold">
+              <i class="fas fa-phone me-1"></i> Teléfono
+            </label>
+            <input type="tel" name="telefono" formControlName="telefono" class="form-control"
+              placeholder="Ingresa tu teléfono" (input)="soloNumerosInput($event)" required />
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="nacionalidad" class="form-label fw-semibold">
+              <i class="fas fa-flag me-1"></i> Nacionalidad
+            </label>
+            <select formControlName="nacionalidad" class="form-select" required>
+              <option value="" disabled selected>Selecciona tu nacionalidad</option>
+              <option *ngFor="let n of nacionalidades" [value]="n">{{ n }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <label for="genero" class="form-label fw-semibold">
+              <i class="fas fa-venus-mars me-1"></i> Género
+            </label>
+            <select formControlName="genero" class="form-select" required>
+              <option value="" disabled selected>Selecciona tu género</option>
+              <option *ngFor="let g of generos" [value]="g.toLowerCase()">{{ g }}</option>
+            </select>
+
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="fechaNacimiento" class="form-label fw-semibold">
+              <i class="fas fa-calendar-alt me-1"></i> Fecha de Nacimiento
+            </label>
+            <input type="date" formControlName="fechaNacimiento" name="fechaNacimiento" [max]="maxFechaNacimiento"
+              class="form-control" required />
+          </div>
+        </div>
+
+      </div>
+      <div class=" mt-4">
+        <app-button label="Registrar" icon="fas fa-plus-circle" color="registrar"></app-button>
+      </div>
+    </form>
+  </header>
+</div>
