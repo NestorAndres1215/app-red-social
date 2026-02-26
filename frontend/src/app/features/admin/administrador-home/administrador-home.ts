@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { LayoutAdmin } from "../../../core/layout/layout-admin/layout-admin";
 
 @Component({
-  selector: 'app-home-admin',
+  selector: 'app-administrador-home',
   imports: [LayoutAdmin],
-  templateUrl: './home-admin.html',
-  styleUrl: './home-admin.css',
+  templateUrl: './administrador-home.html',
+  styleUrl: './administrador-home.css',
 })
-export class HomeAdmin {
+export class AdministradorHome {
 
 }

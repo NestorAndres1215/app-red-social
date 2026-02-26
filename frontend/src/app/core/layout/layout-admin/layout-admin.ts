@@ -123,7 +123,6 @@ export class LayoutAdmin {
   }
 
   logout() {
-    console.log("SE CERRO SESION")
     this.authService.logout()
   }
 

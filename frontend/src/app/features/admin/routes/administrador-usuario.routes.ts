@@ -4,8 +4,8 @@ export const ADMINISTRADOR_USUARIO_ROUTES: Routes = [
 
   {
     path: '',
-    loadComponent: () => import('../principal-admin/principal-admin')
-      .then(m => m.PrincipalAdmin)
+    loadComponent: () => import('../administrador-principal/administrador-principal')
+      .then(m => m.AdministradorPrincipal)
   },
   {
     path: 'mantenimiento-administrador',

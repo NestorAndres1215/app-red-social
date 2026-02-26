@@ -23,10 +23,11 @@ export const ADMINISTRADOR_ROUTES: Routes = [
             import('../admin/routes/grupos-admin.routes')
                 .then(m => m.GRUPOS_ADMIN_ROUTES)
     },
+  */
     {
         path: 'configuracion-admin',
         loadChildren: () =>
-            import('../admin/routes/configuracion-admin.routes')
-                .then(m => m.CONFIG_ADMIN_ROUTES)
-    }*/
+            import('../admin/routes/administrador-configuracion.routes')
+                .then(m => m.ADMINISTRADOR_CONFIGURACION)
+    }
 ];

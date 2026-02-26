@@ -8,7 +8,7 @@ import { HomeUser } from './features/user/home-user/home-user';
 import { Principal } from './features/home/principal/principal';
 import { Error } from './shared/error/error';
 import { Oauth2Redirect } from './features/auth/oauth2-redirect/oauth2-redirect';
-import { HomeAdmin } from './features/admin/home-admin/home-admin';
+import { AdministradorHome } from './features/admin/administrador-home/administrador-home';
 
 export const routes: Routes = [
 
@@ -50,7 +50,7 @@ export const routes: Routes = [
 
   {
     path: '',
-    component: HomeAdmin,
+    component: AdministradorHome,
     canActivate: [AdminGuard],
     loadChildren: () =>
       import('./features/routes/administradores.routes')

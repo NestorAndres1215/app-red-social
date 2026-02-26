@@ -1,0 +1,43 @@
+<div class="container my-4 pb-5">
+    <app-titulo title="Cambiar Contraseña" icon="fas fa-lock">
+    </app-titulo>
+<header class="bg-white p-4 rounded-4 shadow-sm border mb-4">
+        <form [formGroup]="formulario">
+            <div class="form-group mb-3">
+                <label for="usuario" class="form-label fw-semibold d-block">
+                    <i class="fas fa-user me-1"></i> Usuario
+                </label>
+                <input type="text" id="usuario" class="form-control" placeholder="Usuario" formControlName="usuario"
+                    />
+            </div>
+            <div class="form-group mb-3">
+                <label for="nuevaContra" class="form-label fw-semibold d-block">
+                    <i class="fas fa-lock me-1"></i> Contraseña Nueva
+                </label>
+                <div class="password-wrapper position-relative">
+                    <input [type]="showPasswordNC ? 'text' : 'password'" formControlName="nuevaContra" name="password"
+                        class="form-control" placeholder="Ingresa tu contraseña" required />
+                    <i class="fas password-toggle position-absolute top-50 end-0 translate-middle-y me-3"
+                        [class.fa-eye]="!showPasswordNC" [class.fa-eye-slash]="showPasswordNC"
+                        (click)="togglePasswordNC()"></i>
+                </div>
+            </div>
+            <div class="form-group mb-4">
+                <label for="confirmarContra" class="form-label fw-semibold d-block">
+                    <i class="fas fa-lock me-1"></i> Confirmar Nueva
+                </label>
+                <div class="password-wrapper position-relative">
+                    <input [type]="showPassword ? 'text' : 'password'" formControlName="confirmarContra" name="password"
+                        class="form-control" placeholder="Ingresa tu contraseña" required />
+                    <i class="fas password-toggle position-absolute top-50 end-0 translate-middle-y me-3"
+                        [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"
+                        (click)="togglePassword()"></i>
+                </div>
+            </div>
+
+            <app-button label="Registrar" icon="fas fa-plus-circle" color="registrar" class="w-100"
+                (click)="operar()" />
+        </form>
+
+    </header>
+</div>

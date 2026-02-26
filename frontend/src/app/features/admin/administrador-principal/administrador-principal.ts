@@ -3,11 +3,11 @@ import { Titulo } from "../../../shared/titulo/titulo";
 import { CardItem } from "../../../shared/card/card-item/card-item";
 
 @Component({
-  selector: 'app-principal-admin',
+  selector: 'app-administrador-principal',
   imports: [Titulo, CardItem],
-  templateUrl: './principal-admin.html',
-  styleUrl: './principal-admin.css',
+  templateUrl: './administrador-principal.html',
+  styleUrl: './administrador-principal.css',
 })
-export class PrincipalAdmin {
+export class AdministradorPrincipal {
 
 }
