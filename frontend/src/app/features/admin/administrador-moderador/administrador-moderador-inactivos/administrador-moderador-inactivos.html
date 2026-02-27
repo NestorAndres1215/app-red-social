@@ -1,1 +1,8 @@
-<p>administrador-moderador-inactivos works!</p>
+<app-search (searchChange)="filtrar($event)"></app-search>
+
+<app-tabla [columnas]="columnas" [datos]="datosFiltradosInactivo" [botonesConfig]="botonesConfig2"
+    [onActivar]="activar.bind(this)"></app-tabla>
+
+<app-pagination [(page)]="pageInactivos"
+    [totalPages]="MathInactivo.ceil(moderadorListadoInactivo.length / itemsPerPageDesactivo)"
+    (pageChange)="applyPaginationInactivos()" ></app-pagination>

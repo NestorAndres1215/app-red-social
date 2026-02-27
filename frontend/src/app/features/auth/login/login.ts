@@ -125,7 +125,7 @@ export class Login {
 
                 switch (rol) {
                   case ROLES.ROLE_ADMIN:
-                    this.router.navigate(['/admin']);
+                    this.router.navigate(['/administrador']);
                     break;
 
                   case ROLES.ROLE_MODERADOR:

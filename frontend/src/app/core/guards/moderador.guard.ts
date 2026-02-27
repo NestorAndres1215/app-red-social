@@ -23,7 +23,7 @@ export class ModeradorGuard implements CanActivate {
                 } else if (rol === ROLES.ROLE_USER) {
                     return this.router.parseUrl('/inicio');
                 } else if (rol === ROLES.ROLE_ADMIN) {
-                    return this.router.parseUrl('/admin');
+                    return this.router.parseUrl('/administrador');
                 }
             }
             return this.router.parseUrl('/auth/login');

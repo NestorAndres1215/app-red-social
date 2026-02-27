@@ -3,20 +3,20 @@ import { Routes } from "@angular/router";
 export const ADMINISTRADOR_ROUTES: Routes = [
 
     {
-        path: 'admin',
+        path: 'administrador',
         loadChildren: () =>
             import('../admin/routes/administrador-usuario.routes')
                 .then(m => m.ADMINISTRADOR_USUARIO_ROUTES)
     },
 
+    {
+        path: 'administrador-moderador',
+        loadChildren: () =>
+            import('../admin/routes/administrador-moderador.routes')
+                .then(m => m.ADMINISTRADOR_MODERADOR)
+    },
     /*
 
-    {
-        path: 'mod-admin',
-        loadChildren: () =>
-            import('../admin/routes/moderador-admin.routes')
-                .then(m => m.MOD_ADMIN_ROUTES)
-    },
     {
         path: 'grupos-admin',
         loadChildren: () =>
@@ -25,7 +25,7 @@ export const ADMINISTRADOR_ROUTES: Routes = [
     },
   */
     {
-        path: 'configuracion-admin',
+        path: 'administrador-configuracion',
         loadChildren: () =>
             import('../admin/routes/administrador-configuracion.routes')
                 .then(m => m.ADMINISTRADOR_CONFIGURACION)

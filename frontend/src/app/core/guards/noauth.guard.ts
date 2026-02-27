@@ -24,7 +24,7 @@ export class NoAuthGuard implements CanActivate {
             const role = user.rol.nombre;
 
             const destino =
-                role === ROLES.ROLE_ADMIN ? '/admin' :
+                role === ROLES.ROLE_ADMIN ? '/administrador' :
                     role === ROLES.ROLE_MODERADOR ? '/moderador' :
                         role === ROLES.ROLE_USER ? '/inicio' :
                             '/auth/login';

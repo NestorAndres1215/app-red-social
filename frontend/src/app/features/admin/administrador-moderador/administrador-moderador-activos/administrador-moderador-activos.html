@@ -1,1 +1,7 @@
-<p>administrador-moderador-activos works!</p>
+<app-search (searchChange)="filtrar($event)"></app-search>
+
+<app-tabla [columnas]="columnas" [datos]="datosFiltrados" [botonesConfig]="botonesConfig"
+    [onDesactivar]="desactivar.bind(this)" [onSuspender]="suspender.bind(this)"></app-tabla>
+
+<app-pagination [(page)]="pageActivos" [totalPages]="MathActivo.ceil(moderadorListado.length / itemsPerPageActivo)"
+    (pageChange)="applyPaginationActivos()"></app-pagination>
