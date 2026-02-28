@@ -7,37 +7,31 @@ export const ADMINISTRADOR_MODERADOR: Routes = [
         loadComponent: () => import('../administrador-moderador/administrador-moderador/administrador-moderador')
             .then(m => m.AdministradorModerador)
     },
+    {
+        path: 'registro-moderador',
+        loadComponent: () => import('../administrador-moderador/administrador-moderador-registro/administrador-moderador-registro')
+            .then(m => m.AdministradorModeradorRegistro)
+    },
+    {
+        path: 'busqueda-moderador',
+        loadComponent: () => import('../administrador-moderador/administrador-moderador-busqueda/administrador-moderador-busqueda')
+            .then(m => m.AdministradorModeradorBusqueda)
+    },
+    {
+        path: 'profile/:codigo/:userParam',
+        loadComponent: () => import('../administrador-moderador/administrador-moderador-detalle-perfil/administrador-moderador-detalle-perfil')
+            .then(m => m.AdministradorModeradorDetallePerfil)
+    },
+    {
+        path: 'actividad-moderador',
+        loadComponent: () => import('../administrador-moderador/administrador-moderador-actividad/administrador-moderador-actividad')
+            .then(m => m.AdministradorModeradorActividad)
+    },
+    {
+        path: 'auditoria-moderador',
+        loadComponent: () => import('../administrador-moderador/administrador-moderador-auditoria/administrador-moderador-auditoria')
+            .then(m => m.AdministradorModeradorAuditoria)
+    },
 
-    /*  
-      {
-          path: 'reg-moderador',
-          loadComponent: () => import('../moderador-user/reg-moderador-user/reg-moderador-user.component')
-              .then(m => m.RegModeradorUserComponent)
-      },
-      {
-          path: 'rol-permisos-moderador',
-          loadComponent: () => import('../moderador-user/roles-permisos/roles-permisos.component')
-              .then(m => m.RolesPermisosComponent)
-      },
-      {
-          path: 'buscar-moderador',
-          loadComponent: () => import('../moderador-user/buscar-moderador-admin/buscar-moderador-admin.component')
-              .then(m => m.BuscarModeradorAdminComponent)
-      },
-      {
-          path: 'auditoria-moderador',
-          loadComponent: () => import('../moderador-user/auditoria-moderador-admin/auditoria-moderador-admin.component')
-              .then(m => m.AuditoriaModeradorAdminComponent)
-      },
-      {
-          path: 'actividad-moderador',
-          loadComponent: () => import('../moderador-user/actividad-moderador-admin/actividad-moderador-admin.component')
-              .then(m => m.ActividadModeradorAdminComponent)
-      },
-  
-      {
-          path: 'profile/:codigo/:userParam',
-          loadComponent: () => import('../moderador-user/detalle-perfiles-moderador/detalle-perfiles-moderador.component')
-              .then(m => m.DetallePerfilesModeradorComponent)
-      }*/
+
 ];

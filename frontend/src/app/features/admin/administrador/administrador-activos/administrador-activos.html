@@ -1,7 +1,7 @@
-<app-search (searchChange)="filtrar($event)" />
+<app-search (searchChange)="filtrar($event)"></app-search>
 
 <app-tabla [columnas]="columnas" [datos]="datosFiltrados" [botonesConfig]="botonesConfig"
-    [onDesactivar]="desactivar.bind(this)" [onSuspender]="suspender.bind(this)" />
+    [onDesactivar]="desactivar.bind(this)" [onSuspender]="suspender.bind(this)"></app-tabla>
     
 <app-pagination [(page)]="pageActivos" [totalPages]="MathActivo.ceil(adminListado.length / itemsPerPageActivo)"
-    (pageChange)="applyPaginationActivos()" />
+    (pageChange)="applyPaginationActivos()" ></app-pagination>

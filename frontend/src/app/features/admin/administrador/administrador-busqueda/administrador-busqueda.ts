@@ -49,6 +49,6 @@ export class AdministradorBusqueda {
   }
 
   verDetalleUsuario(usuario: any) {
-    this.router.navigate(['/admin/profile', usuario.codigo, usuario.username]);
+    this.router.navigate(['/administrador/profile', usuario.codigo, usuario.username]);
   }
 }

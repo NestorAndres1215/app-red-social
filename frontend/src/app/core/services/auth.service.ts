@@ -84,7 +84,7 @@ export class AuthService {
   }
 
   listarModeradoresLofin() {
-    return this.http.get<any>(`${this.backendUrl}/auth/listar/moderador`);
+    return this.http.get<any>(`${this.backendUrl}/login/listar/moderador`);
   }
   listarLogin() {
     return this.http.get<any>(`${this.backendUrl}/auth/listar-login`);

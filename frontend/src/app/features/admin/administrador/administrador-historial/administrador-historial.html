@@ -6,15 +6,16 @@
     <div class="row g-3 justify-content-center justify-content-md-between align-items-start">
       <div class="col-12 col-sm-6 col-md-5 mx-auto">
         <app-filter-select label="Filtrar por Módulo" [options]="modulo" [value]="selectedModulo"
-          (valueChange)="onModuloChange($event)" />
+          (valueChange)="onModuloChange($event)"></app-filter-select>
       </div>
       <div class="col-12 col-sm-6 col-md-5 mx-auto">
         <app-filter-select label="Filtrar por Año" [options]="years" [value]="selectedYear"
-          (valueChange)="onYearChange($event)" />
+          (valueChange)="onYearChange($event)"></app-filter-select>
       </div>
       <div class="col-12 mt-3">
         <ng-container *ngIf="historial.length > 0; else noHistorial">
-          <app-historial-item *ngFor="let item of historial" [item]="item" />
+          <app-historial-item *ngFor="let item of historial" [item]="item">
+          </app-historial-item>
         </ng-container>
 
         <ng-template #noHistorial>
